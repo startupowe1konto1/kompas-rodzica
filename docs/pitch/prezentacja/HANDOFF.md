@@ -23,8 +23,8 @@ Stan na 22.11.2026, ok. 01:30. Właściciel prezentacji: Mikołaj (tor D). Czyta
 | 6 | symulacje | gotowy | zrzut „Pobieramy Twoje dane” |
 | 7 | kwoty | gotowy | |
 | 8 | korzysci | gotowy | |
-| 9 | zamkniecie | czeka na linki | `[link do demo]`, `[link do repozytorium]` |
-| 10 | zewnetrzne | gotowy | załącznik po „Dziękujemy”, wymóg regulaminu; nie pokazujemy na scenie |
+| 9 | zusik | gotowy | czat ZuSik ze zrzutem rozmowy (Wojtek, 22.11) |
+| 10 | zewnetrzne | ukryty (`data-pomin`) | załącznik o rozwiązaniach zewnętrznych i AI; ukrył go Wojtek 22.11, w PDF go nie ma |
 
 ## Czego brakuje według instrukcji
 
@@ -39,6 +39,8 @@ Stan na 22.11.2026, ok. 01:30. Właściciel prezentacji: Mikołaj (tor D). Czyta
 
 | Decyzja | Kto, kiedy |
 |---|---|
+| Slajd zamykający usunięty, deck kończy się slajdem o ZuSiku (9 slajdów). Ze slajdu 8 usunięty pasek „Gotowe do wdrożenia”. | Mikołaj, 22.11 |
+| Nagłówek slajdu 5 „Wszystko w jednym narzędziu.”, slajd 6 „Rzetelne symulacje…” zamiast „Uczciwe…”. Slajd 8: rodzic „ma pod ręką jedno kompleksowe narzędzie”, ZUS „ubezpieczony nie jest zaskoczony decyzją” (cel ZUS z opisu zadania, ZUS-BRIEF 2.1). Slajd 9 bez linków, większy telefon. | Mikołaj, 22.11 |
 | Nazwa: „Kompas Rodzica”, podtytuł „Zasiłkowy przewodnik przyszłego rodzica”. Znak kompasu (`img/logo-znak.svg`, kopia z `docs/nazwa-i-logo/` z gałęzi `logo-kompas-rodzica` Wojtka) na slajdach 1 i 9. | Mikołaj, 22.11 |
 | Wersja 2: pieniądze nie są na pierwszym planie; deck pokazuje wymagania zadania i to, co aplikacja rozwiązuje (problem, cztery filary, decyzja i skutek, a–j, uczciwe symulacje, kalkulator jako dowód poprawności, korzyści). Slajd „+18 001 zł” i osobny slajd ze zrzutami usunięte. | Mikołaj, 22.11 |
 | Wersja 1: pełny pitch przed jury; bogatsze wizualnie (kafle, ikony, makiety), zmiana planu na klik na slajdach 3 i 5, bez slajdu z liczbami repozytorium, rozwiązania zewnętrzne jako załącznik po „Dziękujemy”. | Mikołaj, 22.11 |
@@ -52,4 +54,3 @@ Stan na 22.11.2026, ok. 01:30. Właściciel prezentacji: Mikołaj (tor D). Czyta
 | Pytanie | Domyślnie, jeśli nikt nie zdecyduje |
 |---|---|
 | Czy wersja HTML i PDF trafiają do repo (`docs/pitch/`) | nie commitujemy bez zgody właściciela |
-| Linki do demo i repozytorium na slajdzie 10 | miejsca do uzupełnienia |

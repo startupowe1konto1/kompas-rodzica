@@ -28,7 +28,7 @@ Wersja 2 (22.11, decyzja Mikołaja): na pierwszym planie to, czego wymaga zadani
 
 - **Problem:** rodzic nie wie, co mu przysługuje, co się stanie po decyzji i co, gdzie i do kiedy złożyć. Dane ZUS: 87% osób na zasiłku za urlop rodzicielski to kobiety (komunikat ZUS z 27.05.2026). Cel ZUS z opisu zadania: mniej sporów i korespondencji, rodzic nie jest zaskakiwany decyzją.
 - **Rozwiązanie:** uprawnienia dla konkretnej osoby z przepisem, warianty na osi czasu z ich skutkami (priorytet mentora), dokumenty i terminy z informacją, kto wypłaca, ryzyka i trudne sytuacje.
-- **Dowody:** przykład Magdy i Pawła (dane fikcyjne) ze skutkiem decyzji na klik, pokrycie punktów a–j, uczciwe symulacje usług, wyliczenie z przepisami.
+- **Dowody:** przykład Magdy i Pawła (dane fikcyjne) ze skutkiem decyzji na klik, pokrycie punktów a–j, rzetelne symulacje usług, wyliczenie z przepisami.
 
 ## 4. Slajdy
 
@@ -41,10 +41,10 @@ Scena 1920 × 1080. Przy każdym slajdzie stan końcowy, który pokazuje PDF. Ka
 | 3 | Rozwiązanie | Cztery kafle (co przysługuje i dlaczego, warianty na osi, dokumenty i terminy, ryzyka i trudne sytuacje) i zrzut wyniku. | brak |
 | 4 | Decyzja i skutek | Magda i Paweł; oś „Paweł przejmuje po 14 tygodniach”; kafel „Co z tego wynika” i termin dla Pawła. | na klik: plan „Magda bierze cały urlop” przechodzi w przejęcie, pojawiają się skutek i termin |
 | 5 | Wymagania a–j | Dziewięć kafli z literami punktów zadania i tym, co robi aplikacja. | brak |
-| 6 | Uczciwe symulacje | Sześć usług z tym, co zwracają, i zrzut ekranu „Pobieramy Twoje dane”. | brak |
+| 6 | Rzetelne symulacje | Sześć usług z tym, co zwracają, i zrzut ekranu „Pobieramy Twoje dane”. | brak |
 | 7 | Kalkulator | Trzy linie wyliczenia z przepisami; kafel terminu na 81,5%. | brak |
-| 8 | Korzyści | Kafle „Rodzic” i „ZUS” (cele z opisu zadania); pasek „Gotowe do wdrożenia”. | brak |
-| 9 | Zamknięcie | Trzy zdania, linki, zespół, telefon ze zrzutem dokumentów. | brak |
+| 8 | Korzyści | Kafle „Rodzic” i „ZUS” (cele z opisu zadania). | brak |
+| 9 | ZuSik | Czat AI, który tłumaczy wynik silnika; zrzut rozmowy. Ostatni slajd. | brak |
 | 10 | Załącznik | Rozwiązania zewnętrzne i AI (wymóg regulaminu § 4 ust. 1), po „Dziękujemy”, nie pokazujemy w wystąpieniu. | brak |
 
 ## 5. Dane
