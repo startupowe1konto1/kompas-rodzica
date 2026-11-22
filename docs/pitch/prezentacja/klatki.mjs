@@ -22,7 +22,7 @@ page.on('pageerror', (e) => bledy.push(e.message));
 const url = pathToFileURL(plik).href;
 await page.goto(url + '?final#1', { waitUntil: 'domcontentloaded', timeout: 90000 });
 await page.waitForFunction(() => document.documentElement.dataset.gotowe === '1', null, { timeout: 90000 });
-const ile = await page.evaluate(() => document.querySelectorAll('.slajd').length);
+const ile = await page.evaluate(() => document.querySelectorAll('.slajd:not([data-pomin])').length);
 const strony = [];
 for (let i = 1; i <= ile; i++) {
   // Inny parametr w adresie = pełne wczytanie (sama zmiana # nie przeładowuje strony)

@@ -42,14 +42,14 @@
   <!-- 1. TYTUŁ -->
   <section class="slajd tytulowy" data-name="tytul">
     <p class="wydarzenie">HackNation 2026, wyzwanie ZUS</p>
-    <div class="marka duza"><img class="znak" src="../img/logo-znak.svg" alt=""><div><h1 class="nazwa">Kompas Rodzica</h1><p class="pod">Zasiłkowy przewodnik przyszłego rodzica</p></div></div>
+    <div class="marka duza"><img class="znak" src="../img/logo-znak.svg" alt=""><div><h1 class="nazwa">Kompas Rodzica</h1></div></div>
     <p class="lead">Mówi, co przysługuje konkretnej osobie, pokazuje warianty urlopów z ich skutkami i prowadzi do gotowego wniosku.</p>
     <div class="zespol"><p class="team">vibecodersi</p><p class="imiona">Oskar Pelzer, Mateusz Wojciechowski, Wojciech Rudnicki, Mikołaj Konieczny</p></div>
     <div class="hero" aria-hidden="true">
       <div class="przegladarka"><div class="belka"><i></i><i></i><i></i><span>Twój plan</span></div><div class="okno"><img src="../img/k-plan.jpg" alt=""></div></div>
       <div class="telefon"><div class="ekran"><img src="../img/t-wynik.jpg" alt=""></div></div>
     </div>
-    <aside>Dzień dobry, jesteśmy vibecodersi. Kompas Rodzica, zasiłkowy przewodnik przyszłego rodzica, mówi konkretnej osobie, co jej przysługuje, pokazuje warianty urlopów razem z ich skutkami dla obojga rodziców i prowadzi aż do gotowego wniosku.</aside>
+    <aside>Dzień dobry, jesteśmy vibecodersi. Kompas Rodzica mówi konkretnej osobie, co jej przysługuje, pokazuje warianty urlopów razem z ich skutkami dla obojga rodziców i prowadzi aż do gotowego wniosku.</aside>
   </section>
 
   <!-- 2. PROBLEM -->
@@ -57,16 +57,15 @@
     <h2 class="tytul szeroki">Rodzic często poznaje swoje prawa i obowiązki za późno.</h2>
     <div class="pytania-karty">
       <div class="kafel"><span class="ikona" data-ikona="scale"></span><h3>Co mi przysługuje?</h3><p>Zależy od umowy, ciąży, liczby dzieci, adopcji. Przepisy są w kilku ustawach.</p></div>
-      <div class="kafel"><span class="ikona" data-ikona="route"></span><h3>Co się stanie, gdy…?</h3><p>Powrót do pracy, przeniesienie urlopu, podział opieki zmieniają sytuację obojga rodziców.</p></div>
+      <div class="kafel"><span class="ikona" data-ikona="route"></span><h3>Co się stanie, gdy…?</h3><p>Powrót do pracy, przeniesienie urlopu, podział opieki zmienia sytuację obojga rodziców.</p></div>
       <div class="kafel"><span class="ikona" data-ikona="file-text"></span><h3>Co, gdzie i do kiedy złożyć?</h3><p>Wnioski do pracodawcy albo do ZUS, terminy od 7 do 21 dni.</p></div>
+      <div class="kafel stat">
+        <p class="stat-liczba" data-w="kobietyProc"></p>
+        <p class="stat-opis">osób na zasiłku za urlop rodzicielski to kobiety</p>
+        <p class="stat-skutek">Gdy tata nie weźmie swoich <span data-w="tygodnieTaty"></span> tygodni urlopu, te tygodnie przepadają.</p>
+        <p class="stat-zrodlo">Źródło: <span data-w="kobietyZrodlo"></span></p>
+      </div>
     </div>
-    <div class="kafel stat">
-      <p class="stat-liczba" data-w="kobietyProc"></p>
-      <p class="stat-opis">osób na zasiłku za urlop rodzicielski to kobiety</p>
-      <p class="stat-skutek">Gdy tata nie weźmie swoich <span data-w="tygodnieTaty"></span> tygodni urlopu, te tygodnie przepadają.</p>
-      <p class="stat-zrodlo">Źródło: <span data-w="kobietyZrodlo"></span></p>
-    </div>
-    <p class="cel-zus"><b>Cel ZUS z opisu zadania:</b> mniej sporów i korespondencji o brakujące lub źle wypełnione dokumenty, a rodzic nie jest zaskakiwany decyzją.</p>
     <div class="przypis"><span>Opis zadania ZUS, pkt 1 i 2.</span><span class="nr"></span></div>
     <aside>Rodzic ma trzy pytania. Co mi przysługuje: to zależy od umowy, ciąży, liczby dzieci, adopcji, a przepisy są w kilku ustawach. Co się stanie, gdy wrócę do pracy albo przeniosę urlop: to zmienia sytuację obojga rodziców. I co, gdzie i do kiedy złożyć. Skutek widać w danych ZUS: 87% osób na zasiłku za urlop rodzicielski to kobiety, a tygodnie taty przepadają. ZUS w opisie zadania mówi wprost, czego chce: mniej sporów i korespondencji, a rodzic nie ma być zaskakiwany decyzją.</aside>
   </section>
@@ -163,7 +162,23 @@
     <aside>Co z tego ma rodzic: wie wcześniej, co mu przysługuje, widzi warianty i ich skutki dla obojga rodziców i dostaje gotowe wnioski z terminami. Co ma ZUS: mniej sporów i nieporozumień, mniej korespondencji o brakujące albo źle wypełnione dokumenty, a zmianę prawa wprowadza się jako nowe parametry w panelu, z datą obowiązywania. Technicznie to jest gotowe do wdrożenia: REST API, silnik reguł z przepisem przy każdej regule i testami, symulacje do zastąpienia prawdziwymi usługami. W Europie planer dla pary to standard: Niemcy, Szwecja, Norwegia, Wielka Brytania. W Polsce jeszcze go nie ma.</aside>
   </section>
 
-  <!-- 9. ZAMKNIĘCIE -->
+  <!-- 9. ZUSIK · czat z AI, który tłumaczy wynik silnika -->
+  <section class="slajd" data-name="zusik">
+    <h2 class="tytul szeroki">ZuSik odpowiada na pytania. Liczy zawsze silnik.</h2>
+    <div class="z-telefonem">
+      <div class="lista-kafli">
+        <div class="kafel poziomy"><span class="ikona" data-ikona="message-chatbot"></span><div><h3>Tłumaczy wynik prostym językiem</h3><p>Co przysługuje i dlaczego, plan, kwoty, dokumenty i terminy. Także pytania „dlaczego” i „co jeśli”.</p></div></div>
+        <div class="kafel poziomy"><span class="ikona" data-ikona="calculator"></span><div><h3>„Co jeśli” liczy silnik reguł</h3><p>ZuSik sprawdza zmianę w silniku. Plan rodzica zmienia się dopiero po kliknięciu „Zastosuj”.</p></div></div>
+        <div class="kafel poziomy"><span class="ikona" data-ikona="shield-check"></span><div><h3>Nie zmyśla kwot ani przepisów</h3><p>Odpowiedź z kwotą, procentem albo artykułem spoza wyniku silnika jest odrzucana. Rodzic dostaje wtedy kontakt do ZUS.</p></div></div>
+        <div class="kafel poziomy"><span class="ikona" data-ikona="lock"></span><div><h3>Bez danych osobowych</h3><p>Imię, nazwisko, PESEL ani numer konta nie trafiają do modelu. Serwer niczego nie zapisuje.</p></div></div>
+      </div>
+      <div class="telefon"><div class="ekran"><img src="../img/t-zusik.jpg" alt="Czat ZuSik: odpowiedź na pytanie, co się zmieni, gdy tata weźmie swoje tygodnie urlopu rodzicielskiego"></div></div>
+    </div>
+    <div class="przypis"><span>Jedyna funkcja z AI w aplikacji: model Claude (Anthropic). Bez klucza API aplikacja działa bez czatu. To symulacja. Wynik nie jest decyzją ZUS.</span><span class="nr"></span></div>
+    <aside>ZuSik to asystent AI w każdym kroku przewodnika. Rodzic pyta własnymi słowami, na przykład co się zmieni, jeśli tata weźmie swoje tygodnie urlopu. ZuSik nie liczy sam: wariant sprawdza silnik reguł, a ZuSik tylko tłumaczy wynik i proponuje zmianę planu, którą rodzic zatwierdza przyciskiem „Zastosuj”. Strażnik odrzuca każdą odpowiedź z kwotą, procentem albo przepisem, których nie ma w wyniku silnika. Do modelu nie trafiają dane osobowe, a pytania spoza danych aplikacji ZuSik odsyła do ZUS.</aside>
+  </section>
+
+  <!-- 10. ZAMKNIĘCIE -->
   <section class="slajd tytulowy" data-name="zamkniecie">
     <div class="marka"><img class="znak" src="../img/logo-znak.svg" alt=""><p class="nazwa">Kompas Rodzica</p></div>
     <div class="zdania">
@@ -181,7 +196,7 @@
   </section>
 
   <!-- 10. ZAŁĄCZNIK: rozwiązania zewnętrzne i AI (wymóg regulaminu, nie pokazujemy w wystąpieniu) -->
-  <section class="slajd" data-name="zewnetrzne">
+  <section class="slajd" data-name="zewnetrzne" data-pomin>
     <p class="kontekst">Załącznik</p>
     <h2 class="tytul">Rozwiązania zewnętrzne i AI</h2>
     <div class="s9">
@@ -193,7 +208,7 @@
       </div>
       <div class="ai">
         <p><b>AI przy tworzeniu:</b> Claude Code pomagał pisać kod, testy i dokumentację.</p>
-        <p><b>AI w aplikacji:</b> brak. Kwoty liczy deterministyczny silnik reguł.</p>
+        <p><b>AI w aplikacji:</b> czat ZuSik (Claude, Anthropic) tłumaczy wynik. Kwoty i uprawnienia liczy deterministyczny silnik reguł.</p>
       </div>
     </div>
     <div class="przypis"><span>Wymóg regulaminu zadania, § 4 ust. 1. Inspiracje bez kopiowania kodu: NAV, Elterngeldrechner, GOV.UK, OpenFisca. Pełna lista: docs/zewnetrzne.md.</span><span class="nr"></span></div>

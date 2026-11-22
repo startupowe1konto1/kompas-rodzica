@@ -272,6 +272,7 @@
     symulacje: { os: { widoczna: false }, tlo: 'cicho', kroki: [0] },
     kwoty: { os: { widoczna: false, decyzja: false }, tlo: 'cicho', kroki: [0] },
     korzysci: { os: { widoczna: false }, tlo: 'cicho', kroki: [0] },
+    zusik: { os: { widoczna: false }, tlo: 'cicho', kroki: [0] },
     zamkniecie: { os: { widoczna: false }, tlo: 'pelne', kroki: [0] },
     zewnetrzne: { os: { widoczna: false }, tlo: 'cicho', kroki: [0] },
   };

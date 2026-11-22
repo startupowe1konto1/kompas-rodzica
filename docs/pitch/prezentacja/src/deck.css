@@ -169,7 +169,6 @@ html, body { height: 100%; overflow: hidden; background: #dde1e6; font-family: "
 .marka.duza { margin-top: 40px; gap: 34px; }
 .marka.duza .znak { width: 148px; height: 148px; }
 .marka.duza .nazwa { font-size: 100px; letter-spacing: -.025em; }
-.marka .pod { margin-top: 14px; font-size: 32px; line-height: 1.2; font-weight: 700; color: var(--tekst2); }
 [data-name="zamkniecie"] .zdania { margin-top: 56px; }
 .tytulowy .lead { margin-top: 36px; max-width: 820px; font-size: 30px; }
 .zespol { position: absolute; left: var(--m); bottom: 92px; }
@@ -181,15 +180,14 @@ html, body { height: 100%; overflow: hidden; background: #dde1e6; font-family: "
 .telefon.koniec { position: absolute; left: 1420px; top: 190px; width: 300px; height: 630px; }
 
 /* ── 2: problem ─────────────────────────────────────────────────────────── */
-.pytania-karty { position: absolute; left: var(--m); top: 370px; width: 1080px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.stat { position: absolute; right: var(--m); top: 370px; width: 500px; padding: 38px 40px; }
+/* Cztery kafle w jednym rzędzie: wspólna góra i dół (wysokość wyznacza kafel z liczbą). */
+.pytania-karty { position: absolute; left: var(--m); right: var(--m); top: 400px; display: grid; grid-template-columns: repeat(3, 1fr) 500px; gap: 24px; align-items: stretch; }
+.stat { padding: 38px 40px; }
 .stat .stat-liczba { font-size: 120px; line-height: .95; font-weight: 900; letter-spacing: -.03em; color: var(--granat); }
 .stat .stat-opis { margin-top: 14px; font-size: 26px; line-height: 1.35; font-weight: 700; color: var(--tekst); }
 .stat .stat-skutek { margin-top: 22px; padding-top: 22px; border-top: 3px solid var(--zielen); font-size: 22px; line-height: 1.45; color: var(--tekst2); }
 .stat .stat-zrodlo { margin-top: 18px; font-size: 16px; color: #6b7280; }
 
-.cel-zus { position: absolute; left: var(--m); right: var(--m); top: 850px; padding: 20px 30px; border-radius: 14px; background: #fff; border-left: 6px solid var(--zielen); box-shadow: var(--cien); font-size: 24px; line-height: 1.45; color: var(--tekst2); }
-.cel-zus b { color: var(--granat); }
 
 /* ── Wymagania a–j ─────────────────────────────────────────────────────── */
 .wymagania { position: absolute; left: var(--m); right: var(--m); top: 330px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
@@ -200,7 +198,7 @@ html, body { height: 100%; overflow: hidden; background: #dde1e6; font-family: "
 
 /* ── Uczciwe symulacje ─────────────────────────────────────────────────── */
 .lista-uslug { display: flex; flex-direction: column; gap: 14px; }
-.lista-uslug p { display: grid; grid-template-columns: 34px 170px 1fr; align-items: center; gap: 16px; padding: 16px 22px; border-radius: 14px; background: #fff; box-shadow: var(--cien); font-size: 21px; line-height: 1.35; color: var(--tekst2); }
+.lista-uslug p { flex: 1; display: grid; grid-template-columns: 34px 170px 1fr; align-items: center; gap: 16px; padding: 16px 22px; border-radius: 14px; background: #fff; box-shadow: var(--cien); font-size: 21px; line-height: 1.35; color: var(--tekst2); }
 .lista-uslug b { font-size: 22px; font-weight: 900; color: var(--granat); }
 
 /* ── 3: przykład rodziny ───────────────────────────────────────────────── */
@@ -220,12 +218,18 @@ html, body { height: 100%; overflow: hidden; background: #dde1e6; font-family: "
 .pasek-k.z { color: var(--zielen); }
 
 /* ── 4: rozwiązanie ────────────────────────────────────────────────────── */
-.dwie-kol { position: absolute; left: var(--m); right: var(--m); top: 320px; display: grid; grid-template-columns: 700px 1fr; gap: 64px; align-items: start; }
+/* Lista po lewej i zrzut po prawej mają tę samą wysokość; kafle dzielą ją po równo. */
+.dwie-kol { position: absolute; left: var(--m); right: var(--m); top: 320px; display: grid; grid-template-columns: 700px 1fr; gap: 64px; align-items: stretch; }
 .lista-kafli { display: flex; flex-direction: column; gap: 14px; }
-.kafel.poziomy { display: flex; gap: 22px; align-items: flex-start; padding: 22px 26px; }
+.lista-kafli .kafel { flex: 1; }
+.kafel.poziomy { display: flex; gap: 22px; align-items: center; padding: 22px 26px; }
 .kafel.poziomy h3 { margin-top: 2px; font-size: 26px; }
 .kafel.poziomy p { margin-top: 4px; font-size: 20px; }
-.dwie-kol .przegladarka { height: 560px; }
+.dwie-kol .przegladarka { min-height: 560px; }
+
+/* ── ZuSik: kafle po lewej mają wysokość telefonu po prawej ────────────── */
+.z-telefonem { position: absolute; left: var(--m); right: var(--m); top: 320px; height: 640px; display: grid; grid-template-columns: 960px 1fr; gap: 64px; align-items: stretch; }
+.z-telefonem .telefon { justify-self: center; width: 300px; height: 640px; }
 
 /* ── 5: decyzja i skutek ───────────────────────────────────────────────── */
 .skutki { position: absolute; left: var(--m); right: var(--m); top: 710px; display: grid; grid-template-columns: 1fr 520px; gap: 32px; }
@@ -267,7 +271,7 @@ html, body { height: 100%; overflow: hidden; background: #dde1e6; font-family: "
 .korzysci ul { list-style: none; margin-top: 12px; }
 .korzysci li { position: relative; padding-left: 36px; margin-top: 14px; font-size: 26px; line-height: 1.4; color: var(--tekst); }
 .korzysci li::before { content: ""; position: absolute; left: 0; top: 13px; width: 14px; height: 14px; border-radius: 50%; background: var(--zielen); }
-.wdrozenie { position: absolute; left: var(--m); right: var(--m); top: 760px; padding: 26px 34px; border-radius: 14px; background: #fff; border-left: 6px solid var(--zielen); box-shadow: var(--cien); font-size: 26px; line-height: 1.45; color: var(--tekst2); }
+.wdrozenie { position: absolute; left: var(--m); right: var(--m); top: 760px; padding: 26px 34px; border-radius: 14px; background: #fff; box-shadow: var(--cien); font-size: 26px; line-height: 1.45; color: var(--tekst2); }
 .wdrozenie b { color: var(--granat); }
 
 /* ── 10: załącznik ─────────────────────────────────────────────────────── */
