@@ -1,0 +1,109 @@
+/* Zwykły (globalny) CSS, nie moduł: reguła turbopack w next.config.ts zamienia każdy *.css w
+   globalny arkusz, więc *.module.css nie dawałby klas. Stąd przedrostek `start-` w nazwach. */
+/*
+ * Tło ekranu startowego: jasne, z delikatną pofalowaną siatką oktagonów (zieleń ZUS, krycie ≤ 0,2).
+ *
+ * Zasada kontrastu: ciemny tekst (#1b1b1b, granat #00416e) stoi na tle nie ciemniejszym niż
+ * mieszanka 25 % zieleni ZUS z #f3f4f6 (około #b6d5c5): #1b1b1b ma tam ok. 11:1, granat ok. 6,7:1.
+ * Linie siatki mają 1 px i krycie do 0,2 (za nagłówkiem maska obniża je do ok. 0,05), poświata do 0,10. Sprawdzenie: tests/e2e/start.spec.ts
+ * („kontrast tekstu”).
+ */
+
+/* Podstawa pod ekranem startowym i sekcją „Co dostaniesz”: w środku jaśniej (kafle z ramką),
+   na dole znów szaro, żeby białe kafle „Co dostaniesz” (bez ramki) odcinały się od tła. */
+.start-podstawa {
+  background: linear-gradient(180deg, #f3f4f6 0%, #fafbfc 40%, #f7f8f9 62%, #eef0f2 100%);
+}
+
+/* Miękka poświata za nagłówkiem: zieleń ZUS, w środku ok. 10 % krycia. */
+.start-poswiata {
+  background: radial-gradient(closest-side, rgb(0 120 52 / 0.1) 0%, rgb(0 120 52 / 0.05) 55%, rgb(0 120 52 / 0) 100%);
+}
+
+/* Siatka oktagonów (SiatkaOktagonow.tsx). Płótno jest o 1,5rem większe z każdej strony, żeby
+   powolny dryf nie odsłaniał krawędzi. Maska wygasza siatkę za nagłówkiem (lewa góra), żeby
+   tło nie konkurowało z tekstem. Pojawia się łagodnie po narysowaniu (opacity). */
+.start-siatka-maska {
+  -webkit-mask-image: radial-gradient(120% 95% at 88% 70%, #000 30%, rgb(0 0 0 / 0.35) 75%, rgb(0 0 0 / 0.2) 100%);
+  mask-image: radial-gradient(120% 95% at 88% 70%, #000 30%, rgb(0 0 0 / 0.35) 75%, rgb(0 0 0 / 0.2) 100%);
+}
+
+.start-siatka {
+  top: -1.5rem;
+  left: -1.5rem;
+  width: calc(100% + 3rem);
+  height: calc(100% + 3rem);
+  opacity: 0;
+  transition: opacity 1.2s ease-out;
+  animation: start-falowanie 36s ease-in-out infinite alternate;
+}
+
+.start-siatka-gotowa {
+  opacity: 1;
+}
+
+@keyframes start-falowanie {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(-14px, 10px, 0) scale(1.035);
+  }
+}
+
+/* Telefon: maska wygasza górę (nagłówek) mocniej, siatka zostaje przy dolnych kaflach. */
+@media (max-width: 47.99rem) {
+  .start-siatka-maska {
+    -webkit-mask-image: linear-gradient(180deg, rgb(0 0 0 / 0.25) 0%, rgb(0 0 0 / 0.45) 35%, #000 70%);
+    mask-image: linear-gradient(180deg, rgb(0 0 0 / 0.25) 0%, rgb(0 0 0 / 0.45) 35%, #000 70%);
+  }
+}
+
+/* „Zaczynamy” w intro przewija do wyboru płynnie, tylko na stronie startowej i tylko bez
+   prefers-reduced-motion. */
+@media (prefers-reduced-motion: no-preference) {
+  html:has(#start-intro) {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Kafle: białe, ramka szary-linia; po najechaniu delikatne uniesienie. */
+.start-kafel,
+.start-polecane {
+  transition:
+    box-shadow 150ms ease-out,
+    border-color 150ms ease-out,
+    transform 150ms ease-out;
+  box-shadow: 0 1px 2px rgb(16 24 40 / 0.06);
+}
+
+@media (hover: hover) {
+  .start-kafel:hover,
+  .start-polecane:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgb(16 24 40 / 0.1);
+  }
+  .start-kafel:hover {
+    border-color: #858585;
+  }
+}
+
+.start-kafel:active,
+.start-polecane:active {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .start-siatka {
+    animation: none;
+    transition: none;
+  }
+
+  .start-kafel,
+  .start-polecane,
+  .start-kafel:hover,
+  .start-polecane:hover {
+    transform: none;
+    transition: none;
+  }
+}

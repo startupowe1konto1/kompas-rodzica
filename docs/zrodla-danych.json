@@ -1,0 +1,1609 @@
+[
+  {
+    "id": "wnioskodawca_pesel",
+    "etykieta": "PESEL osoby, która składa wniosek",
+    "grupa": "tozsamosc",
+    "potrzebne_do": [
+      "ZAM",
+      "silnik"
+    ],
+    "poleZAM": [
+      "topmostSubform[0].Page1[0].PESEL[0]"
+    ],
+    "zrodla": [
+      {
+        "zrodlo": "mobywatel",
+        "status": "potwierdzone",
+        "dowod": "https://www.gov.pl/web/gov/czym-jest-rejestr-pesel",
+        "uwaga": "Rejestr PESEL (wgląd przez mObywatel / gov.pl) zawiera numer PESEL."
+      },
+      {
+        "zrodlo": "ezus",
+        "status": "potwierdzone",
+        "dowod": "https://www.zus.pl/portal/pomoc/kub0001.html",
+        "uwaga": "Okno „Moje dane”: dane identyfikacyjno-ewidencyjne ubezpieczonego. Strona pomocy nie wylicza pól jedno po drugim."
+      },
+      {
+        "zrodlo": "eurzad_skarbowy",
+        "status": "potwierdzone",
+        "dowod": "https://www.podatki.gov.pl/eurzad-skarbowy-zalatw-sprawy-podatkowe-online/konto-osoby-fizycznej-w-eurzedzie-skarbowym",
+        "uwaga": "Zakładka „Twoje dane”: imię i nazwisko, PESEL, NIP."
+      },
+      {
+        "zrodlo": "login_gov",
+        "status": "zalozenie",
+        "dowod": "https://www.gov.pl/web/login/dla-integratorow",
+        "uwaga": "Węzeł Krajowy przekazuje co najmniej nazwisko, imię, datę urodzenia i „niepowtarzalny identyfikator”. Strona nie mówi wprost, że to PESEL."
+      }
+    ],
+    "zrodloDomyslne": "mobywatel",
+    "zawszeUzytkownik": false
+  },
+  {
+    "id": "wnioskodawca_imie_nazwisko",
+    "etykieta": "Imię i nazwisko wnioskodawcy",
+    "grupa": "tozsamosc",
+    "potrzebne_do": [
+      "ZAM",
+      "wniosek_pracodawca"
+    ],
+    "poleZAM": [
+      "topmostSubform[0].Page1[0].Imie[0]",
+      "topmostSubform[0].Page1[0].Nazwisko[0]"
+    ],
+    "zrodla": [
+      {
+        "zrodlo": "mobywatel",
+        "status": "potwierdzone",
+        "dowod": "https://www.gov.pl/web/gov/czym-jest-rejestr-pesel",
+        "uwaga": "Rejestr PESEL: nazwisko i imiona."
+      },
+      {
+        "zrodlo": "login_gov",
+        "status": "potwierdzone",
+        "dowod": "https://www.gov.pl/web/login/dla-integratorow",
+        "uwaga": "Minimalny zestaw danych przy logowaniu: obecnie używane nazwisko i imię."
+      },
+      {
+        "zrodlo": "ezus",
+        "status": "potwierdzone",
+        "dowod": "https://www.zus.pl/portal/pomoc/kub0001.html",
+        "uwaga": "Dane identyfikacyjne w „Moje dane”."
+      },
+      {
+        "zrodlo": "eurzad_skarbowy",
+        "status": "potwierdzone",
+        "dowod": "https://www.podatki.gov.pl/eurzad-skarbowy-zalatw-sprawy-podatkowe-online/konto-osoby-fizycznej-w-eurzedzie-skarbowym",
+        "uwaga": "„Twoje dane”: imię i nazwisko."
+      }
+    ],
+    "zrodloDomyslne": "mobywatel",
+    "zawszeUzytkownik": false
+  },
+  {
+    "id": "wnioskodawca_data_urodzenia",
+    "etykieta": "Data urodzenia wnioskodawcy",
+    "grupa": "tozsamosc",
+    "potrzebne_do": [
+      "ZAM",
+      "silnik"
+    ],
+    "poleZAM": [
+      "topmostSubform[0].Page1[0].Dataurodzenia[0]"
+    ],
+    "zrodla": [
+      {
+        "zrodlo": "mobywatel",
+        "status": "potwierdzone",
+        "dowod": "https://www.gov.pl/web/gov/czym-jest-rejestr-pesel",
+        "uwaga": "Rejestr PESEL: data i miejsce urodzenia. W ZAM pole wypełnia się tylko, gdy ktoś nie ma PESEL."
+      },
+      {
+        "zrodlo": "login_gov",
+        "status": "potwierdzone",
+        "dowod": "https://www.gov.pl/web/login/dla-integratorow",
+        "uwaga": "Data urodzenia jest w minimalnym zestawie danych Węzła Krajowego."
+      }
+    ],
+    "zrodloDomyslne": "mobywatel",
+    "zawszeUzytkownik": false
+  },
+  {
+    "id": "wnioskodawca_dokument_tozsamosci",
+    "etykieta": "Rodzaj, seria i numer dokumentu tożsamości (tylko gdy brak PESEL)",
+    "grupa": "tozsamosc",
+    "potrzebne_do": [
+      "ZAM"
+    ],
+    "poleZAM": [
+      "topmostSubform[0].Page1[0].Rodzajseriainumerdokumentu[0]"
+    ],
+    "zrodla": [
+      {
+        "zrodlo": "mobywatel",
+        "status": "potwierdzone",
+        "dowod": "https://www.gov.pl/web/gov/czym-jest-rejestr-pesel",
+        "uwaga": "Rejestr PESEL: seria i numer ostatniego dowodu osobistego oraz paszportu. Osoba bez PESEL nie ma jednak wpisu w rejestrze, więc w praktyce wpisuje to sama."
+      },
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": null,
+        "uwaga": "Przypadek bez PESEL: dane z paszportu wpisuje użytkownik."
+      }
+    ],
+    "zrodloDomyslne": "uzytkownik",
+    "zawszeUzytkownik": false
+  },
+  {
+    "id": "wnioskodawca_adres",
+    "etykieta": "Adres zamieszkania wnioskodawcy (ulica, numer domu i lokalu, kod, miejscowość, państwo)",
+    "grupa": "tozsamosc",
+    "potrzebne_do": [
+      "ZAM"
+    ],
+    "poleZAM": [
+      "topmostSubform[0].Page1[0].Ulica[0]",
+      "topmostSubform[0].Page1[0].Numerdomu[0]",
+      "topmostSubform[0].Page1[0].Numerlokalu[0]",
+      "topmostSubform[0].Page1[0].Kodpocztowy[0]",
+      "topmostSubform[0].Page1[0].Poczta[0]",
+      "topmostSubform[0].Page1[0].Nazwapaństwa[0]"
+    ],
+    "zrodla": [
+      {
+        "zrodlo": "ezus",
+        "status": "potwierdzone",
+        "dowod": "https://www.zus.pl/portal/pomoc/kub0001.html",
+        "uwaga": "„Moje dane”: adres zameldowania i zamieszkania ze zgłoszenia ZUS ZUA/ZZA (czyli to, co podał płatnik) albo adres pobytu z e-ZLA."
+      },
+      {
+        "zrodlo": "eurzad_skarbowy",
+        "status": "potwierdzone",
+        "dowod": "https://www.podatki.gov.pl/eurzad-skarbowy-zalatw-sprawy-podatkowe-online/konto-osoby-fizycznej-w-eurzedzie-skarbowym",
+        "uwaga": "„Twoje dane”: adres zamieszkania znany KAS."
+      },
+      {
+        "zrodlo": "mobywatel",
+        "status": "potwierdzone",
+        "dowod": "https://www.gov.pl/web/gov/czym-jest-rejestr-pesel",
+        "uwaga": "Rejestr PESEL ma tylko adres ZAMELDOWANIA (stały i czasowy), nie zamieszkania. Może być pusty albo inny niż faktyczny."
+      },
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": null,
+        "uwaga": "Użytkownik zawsze potwierdza adres, bo na ten adres idzie przekaz pocztowy, gdy nie poda rachunku."
+      }
+    ],
+    "zrodloDomyslne": "ezus",
+    "zawszeUzytkownik": false
+  },
+  {
+    "id": "wnioskodawca_telefon",
+    "etykieta": "Numer telefonu (pole dobrowolne)",
+    "grupa": "tozsamosc",
+    "potrzebne_do": [
+      "ZAM"
+    ],
+    "poleZAM": [
+      "topmostSubform[0].Page1[0].Numertelefonu[0]"
+    ],
+    "zrodla": [
+      {
+        "zrodlo": "eurzad_skarbowy",
+        "status": "potwierdzone",
+        "dowod": "https://www.podatki.gov.pl/eurzad-skarbowy-zalatw-sprawy-podatkowe-online/konto-osoby-fizycznej-w-eurzedzie-skarbowym",
+        "uwaga": "„Twoje dane”: dane kontaktowe (e-mail, telefon, adres elektroniczny)."
+      },
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": null,
+        "uwaga": "Pole dobrowolne, najprościej zapytać."
+      }
+    ],
+    "zrodloDomyslne": "uzytkownik",
+    "zawszeUzytkownik": false
+  },
+  {
+    "id": "wnioskodawca_plec_rola",
+    "etykieta": "Rola wobec dziecka: matka, ojciec, osoba przyjmująca dziecko, inny członek rodziny",
+    "grupa": "tozsamosc",
+    "potrzebne_do": [
+      "silnik",
+      "ZAM"
+    ],
+    "poleZAM": [],
+    "zrodla": [
+      {
+        "zrodlo": "mobywatel",
+        "status": "potwierdzone",
+        "dowod": "https://www.gov.pl/web/gov/czym-jest-rejestr-pesel",
+        "uwaga": "Rejestr PESEL zawiera płeć. Rola wobec konkretnego dziecka (np. przyjmujący, inny członek rodziny) z rejestru nie wynika."
+      },
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": null,
+        "uwaga": "Pierwsze pytanie w aplikacji."
+      }
+    ],
+    "zrodloDomyslne": "uzytkownik",
+    "zawszeUzytkownik": true
+  },
+  {
+    "id": "data_wypelnienia",
+    "etykieta": "Data wypełnienia wniosku i podpis",
+    "grupa": "tozsamosc",
+    "potrzebne_do": [
+      "ZAM",
+      "wniosek_pracodawca"
+    ],
+    "poleZAM": [
+      "topmostSubform[0].Page5[0].Data[0]"
+    ],
+    "zrodla": [
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": null,
+        "uwaga": "Datę wstawia aplikacja (dzień generowania), podpis składa człowiek. Żadna usługa tego nie dostarcza."
+      }
+    ],
+    "zrodloDomyslne": "uzytkownik",
+    "zawszeUzytkownik": true
+  },
+  {
+    "id": "platnik_identyfikatory",
+    "etykieta": "Płatnik składek: NIP, REGON (albo PESEL / dokument, gdy ich nie ma)",
+    "grupa": "ubezpieczenie",
+    "potrzebne_do": [
+      "ZAM"
+    ],
+    "poleZAM": [
+      "topmostSubform[0].Page1[0].NIP[0]",
+      "topmostSubform[0].Page1[0].REGON[0]",
+      "topmostSubform[0].Page1[0].PESEL_1[0]",
+      "topmostSubform[0].Page1[0].Rodzajseriainumerdokumentu_1[0]"
+    ],
+    "zrodla": [
+      {
+        "zrodlo": "ezus",
+        "status": "potwierdzone",
+        "dowod": "https://www.zus.pl/portal/pomoc/kub0009.html",
+        "uwaga": "Okno „Dane płatnika” przy każdym ubezpieczeniu: nazwa skrócona, nazwa, NIP, REGON, PESEL, imię, nazwisko, status, dokument tożsamości."
+      },
+      {
+        "zrodlo": "eurzad_skarbowy",
+        "status": "potwierdzone",
+        "dowod": "https://www.podatki.gov.pl/eurzad-skarbowy-zalatw-sprawy-podatkowe-online/konto-osoby-fizycznej-w-eurzedzie-skarbowym",
+        "uwaga": "Tylko dla własnej działalności: NIP w „Twoje dane”, REGON w „Twoja działalność”."
+      },
+      {
+        "zrodlo": "pracodawca",
+        "status": "potwierdzone",
+        "dowod": "repo: materialy/ZUS/Materiały dla uczestników/rozporządzenie w spr. zakresu informacji o okolicznościach mających wpływ na prawo do zasiłków ...pdf",
+        "uwaga": "Z-3 (załącznik 2 pkt 1–2) zawiera NIP, REGON, nazwę i adres płatnika."
+      }
+    ],
+    "zrodloDomyslne": "ezus",
+    "zawszeUzytkownik": false
+  },
+  {
+    "id": "platnik_nazwa",
+    "etykieta": "Nazwa płatnika składek albo imię i nazwisko",
+    "grupa": "ubezpieczenie",
+    "potrzebne_do": [
+      "ZAM",
+      "wniosek_pracodawca"
+    ],
+    "poleZAM": [
+      "topmostSubform[0].Page1[0].Nazwaplatnika[0]"
+    ],
+    "zrodla": [
+      {
+        "zrodlo": "ezus",
+        "status": "potwierdzone",
+        "dowod": "https://www.zus.pl/portal/pomoc/kub0009.html",
+        "uwaga": "„Dane płatnika”: nazwa i nazwa skrócona."
+      },
+      {
+        "zrodlo": "eurzad_skarbowy",
+        "status": "potwierdzone",
+        "dowod": "https://www.podatki.gov.pl/eurzad-skarbowy-zalatw-sprawy-podatkowe-online/konto-osoby-fizycznej-w-eurzedzie-skarbowym",
+        "uwaga": "Dla własnej działalności: nazwa firmy w „Twoja działalność”."
+      }
+    ],
+    "zrodloDomyslne": "ezus",
+    "zawszeUzytkownik": false
+  },
+  {
+    "id": "tytuly_ubezpieczenia_okresy",
+    "etykieta": "Tytuły ubezpieczenia: kod tytułu, okres od–do, płatnik",
+    "grupa": "ubezpieczenie",
+    "potrzebne_do": [
+      "silnik"
+    ],
+    "poleZAM": [],
+    "zrodla": [
+      {
+        "zrodlo": "ezus",
+        "status": "potwierdzone",
+        "dowod": "https://www.zus.pl/portal/pomoc/kub0021.html",
+        "uwaga": "„Ubezpieczenia i płatnicy” → Szczegóły: okres ubezpieczenia, data zgłoszenia, nazwa płatnika, kod i nazwa tytułu ubezpieczenia. Domyślnie ostatnie 12 miesięcy, starsze dane trzeba zamówić jako archiwalne."
+      }
+    ],
+    "zrodloDomyslne": "ezus",
+    "zawszeUzytkownik": false
+  },
+  {
+    "id": "rodzaj_ubezpieczenia_chorobowego",
+    "etykieta": "Czy jest ubezpieczenie chorobowe i jakie: obowiązkowe, dobrowolne, brak (w ZAM: pytanie TAK/NIE dla działalności, współpracy, duchownych, marynarzy)",
+    "grupa": "ubezpieczenie",
+    "potrzebne_do": [
+      "silnik",
+      "ZAM"
+    ],
+    "poleZAM": [
+      "topmostSubform[0].Page2[0].TAK[0]",
+      "topmostSubform[0].Page2[0].NIE[0]"
+    ],
+    "zrodla": [
+      {
+        "zrodlo": "ezus",
+        "status": "zalozenie",
+        "dowod": "https://www.zus.pl/portal/pomoc/kub0007.html",
+        "uwaga": "Portal pokazuje „okresy i rodzaje ubezpieczeń, do których został zgłoszony ubezpieczony” oraz podstawy na ubezpieczenie chorobowe, ale strona pomocy nie mówi, że jest osobne pole „chorobowe dobrowolne / obowiązkowe”. Aplikacja wyprowadza to z kodu tytułu."
+      },
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": null,
+        "uwaga": "Pytanie kontrolne, zwłaszcza dla działalności i zlecenia."
+      }
+    ],
+    "zrodloDomyslne": "ezus",
+    "zawszeUzytkownik": false
+  },
+  {
+    "id": "wymiar_etatu",
+    "etykieta": "Wymiar czasu pracy (etat)",
+    "grupa": "ubezpieczenie",
+    "potrzebne_do": [
+      "silnik"
+    ],
+    "poleZAM": [],
+    "zrodla": [
+      {
+        "zrodlo": "pracodawca",
+        "status": "potwierdzone",
+        "dowod": "repo: materialy/ZUS/Materiały dla uczestników/rozporządzenie w spr. zakresu informacji o okolicznościach mających wpływ na prawo do zasiłków ...pdf",
+        "uwaga": "Z-3, załącznik 2 pkt 4: okres zatrudnienia, wymiar czasu pracy i data jego zmiany."
+      },
+      {
+        "zrodlo": "ezus",
+        "status": "zalozenie",
+        "dowod": "https://www.zus.pl/portal/pomoc/kub0021.html",
+        "uwaga": "Lista danych w „Szczegółach ubezpieczenia” nie zawiera wymiaru etatu. Możliwe, że widać go w raportach miesięcznych, ale nie znalazłem potwierdzenia."
+      },
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": null,
+        "uwaga": "Zna go z umowy."
+      }
+    ],
+    "zrodloDomyslne": "uzytkownik",
+    "zawszeUzytkownik": true
+  },
+  {
+    "id": "umowa_czas_okreslony",
+    "etykieta": "Czy umowa jest na czas określony i do kiedy trwa",
+    "grupa": "ubezpieczenie",
+    "potrzebne_do": [
+      "silnik"
+    ],
+    "poleZAM": [],
+    "zrodla": [
+      {
+        "zrodlo": "pracodawca",
+        "status": "potwierdzone",
+        "dowod": "repo: materialy/ZUS/Materiały dla uczestników/rozporządzenie w spr. zakresu informacji o okolicznościach mających wpływ na prawo do zasiłków ...pdf",
+        "uwaga": "Z-3 podaje okres zatrudnienia u płatnika."
+      },
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": null,
+        "uwaga": "Żadna e-usługa nie pokazuje rodzaju umowy ani planowanej daty jej końca. eZUS pokaże koniec dopiero po wyrejestrowaniu."
+      }
+    ],
+    "zrodloDomyslne": "uzytkownik",
+    "zawszeUzytkownik": true
+  },
+  {
+    "id": "ustanie_ubezpieczenia",
+    "etykieta": "Ustanie zatrudnienia: data i przyczyna (upadłość, likwidacja, śmierć pracodawcy, zwolnienie z naruszeniem prawa)",
+    "grupa": "ubezpieczenie",
+    "potrzebne_do": [
+      "silnik",
+      "ZAM"
+    ],
+    "poleZAM": [
+      "topmostSubform[0].Page3[0]._3[0]",
+      "topmostSubform[0].Page3[0].upadlosc[0]",
+      "topmostSubform[0].Page3[0].likwidacje[0]",
+      "topmostSubform[0].Page3[0].rozwiazal[0]",
+      "topmostSubform[0].Page3[0].zmarl[0]"
+    ],
+    "zrodla": [
+      {
+        "zrodlo": "ezus",
+        "status": "potwierdzone",
+        "dowod": "https://www.zus.pl/portal/pomoc/kub0021.html",
+        "uwaga": "Szczegóły ubezpieczenia: dane z ZUS ZWUA o rozwiązaniu/wygaśnięciu stosunku pracy – data, kod trybu, podstawa prawna, strona inicjująca. Nie ma tam słów „upadłość” czy „likwidacja” wprost."
+      },
+      {
+        "zrodlo": "pracodawca",
+        "status": "potwierdzone",
+        "dowod": "repo: materialy/ZUS/Materiały dla uczestników/rozporządzenie w spr. zakresu informacji o okolicznościach mających wpływ na prawo do zasiłków ...pdf",
+        "uwaga": "Świadectwo pracy albo inny dokument (§ 15 i § 17 rozporządzenia)."
+      },
+      {
+        "zrodlo": "sad",
+        "status": "potwierdzone",
+        "dowod": "repo: materialy/ZUS/Materiały dla uczestników/rozporządzenie w spr. zakresu informacji o okolicznościach mających wpływ na prawo do zasiłków ...pdf",
+        "uwaga": "Prawomocne orzeczenie sądu o rozwiązaniu umowy z naruszeniem prawa (§ 15 ust. 2)."
+      },
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": null,
+        "uwaga": "Która z czterech przyczyn zachodzi, zaznacza użytkownik."
+      }
+    ],
+    "zrodloDomyslne": "ezus",
+    "zawszeUzytkownik": false
+  },
+  {
+    "id": "liczba_ubezpieczonych_u_platnika",
+    "etykieta": "Ilu ubezpieczonych zgłasza płatnik (decyduje, kto wypłaca zasiłek: pracodawca czy ZUS)",
+    "grupa": "ubezpieczenie",
+    "potrzebne_do": [
+      "silnik"
+    ],
+    "poleZAM": [],
+    "zrodla": [
+      {
+        "zrodlo": "pracodawca",
+        "status": "potwierdzone",
+        "dowod": "repo: materialy/ZUS/Materiały dla uczestników/rozporządzenie w spr. zakresu informacji o okolicznościach mających wpływ na prawo do zasiłków ...pdf",
+        "uwaga": "Z-3, załącznik 2 pkt 11: liczba ubezpieczonych zgłaszanych do ubezpieczenia chorobowego."
+      },
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": null,
+        "uwaga": "Pytanie „czy firma zatrudnia więcej niż 20 osób”. W panelu ubezpieczonego eZUS tej liczby nie ma."
+      }
+    ],
+    "zrodloDomyslne": "uzytkownik",
+    "zawszeUzytkownik": true
+  },
+  {
+    "id": "urlop_wychowawczy",
+    "etykieta": "Okres urlopu wychowawczego",
+    "grupa": "ubezpieczenie",
+    "potrzebne_do": [
+      "silnik"
+    ],
+    "poleZAM": [],
+    "zrodla": [
+      {
+        "zrodlo": "ezus",
+        "status": "zalozenie",
+        "dowod": "https://www.zus.pl/portal/pomoc/kub0008.html",
+        "uwaga": "Okno „Świadczenia i przerwy w opłacaniu składek” pokazuje kod przerwy i okres. Zakładam, że urlop wychowawczy jest jedną z takich przerw; strona tego nie wymienia."
+      },
+      {
+        "zrodlo": "pracodawca",
+        "status": "potwierdzone",
+        "dowod": "repo: materialy/ZUS/Materiały dla uczestników/rozporządzenie w spr. zakresu informacji o okolicznościach mających wpływ na prawo do zasiłków ...pdf",
+        "uwaga": "Z-3, załącznik 2 pkt 8."
+      },
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": null,
+        "uwaga": ""
+      }
+    ],
+    "zrodloDomyslne": "uzytkownik",
+    "zawszeUzytkownik": false
+  },
+  {
+    "id": "pobrane_zasilki",
+    "etykieta": "Wcześniej pobrane zasiłki: rodzaj, okres, stawka procentowa, kwota, kto wypłacał",
+    "grupa": "ubezpieczenie",
+    "potrzebne_do": [
+      "silnik",
+      "wniosek_pracodawca"
+    ],
+    "poleZAM": [],
+    "zrodla": [
+      {
+        "zrodlo": "ezus",
+        "status": "potwierdzone",
+        "dowod": "https://www.zus.pl/portal/pomoc/kub0008.html",
+        "uwaga": "Panel ubezpieczonego: kod świadczenia, okres, liczba dni, kwota, wypłacający (ostatnie 12 miesięcy). Panel świadczeniobiorcy → Zasiłki: okres uprawnienia, procent świadczenia, kwota brutto, data wypłaty (rok bieżący i poprzedni) – https://www.zus.pl/portal/pomoc/ksw0004.html"
+      },
+      {
+        "zrodlo": "pracodawca",
+        "status": "potwierdzone",
+        "dowod": "repo: materialy/ZUS/Materiały dla uczestników/rozporządzenie w spr. zakresu informacji o okolicznościach mających wpływ na prawo do zasiłków ...pdf",
+        "uwaga": "Z-3 pkt 12: stawka procentowa wypłaconego zasiłku i okresy udzielonych urlopów. Dla ojca: zaświadczenie płatnika zasiłku matki (§ 20)."
+      }
+    ],
+    "zrodloDomyslne": "ezus",
+    "zawszeUzytkownik": false
+  },
+  {
+    "id": "podstawa_skladek_miesiecznie",
+    "etykieta": "Podstawa wymiaru składek miesiąc po miesiącu (ostatnie 12 miesięcy)",
+    "grupa": "wynagrodzenie",
+    "potrzebne_do": [
+      "silnik"
+    ],
+    "poleZAM": [],
+    "zrodla": [
+      {
+        "zrodlo": "ezus",
+        "status": "potwierdzone",
+        "dowod": "https://www.zus.pl/portal/pomoc/kub0002.html",
+        "uwaga": "„Informacje o podstawach i składkach”: podstawy wymiaru składek emerytalno-rentowych, chorobowej, wypadkowej i zdrowotnej, per płatnik; zakres 12 miesięcy (https://www.zus.pl/portal/pomoc/kub0000.html). To podstawa SKŁADKI, nie gotowa podstawa zasiłku."
+      },
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": null,
+        "uwaga": "Wpis ręczny jako alternatywa."
+      }
+    ],
+    "zrodloDomyslne": "ezus",
+    "zawszeUzytkownik": false
+  },
+  {
+    "id": "skladniki_wynagrodzenia",
+    "etykieta": "Składniki wynagrodzenia: stałe, zmienne, premie kwartalne i roczne, dni przepracowane i do przepracowania",
+    "grupa": "wynagrodzenie",
+    "potrzebne_do": [
+      "silnik"
+    ],
+    "poleZAM": [],
+    "zrodla": [
+      {
+        "zrodlo": "pracodawca",
+        "status": "potwierdzone",
+        "dowod": "repo: materialy/ZUS/Materiały dla uczestników/rozporządzenie w spr. zakresu informacji o okolicznościach mających wpływ na prawo do zasiłków ...pdf",
+        "uwaga": "Z-3, załącznik 2 pkt 16. To jedyne miejsce, gdzie ten podział istnieje."
+      },
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": null,
+        "uwaga": "Opcjonalnie z pasków płacowych. W eZUS ani w e-Urzędzie Skarbowym tego podziału nie ma."
+      }
+    ],
+    "zrodloDomyslne": "uzytkownik",
+    "zawszeUzytkownik": true
+  },
+  {
+    "id": "przychod_roczny_od_platnikow",
+    "etykieta": "Roczny przychód od płatników (PIT-11) – tylko do sprawdzenia wiarygodności",
+    "grupa": "wynagrodzenie",
+    "potrzebne_do": [
+      "silnik"
+    ],
+    "poleZAM": [],
+    "zrodla": [
+      {
+        "zrodlo": "eurzad_skarbowy",
+        "status": "potwierdzone",
+        "dowod": "https://podatki.gov.pl/twoj-e-pit/pytania-i-odpowiedzi/informacje-ogolne-i-formularze/22-jakie-dane-znajduja-sie-w-zeznaniu-udostepnionym-w-usludze-twoj-e-pit-czy-urzad-skarbowy-wie-o-ulgach-z-ktorych-podatnik-chce-skorzystac",
+        "uwaga": "Twój e-PIT zawiera „dane wynikające z informacji od pracodawców/płatników”. To kwoty roczne za zamknięty rok podatkowy, bez podziału na miesiące i składniki. Nie potwierdziłem na oficjalnej stronie, że sam PIT-11 da się otworzyć jako dokument."
+      }
+    ],
+    "zrodloDomyslne": "eurzad_skarbowy",
+    "zawszeUzytkownik": false
+  },
+  {
+    "id": "podstawa_zadeklarowana_dzialalnosc",
+    "etykieta": "Działalność: zadeklarowana podstawa wymiaru składki chorobowej w kolejnych miesiącach",
+    "grupa": "wynagrodzenie",
+    "potrzebne_do": [
+      "silnik"
+    ],
+    "poleZAM": [],
+    "zrodla": [
+      {
+        "zrodlo": "ezus",
+        "status": "potwierdzone",
+        "dowod": "https://www.zus.pl/portal/pomoc/kub0002.html",
+        "uwaga": "Te same „Informacje o podstawach i składkach” – przedsiębiorca widzi siebie jako ubezpieczonego u płatnika „ja”. Osobna zakładka „Podstawa wymiaru składek MDG” dla małego ZUS plus."
+      }
+    ],
+    "zrodloDomyslne": "ezus",
+    "zawszeUzytkownik": false
+  },
+  {
+    "id": "dzialalnosc_daty_status",
+    "etykieta": "Działalność gospodarcza: data rozpoczęcia, zawieszenia i wznowienia, status",
+    "grupa": "dzialalnosc",
+    "potrzebne_do": [
+      "silnik"
+    ],
+    "poleZAM": [],
+    "zrodla": [
+      {
+        "zrodlo": "ceidg",
+        "status": "potwierdzone",
+        "dowod": "https://eli.gov.pl/api/acts/DU/2022/541/text/U/D20220541Lj.pdf",
+        "uwaga": "Ustawa o CEIDG: wpis zawiera m.in. datę rozpoczęcia działalności oraz informacje o zawieszeniu i wznowieniu; dane są jawne. Dowodem jest ustawa, nie widok wyszukiwarki (strony CEIDG nie udało się pobrać)."
+      },
+      {
+        "zrodlo": "eurzad_skarbowy",
+        "status": "potwierdzone",
+        "dowod": "https://www.podatki.gov.pl/eurzad-skarbowy-zalatw-sprawy-podatkowe-online/konto-osoby-fizycznej-w-eurzedzie-skarbowym",
+        "uwaga": "„Twoja działalność”: tylko nazwa firmy, REGON i przeważający kod PKD. Dat nie ma."
+      },
+      {
+        "zrodlo": "ezus",
+        "status": "potwierdzone",
+        "dowod": "https://www.zus.pl/portal/pomoc/kub0021.html",
+        "uwaga": "Pośrednio: okres ubezpieczenia z tytułu działalności."
+      }
+    ],
+    "zrodloDomyslne": "ceidg",
+    "zawszeUzytkownik": false
+  },
+  {
+    "id": "zadluzenie_skladkowe",
+    "etykieta": "Działalność: zaległości w składkach (saldo na koncie płatnika)",
+    "grupa": "dzialalnosc",
+    "potrzebne_do": [
+      "silnik"
+    ],
+    "poleZAM": [],
+    "zrodla": [
+      {
+        "zrodlo": "ezus",
+        "status": "potwierdzone",
+        "dowod": "https://www.zus.pl/portal/pomoc/kpl0009.html",
+        "uwaga": "Panel płatnika → „Składki i salda”: saldo bieżące i z ostatnich 12 miesięcy, należne składki i wpłaty. Pokazuje stan na dziś; silnik potrzebuje stanu na dzień powstania prawa do zasiłku."
+      }
+    ],
+    "zrodloDomyslne": "ezus",
+    "zawszeUzytkownik": false
+  },
+  {
+    "id": "dziecko_dane_podstawowe",
+    "etykieta": "Dziecko: imię i nazwisko, data i miejsce urodzenia",
+    "grupa": "dziecko",
+    "potrzebne_do": [
+      "ZAM",
+      "wniosek_pracodawca",
+      "silnik"
+    ],
+    "poleZAM": [
+      "topmostSubform[0].Page3[0].Tekst1[0]",
+      "topmostSubform[0].Page3[0].Tekst13B[0]",
+      "topmostSubform[0].Page4[0].Tekst4c[0]",
+      "topmostSubform[0].Page4[0].Tekst4b[0]"
+    ],
+    "zrodla": [
+      {
+        "zrodlo": "mobywatel",
+        "status": "potwierdzone",
+        "dowod": "https://www.gov.pl/web/gov/sprawdz-swoje-dane-w-rejestrze-pesel",
+        "uwaga": "Usługa „Sprawdź dane swoje lub swojego dziecka w rejestrze PESEL” (logowanie profilem zaufanym): rodzic powiązany z dzieckiem w rejestrze widzi jego dane, w tym datę i miejsce urodzenia. Działa dopiero po sporządzeniu aktu urodzenia. Że te same dane dziecka widać w samej aplikacji mObywatel – tego nie potwierdziłem."
+      },
+      {
+        "zrodlo": "rsc",
+        "status": "potwierdzone",
+        "dowod": "https://www.gov.pl/web/gov/uzyskaj-odpis-aktu-stanu-cywilnego-urodzenia-malzenstwa-zgonu",
+        "uwaga": "Odpis skrócony aktu urodzenia: pierwszy bezpłatnie z USC, kolejne 22 zł, także elektronicznie na e-Doręczenia."
+      },
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": null,
+        "uwaga": "Przed porodem i tuż po nim wpisuje użytkownik."
+      }
+    ],
+    "zrodloDomyslne": "mobywatel",
+    "zawszeUzytkownik": false
+  },
+  {
+    "id": "dziecko_pesel",
+    "etykieta": "PESEL dziecka",
+    "grupa": "dziecko",
+    "potrzebne_do": [
+      "ZAM"
+    ],
+    "poleZAM": [],
+    "zrodla": [
+      {
+        "zrodlo": "mobywatel",
+        "status": "potwierdzone",
+        "dowod": "https://www.gov.pl/web/gov/zglos-urodzenie-dziecka",
+        "uwaga": "USC po rejestracji urodzenia przekazuje rodzicowi powiadomienie o nadaniu numeru PESEL; potem numer jest w rejestrze PESEL. Formularz ZAM nie ma osobnego pola na PESEL dziecka (jest tylko pole tekstowe „dane dziecka”), ale rozporządzenie (zał. 6 pkt 5, § 13 ust. 3) go wymienia."
+      },
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": null,
+        "uwaga": ""
+      }
+    ],
+    "zrodloDomyslne": "mobywatel",
+    "zawszeUzytkownik": false
+  },
+  {
+    "id": "liczba_dzieci_przy_jednym_porodzie",
+    "etykieta": "Liczba dzieci urodzonych przy jednym porodzie albo przyjętych jednocześnie",
+    "grupa": "dziecko",
+    "potrzebne_do": [
+      "silnik"
+    ],
+    "poleZAM": [],
+    "zrodla": [
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": null,
+        "uwaga": "Przed porodem wie to tylko rodzic."
+      },
+      {
+        "zrodlo": "mobywatel",
+        "status": "zalozenie",
+        "dowod": "https://www.gov.pl/web/gov/sprawdz-swoje-dane-w-rejestrze-pesel",
+        "uwaga": "Po rejestracji da się to wywnioskować z listy dzieci o tej samej dacie urodzenia. Rejestr nie ma pola „poród mnogi”."
+      }
+    ],
+    "zrodloDomyslne": "uzytkownik",
+    "zawszeUzytkownik": true
+  },
+  {
+    "id": "przewidywana_data_porodu",
+    "etykieta": "Przewidywana data porodu",
+    "grupa": "dziecko",
+    "potrzebne_do": [
+      "silnik",
+      "ZAM",
+      "wniosek_pracodawca"
+    ],
+    "poleZAM": [
+      "topmostSubform[0].Page3[0]._2[0]",
+      "topmostSubform[0].Page3[0].Data2a[0]"
+    ],
+    "zrodla": [
+      {
+        "zrodlo": "lekarz_szpital",
+        "status": "potwierdzone",
+        "dowod": "repo: materialy/ZUS/Materiały dla uczestników/rozporządzenie w spr. zakresu informacji o okolicznościach mających wpływ na prawo do zasiłków ...pdf",
+        "uwaga": "§ 13 ust. 1 pkt 1: zaświadczenie lekarskie na zwykłym druku z przewidywaną datą porodu. Papier, nie e-usługa."
+      },
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": null,
+        "uwaga": "Przepisuje datę z zaświadczenia."
+      },
+      {
+        "zrodlo": "ikp",
+        "status": "zalozenie",
+        "dowod": "https://pacjent.gov.pl/internetowe-konto-pacjenta/poznaj-mojeikp",
+        "uwaga": "Na stronach IKP i mojeIKP nie znalazłem modułu ciąży ani terminu porodu. Zakładam, że tej danej tam nie ma."
+      }
+    ],
+    "zrodloDomyslne": "uzytkownik",
+    "zawszeUzytkownik": true
+  },
+  {
+    "id": "zdarzenie_typ_i_data_przyjecia",
+    "etykieta": "Rodzaj zdarzenia: urodzenie, przysposobienie, rodzina zastępcza; data przyjęcia dziecka na wychowanie",
+    "grupa": "dziecko",
+    "potrzebne_do": [
+      "silnik",
+      "ZAM",
+      "wniosek_pracodawca"
+    ],
+    "poleZAM": [
+      "topmostSubform[0].Page2[0].ZaznaczX1a[0]",
+      "topmostSubform[0].Page2[0].ZaznaczX1b[0]",
+      "topmostSubform[0].Page2[0].Data[0]",
+      "topmostSubform[0].Page2[0].ZaznaczX1c[0]"
+    ],
+    "zrodla": [
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": "repo: materialy/ZUS/Materiały dla uczestników/rozporządzenie w spr. zakresu informacji o okolicznościach mających wpływ na prawo do zasiłków ...pdf",
+        "uwaga": "§ 16: oświadczenie ubezpieczonego o dacie przyjęcia dziecka na wychowanie."
+      },
+      {
+        "zrodlo": "sad",
+        "status": "potwierdzone",
+        "dowod": "repo: materialy/ZUS/Materiały dla uczestników/rozporządzenie w spr. zakresu informacji o okolicznościach mających wpływ na prawo do zasiłków ...pdf",
+        "uwaga": "Zaświadczenie sądu opiekuńczego o dacie wystąpienia o przysposobienie albo orzeczenie o umieszczeniu w rodzinie zastępczej."
+      }
+    ],
+    "zrodloDomyslne": "uzytkownik",
+    "zawszeUzytkownik": true
+  },
+  {
+    "id": "dziecko_wiek_i_odroczenie_obowiazku_szkolnego",
+    "etykieta": "Przysposobienie: wiek dziecka w dniu przyjęcia i ewentualne odroczenie obowiązku szkolnego",
+    "grupa": "dziecko",
+    "potrzebne_do": [
+      "silnik"
+    ],
+    "poleZAM": [],
+    "zrodla": [
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": null,
+        "uwaga": ""
+      },
+      {
+        "zrodlo": "sad",
+        "status": "potwierdzone",
+        "dowod": "repo: materialy/ZUS/Materiały dla uczestników/rozporządzenie w spr. zakresu informacji o okolicznościach mających wpływ na prawo do zasiłków ...pdf",
+        "uwaga": "§ 16 ust. 2: dokument potwierdzający wiek dziecka i kopia decyzji o odroczeniu obowiązku szkolnego (decyzję wydaje dyrektor szkoły, nie sąd)."
+      }
+    ],
+    "zrodloDomyslne": "uzytkownik",
+    "zawszeUzytkownik": true
+  },
+  {
+    "id": "dziecko_tydzien_ciazy_i_masa",
+    "etykieta": "Wcześniak: tydzień ciąży w dniu porodu i masa urodzeniowa",
+    "grupa": "dziecko",
+    "potrzebne_do": [
+      "silnik",
+      "ZAM"
+    ],
+    "poleZAM": [
+      "topmostSubform[0].Page3[0]._4[0]",
+      "topmostSubform[0].Page3[0].skroceniem[0]",
+      "topmostSubform[0].Page3[0].przerwaniem4A[0]",
+      "topmostSubform[0].Page3[0].przerwaniem4B[0]",
+      "topmostSubform[0].Page3[0].podjeciem[0]"
+    ],
+    "zrodla": [
+      {
+        "zrodlo": "lekarz_szpital",
+        "status": "potwierdzone",
+        "dowod": "repo: materialy/ZUS/Materiały dla uczestników/rozporządzenie w sprawie wniosków dot. uprawnień pracowników związanych z rodzicielstwem .pdf",
+        "uwaga": "Zaświadczenie z art. 180² § 5 KP dołączane do wniosku o uzupełniający urlop macierzyński (§ 14 ust. 2 rozporządzenia z 2025 r.)."
+      },
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": null,
+        "uwaga": "Zaznacza jeden z czterech wariantów."
+      },
+      {
+        "zrodlo": "ikp",
+        "status": "zalozenie",
+        "dowod": "https://pacjent.gov.pl/internetowe-konto-pacjenta/poznaj-mojeikp",
+        "uwaga": "IKP ma „historię leczenia” i konto dziecka, ale nie znalazłem potwierdzenia, że widać tam tydzień ciąży albo masę urodzeniową."
+      }
+    ],
+    "zrodloDomyslne": "uzytkownik",
+    "zawszeUzytkownik": true
+  },
+  {
+    "id": "dziecko_pobyt_w_szpitalu",
+    "etykieta": "Pobyt dziecka w szpitalu po porodzie: od–do, data wypisu",
+    "grupa": "dziecko",
+    "potrzebne_do": [
+      "silnik",
+      "ZAM"
+    ],
+    "poleZAM": [
+      "topmostSubform[0].Page3[0].Tekst4a[0]",
+      "topmostSubform[0].Page5[0]._6[0]",
+      "topmostSubform[0].Page5[0].dziecka5[0]",
+      "topmostSubform[0].Page5[0].Data6[0]"
+    ],
+    "zrodla": [
+      {
+        "zrodlo": "lekarz_szpital",
+        "status": "potwierdzone",
+        "dowod": "repo: materialy/ZUS/Materiały dla uczestników/rozporządzenie w sprawie wniosków dot. uprawnień pracowników związanych z rodzicielstwem .pdf",
+        "uwaga": "Zaświadczenie ze szpitala (to samo co wyżej)."
+      },
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": null,
+        "uwaga": ""
+      },
+      {
+        "zrodlo": "ikp",
+        "status": "zalozenie",
+        "dowod": "https://pacjent.gov.pl/internetowe-konto-pacjenta/poznaj-mojeikp",
+        "uwaga": "Możliwe w „historii leczenia” dziecka; niepotwierdzone."
+      }
+    ],
+    "zrodloDomyslne": "uzytkownik",
+    "zawszeUzytkownik": true
+  },
+  {
+    "id": "dziecko_za_zyciem",
+    "etykieta": "Czy dziecko ma zaświadczenie „Za życiem” (i które dziecko)",
+    "grupa": "dziecko",
+    "potrzebne_do": [
+      "silnik",
+      "ZAM",
+      "wniosek_pracodawca"
+    ],
+    "poleZAM": [
+      "topmostSubform[0].Page3[0].ZaznaczX1[0]",
+      "topmostSubform[0].Page3[0].podajimie1[0]",
+      "topmostSubform[0].Page3[0].ZaznaczX1d[0]",
+      "topmostSubform[0].Page3[0].podajimie[0]",
+      "topmostSubform[0].Page4[0].ZaznaczX1d[0]",
+      "topmostSubform[0].Page4[0].podajimie[0]"
+    ],
+    "zrodla": [
+      {
+        "zrodlo": "lekarz_szpital",
+        "status": "potwierdzone",
+        "dowod": "repo: materialy/ZUS/Materiały dla uczestników/rozporządzenie w sprawie wniosków dot. uprawnień pracowników związanych z rodzicielstwem .pdf",
+        "uwaga": "Zaświadczenie z art. 4 ust. 3 ustawy „Za życiem” wystawia lekarz; kopię dołącza się do wniosku o urlop rodzicielski w wymiarze wydłużonym (§ 15 ust. 2 pkt 3)."
+      },
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": null,
+        "uwaga": "W ZAM to oświadczenie wnioskodawcy."
+      }
+    ],
+    "zrodloDomyslne": "uzytkownik",
+    "zawszeUzytkownik": true
+  },
+  {
+    "id": "martwe_urodzenie_albo_zgon_dziecka",
+    "etykieta": "Martwe urodzenie albo zgon dziecka (data)",
+    "grupa": "dziecko",
+    "potrzebne_do": [
+      "silnik"
+    ],
+    "poleZAM": [],
+    "zrodla": [
+      {
+        "zrodlo": "lekarz_szpital",
+        "status": "potwierdzone",
+        "dowod": "repo: materialy/ZUS/Materiały dla uczestników/rozporządzenie w spr. zakresu informacji o okolicznościach mających wpływ na prawo do zasiłków ...pdf",
+        "uwaga": "§ 13 ust. 1 pkt 2: zaświadczenie lekarza albo położnej o martwym urodzeniu, gdy nie sporządzono aktu urodzenia."
+      },
+      {
+        "zrodlo": "rsc",
+        "status": "zalozenie",
+        "dowod": "https://www.gov.pl/web/gov/uzyskaj-odpis-aktu-stanu-cywilnego-urodzenia-malzenstwa-zgonu",
+        "uwaga": "Akt zgonu jest w rejestrze stanu cywilnego; rodzic może zamówić odpis. Nie sprawdzałem szczegółów."
+      },
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": null,
+        "uwaga": "Aplikacja pyta bardzo ostrożnie; żadnego automatycznego pobierania."
+      }
+    ],
+    "zrodloDomyslne": "uzytkownik",
+    "zawszeUzytkownik": true
+  },
+  {
+    "id": "drugi_rodzic_dane",
+    "etykieta": "Drugi rodzic albo członek rodziny: PESEL, imię, nazwisko (data urodzenia i dokument, gdy brak PESEL)",
+    "grupa": "tozsamosc",
+    "potrzebne_do": [
+      "ZAM",
+      "wniosek_pracodawca"
+    ],
+    "poleZAM": [
+      "topmostSubform[0].Page5[0].PESEL[0]",
+      "topmostSubform[0].Page5[0].Dataurodzenia[0]",
+      "topmostSubform[0].Page5[0].Rodzajseriainumerdokumentu[0]",
+      "topmostSubform[0].Page5[0].Imie[0]",
+      "topmostSubform[0].Page5[0].Nazwisko[0]"
+    ],
+    "zrodla": [
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": "https://www.gov.pl/web/cyfryzacja/zglos-urodzenie-dziecka-w-mobywatelu-bez-umawiania-wizyty-w-urzedzie-bez-kolejek",
+        "uwaga": "Nawet w usłudze „Zgłoś urodzenie dziecka” w mObywatelu dane drugiego rodzica wpisuje się ręcznie – automatycznie uzupełniają się tylko dane osoby zalogowanej."
+      },
+      {
+        "zrodlo": "mobywatel",
+        "status": "potwierdzone",
+        "dowod": "https://www.gov.pl/web/gov/czym-jest-rejestr-pesel",
+        "uwaga": "Tylko dla małżonków: rejestr PESEL zawiera imię, nazwisko rodowe i PESEL małżonka. Dla par bez ślubu nic."
+      }
+    ],
+    "zrodloDomyslne": "uzytkownik",
+    "zawszeUzytkownik": false
+  },
+  {
+    "id": "matka_dane",
+    "etykieta": "Dane matki dziecka, gdy wniosek składa ojciec albo inny członek rodziny",
+    "grupa": "tozsamosc",
+    "potrzebne_do": [
+      "ZAM"
+    ],
+    "poleZAM": [
+      "topmostSubform[0].Page4[0].Tekst13[0]"
+    ],
+    "zrodla": [
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": null,
+        "uwaga": "Jak wyżej: imię, nazwisko, PESEL matki wpisuje wnioskodawca."
+      },
+      {
+        "zrodlo": "mobywatel",
+        "status": "potwierdzone",
+        "dowod": "https://www.gov.pl/web/gov/czym-jest-rejestr-pesel",
+        "uwaga": "Dla małżonków: dane małżonka w rejestrze PESEL."
+      }
+    ],
+    "zrodloDomyslne": "uzytkownik",
+    "zawszeUzytkownik": false
+  },
+  {
+    "id": "sytuacja_matki",
+    "etykieta": "Sytuacja matki: skrócenie zasiłku po 14 tyg., pobyt w szpitalu, orzeczenie, podjęcie pracy, porzucenie dziecka, śmierć – i data",
+    "grupa": "zdrowie",
+    "potrzebne_do": [
+      "silnik",
+      "ZAM",
+      "wniosek_pracodawca"
+    ],
+    "poleZAM": [
+      "topmostSubform[0].Page4[0]._5[0]",
+      "topmostSubform[0].Page4[0].skroceniem[0]",
+      "topmostSubform[0].Page4[0].przerwaniem4A[0]",
+      "topmostSubform[0].Page4[0].przerwaniem4B[0]",
+      "topmostSubform[0].Page4[0].podjeciem[0]",
+      "topmostSubform[0].Page4[0].porzuceniem[0]",
+      "topmostSubform[0].Page4[0].smiercia[0]",
+      "topmostSubform[0].Page4[0].Data5[0]"
+    ],
+    "zrodla": [
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": "repo: materialy/ZUS/Materiały dla uczestników/rozporządzenie w spr. zakresu informacji o okolicznościach mających wpływ na prawo do zasiłków ...pdf",
+        "uwaga": "§ 20: oświadczenie ubezpieczonego o śmierci matki albo porzuceniu dziecka."
+      },
+      {
+        "zrodlo": "pracodawca",
+        "status": "potwierdzone",
+        "dowod": "repo: materialy/ZUS/Materiały dla uczestników/rozporządzenie w spr. zakresu informacji o okolicznościach mających wpływ na prawo do zasiłków ...pdf",
+        "uwaga": "§ 20 ust. 1 pkt 2: zaświadczenie płatnika zasiłku matki o okresie i stawce wypłaconego jej zasiłku."
+      },
+      {
+        "zrodlo": "lekarz_szpital",
+        "status": "potwierdzone",
+        "dowod": "repo: materialy/ZUS/Materiały dla uczestników/rozporządzenie w sprawie wniosków dot. uprawnień pracowników związanych z rodzicielstwem .pdf",
+        "uwaga": "§ 6–7: zaświadczenie placówki o terminie przyjęcia matki do szpitala."
+      }
+    ],
+    "zrodloDomyslne": "uzytkownik",
+    "zawszeUzytkownik": true
+  },
+  {
+    "id": "pobyt_wnioskodawcy_w_szpitalu",
+    "etykieta": "Pobyt wnioskodawcy (matki) w szpitalu i data wypisu",
+    "grupa": "zdrowie",
+    "potrzebne_do": [
+      "silnik",
+      "ZAM"
+    ],
+    "poleZAM": [
+      "topmostSubform[0].Page5[0]._6[0]",
+      "topmostSubform[0].Page5[0].mnie5[0]",
+      "topmostSubform[0].Page5[0].Data6[0]"
+    ],
+    "zrodla": [
+      {
+        "zrodlo": "lekarz_szpital",
+        "status": "potwierdzone",
+        "dowod": "repo: materialy/ZUS/Materiały dla uczestników/rozporządzenie w sprawie wniosków dot. uprawnień pracowników związanych z rodzicielstwem .pdf",
+        "uwaga": "Zaświadczenie placówki."
+      },
+      {
+        "zrodlo": "ezus",
+        "status": "potwierdzone",
+        "dowod": "https://www.zus.pl/portal/pomoc/kub0022.html",
+        "uwaga": "Tylko jeśli wystawiono e-ZLA: lista zaświadczeń lekarskich ma kolumnę „Okres hospitalizacji od–do”."
+      },
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": null,
+        "uwaga": ""
+      }
+    ],
+    "zrodloDomyslne": "uzytkownik",
+    "zawszeUzytkownik": false
+  },
+  {
+    "id": "orzeczenie_o_niezdolnosci_do_samodzielnej_egzystencji",
+    "etykieta": "Orzeczenie matki o niezdolności do samodzielnej egzystencji albo o znacznym stopniu niepełnosprawności",
+    "grupa": "zdrowie",
+    "potrzebne_do": [
+      "silnik",
+      "ZAM",
+      "wniosek_pracodawca"
+    ],
+    "poleZAM": [
+      "topmostSubform[0].Page4[0].przerwaniem4B[0]"
+    ],
+    "zrodla": [
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": "repo: materialy/ZUS/Materiały dla uczestników/rozporządzenie w sprawie wniosków dot. uprawnień pracowników związanych z rodzicielstwem .pdf",
+        "uwaga": "§ 4 ust. 2: kopia prawomocnego orzeczenia jako załącznik."
+      },
+      {
+        "zrodlo": "ezus",
+        "status": "zalozenie",
+        "dowod": "https://www.zus.pl/portal/pomoc/kub0021.html",
+        "uwaga": "Szczegóły ubezpieczenia pokazują „stopień niepełnosprawności” ze zgłoszenia. To nie to samo co orzeczenie o niezdolności do samodzielnej egzystencji."
+      }
+    ],
+    "zrodloDomyslne": "uzytkownik",
+    "zawszeUzytkownik": true
+  },
+  {
+    "id": "drugi_rodzic_korzysta_z_zasilku",
+    "etykieta": "Czy drugi rodzic będzie pobierał zasiłek za urlop rodzicielski albo uzupełniający i w jakim okresie",
+    "grupa": "plan_urlopow",
+    "potrzebne_do": [
+      "ZAM",
+      "wniosek_pracodawca",
+      "silnik"
+    ],
+    "poleZAM": [
+      "topmostSubform[0].Page5[0].TAK[0]",
+      "topmostSubform[0].Page5[0].NIE[0]",
+      "topmostSubform[0].Page5[0].Okres[0]"
+    ],
+    "zrodla": [
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": null,
+        "uwaga": "Wynika z planu ułożonego w aplikacji przez oboje rodziców. Uwaga na nazwy pól na stronie 5 – patrz docs/zam-pola.json."
+      }
+    ],
+    "zrodloDomyslne": "uzytkownik",
+    "zawszeUzytkownik": true
+  },
+  {
+    "id": "ojcowski_zasilek_z_innego_tytulu",
+    "etykieta": "Urlop ojcowski: czy pobierał już zasiłek za ten okres z innego tytułu (tytuł i okres)",
+    "grupa": "plan_urlopow",
+    "potrzebne_do": [
+      "ZAM",
+      "wniosek_pracodawca"
+    ],
+    "poleZAM": [
+      "topmostSubform[0].Page5[0].TAK2[0]",
+      "topmostSubform[0].Page5[0].NIE2[0]",
+      "topmostSubform[0].Page5[0].Okres1[0]"
+    ],
+    "zrodla": [
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": "repo: materialy/ZUS/Materiały dla uczestników/rozporządzenie w sprawie wniosków dot. uprawnień pracowników związanych z rodzicielstwem .pdf",
+        "uwaga": "§ 17 ust. 2 pkt 3: oświadczenie ojca, czy korzystał z urlopu ojcowskiego albo jego części."
+      },
+      {
+        "zrodlo": "ezus",
+        "status": "potwierdzone",
+        "dowod": "https://www.zus.pl/portal/pomoc/kub0008.html",
+        "uwaga": "Podpowiedź: lista wypłaconych świadczeń z kodem i okresem."
+      }
+    ],
+    "zrodloDomyslne": "uzytkownik",
+    "zawszeUzytkownik": false
+  },
+  {
+    "id": "ezla_okresy",
+    "etykieta": "Zwolnienia lekarskie w ciąży: okresy od–do, płatnik, status",
+    "grupa": "zdrowie",
+    "potrzebne_do": [
+      "silnik"
+    ],
+    "poleZAM": [],
+    "zrodla": [
+      {
+        "zrodlo": "ezus",
+        "status": "potwierdzone",
+        "dowod": "https://www.zus.pl/portal/pomoc/kub0022.html",
+        "uwaga": "„Zaświadczenia lekarskie”: seria i numer, data wystawienia, okres niezdolności, identyfikator płatnika, opieka tak/nie, okres hospitalizacji, status. Jest też podgląd druku ZUS ZLA."
+      },
+      {
+        "zrodlo": "ikp",
+        "status": "potwierdzone",
+        "dowod": "https://pacjent.gov.pl/sprawdzaj-zwolnienia-na-ikp",
+        "uwaga": "Kafelek „Zwolnienia” na IKP; widoczne 1–2 dni po wystawieniu, bo dane przychodzą z ZUS."
+      }
+    ],
+    "zrodloDomyslne": "ezus",
+    "zawszeUzytkownik": false
+  },
+  {
+    "id": "ezla_kod_b",
+    "etykieta": "Kod „B” na zwolnieniu (niezdolność do pracy w ciąży – zasiłek 100%)",
+    "grupa": "zdrowie",
+    "potrzebne_do": [
+      "silnik"
+    ],
+    "poleZAM": [],
+    "zrodla": [
+      {
+        "zrodlo": "ezus",
+        "status": "zalozenie",
+        "dowod": "https://www.zus.pl/portal/pomoc/kub0022.html",
+        "uwaga": "Lista kolumn nie zawiera kodów literowych. Zakładam, że kod widać w podglądzie druku ZUS ZLA („Szczegóły zaświadczenia”)."
+      },
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": null,
+        "uwaga": "Pytanie „czy zwolnienie jest związane z ciążą”."
+      }
+    ],
+    "zrodloDomyslne": "ezus",
+    "zawszeUzytkownik": false
+  },
+  {
+    "id": "plan_okresy_urlopow",
+    "etykieta": "Plan: które urlopy, od kiedy do kiedy, która część rodzicielskiego (1–5) i ojcowskiego (1–2), data końca macierzyńskiego",
+    "grupa": "plan_urlopow",
+    "potrzebne_do": [
+      "silnik",
+      "ZAM",
+      "wniosek_pracodawca"
+    ],
+    "poleZAM": [
+      "topmostSubform[0].Page2[0].macierzynskiego[0]",
+      "topmostSubform[0].Page2[0].nawarunkach[0]",
+      "topmostSubform[0].Page2[0].Okres[0]",
+      "topmostSubform[0].Page2[0].rodzicielskiego[0]",
+      "topmostSubform[0].Page2[0].Okres2[0]",
+      "topmostSubform[0].Page2[0].czesc[0]",
+      "topmostSubform[0].Page2[0].uzMacierzynskiego[0]",
+      "topmostSubform[0].Page2[0].Okres3[0]",
+      "topmostSubform[0].Page2[0].ojcowskiego[0]",
+      "topmostSubform[0].Page2[0].Okres4[0]",
+      "topmostSubform[0].Page2[0].Numerlokalu2[0]",
+      "topmostSubform[0].Page2[0].Data2[0]"
+    ],
+    "zrodla": [
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": null,
+        "uwaga": "Decyzje rodziców, układane w planerze aplikacji. Żadna usługa tego nie ma."
+      }
+    ],
+    "zrodloDomyslne": "uzytkownik",
+    "zawszeUzytkownik": true
+  },
+  {
+    "id": "wariant_81_5",
+    "etykieta": "Deklaracja pełnego wymiaru macierzyńskiego i rodzicielskiego (zasiłek 81,5%)",
+    "grupa": "plan_urlopow",
+    "potrzebne_do": [
+      "silnik",
+      "ZAM"
+    ],
+    "poleZAM": [
+      "topmostSubform[0].Page2[0].informuje[0]"
+    ],
+    "zrodla": [
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": null,
+        "uwaga": "Wybór rodzica, ważny do 21 dni po porodzie."
+      }
+    ],
+    "zrodloDomyslne": "uzytkownik",
+    "zawszeUzytkownik": true
+  },
+  {
+    "id": "laczenie_rodzicielskiego_z_praca",
+    "etykieta": "Łączenie urlopu rodzicielskiego z pracą: wymiar etatu i okres",
+    "grupa": "plan_urlopow",
+    "potrzebne_do": [
+      "silnik",
+      "wniosek_pracodawca"
+    ],
+    "poleZAM": [],
+    "zrodla": [
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": "repo: materialy/ZUS/Materiały dla uczestników/rozporządzenie w sprawie wniosków dot. uprawnień pracowników związanych z rodzicielstwem .pdf",
+        "uwaga": "§ 16: wymiar czasu pracy, okres i oświadczenie o łączeniu części wydłużonej."
+      }
+    ],
+    "zrodloDomyslne": "uzytkownik",
+    "zawszeUzytkownik": true
+  },
+  {
+    "id": "wykorzystany_urlop_rodzicielski",
+    "etykieta": "Dotychczas wykorzystany urlop rodzicielski: okres i liczba części (albo wniosków o zasiłek)",
+    "grupa": "plan_urlopow",
+    "potrzebne_do": [
+      "silnik",
+      "wniosek_pracodawca"
+    ],
+    "poleZAM": [],
+    "zrodla": [
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": "repo: materialy/ZUS/Materiały dla uczestników/rozporządzenie w sprawie wniosków dot. uprawnień pracowników związanych z rodzicielstwem .pdf",
+        "uwaga": "§ 15 ust. 1 pkt 2. Aplikacja liczy to z planu."
+      },
+      {
+        "zrodlo": "ezus",
+        "status": "potwierdzone",
+        "dowod": "https://www.zus.pl/portal/pomoc/ksw0004.html",
+        "uwaga": "Kontrolnie: wypłacone zasiłki z okresami. Portal nie numeruje „części urlopu”."
+      }
+    ],
+    "zrodloDomyslne": "uzytkownik",
+    "zawszeUzytkownik": false
+  },
+  {
+    "id": "oswiadczenia_do_pracodawcy",
+    "etykieta": "Oświadczenia we wnioskach do pracodawcy: drugi rodzic nie zamierza korzystać w tym okresie; okres macierzyńskiego wykorzystany przed porodem; zamiar rezygnacji matki",
+    "grupa": "plan_urlopow",
+    "potrzebne_do": [
+      "wniosek_pracodawca"
+    ],
+    "poleZAM": [],
+    "zrodla": [
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": "repo: materialy/ZUS/Materiały dla uczestników/rozporządzenie w sprawie wniosków dot. uprawnień pracowników związanych z rodzicielstwem .pdf",
+        "uwaga": "§ 5, § 14 ust. 2 pkt 2, § 15 ust. 2 pkt 2. Treść generuje aplikacja z planu, podpisuje człowiek."
+      }
+    ],
+    "zrodloDomyslne": "uzytkownik",
+    "zawszeUzytkownik": true
+  },
+  {
+    "id": "rachunek_bankowy",
+    "etykieta": "Numer rachunku bankowego do wypłaty zasiłku (pole dobrowolne)",
+    "grupa": "wyplata",
+    "potrzebne_do": [
+      "ZAM"
+    ],
+    "poleZAM": [
+      "topmostSubform[0].Page2[0].Numerrachunku[0]"
+    ],
+    "zrodla": [
+      {
+        "zrodlo": "eurzad_skarbowy",
+        "status": "potwierdzone",
+        "dowod": "https://www.podatki.gov.pl/eurzad-skarbowy-zalatw-sprawy-podatkowe-online/konto-osoby-fizycznej-w-eurzedzie-skarbowym",
+        "uwaga": "„Twoje dane”: osobisty rachunek bankowy zgłoszony do urzędu skarbowego. Może go nie być albo może być nieaktualny."
+      },
+      {
+        "zrodlo": "pracodawca",
+        "status": "potwierdzone",
+        "dowod": "repo: materialy/ZUS/Materiały dla uczestników/rozporządzenie w spr. zakresu informacji o okolicznościach mających wpływ na prawo do zasiłków ...pdf",
+        "uwaga": "Z-3, załącznik 2 pkt 15: numer rachunku bankowego ubezpieczonego."
+      },
+      {
+        "zrodlo": "ezus",
+        "status": "zalozenie",
+        "dowod": "https://www.zus.pl/portal/pomoc/kub0001.html",
+        "uwaga": "„Moje dane” opisano jako dane identyfikacyjne i adresowe – o rachunku nie ma słowa. Rachunek jest w ZUS tylko u osób, które już pobierają świadczenie z ZUS."
+      },
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": null,
+        "uwaga": "Zawsze do potwierdzenia przez użytkownika."
+      }
+    ],
+    "zrodloDomyslne": "eurzad_skarbowy",
+    "zawszeUzytkownik": false
+  },
+  {
+    "id": "zal_zaswiadczenie_o_przewidywanej_dacie_porodu",
+    "etykieta": "Załącznik: zaświadczenie lekarskie o przewidywanej dacie porodu",
+    "grupa": "zalaczniki",
+    "potrzebne_do": [
+      "ZAM",
+      "wniosek_pracodawca"
+    ],
+    "poleZAM": [],
+    "zrodla": [
+      {
+        "zrodlo": "lekarz_szpital",
+        "status": "potwierdzone",
+        "dowod": "repo: materialy/ZUS/Materiały dla uczestników/rozporządzenie w sprawie wniosków dot. uprawnień pracowników związanych z rodzicielstwem .pdf",
+        "uwaga": "§ 2 ust. 2 (pracodawca) i § 13 ust. 1 pkt 1 (ZUS). Na zwykłym druku."
+      }
+    ],
+    "zrodloDomyslne": "lekarz_szpital",
+    "zawszeUzytkownik": true
+  },
+  {
+    "id": "zal_odpis_aktu_urodzenia",
+    "etykieta": "Załącznik: odpis skrócony aktu urodzenia dziecka",
+    "grupa": "zalaczniki",
+    "potrzebne_do": [
+      "wniosek_pracodawca",
+      "ZAM"
+    ],
+    "poleZAM": [],
+    "zrodla": [
+      {
+        "zrodlo": "rsc",
+        "status": "potwierdzone",
+        "dowod": "https://www.gov.pl/web/gov/uzyskaj-odpis-aktu-stanu-cywilnego-urodzenia-malzenstwa-zgonu",
+        "uwaga": "Wniosek online na gov.pl, odpis elektroniczny (XML/PDF) na skrzynkę e-Doręczeń albo papierowy. Pierwszy odpis rodzic dostaje bezpłatnie przy rejestracji urodzenia."
+      },
+      {
+        "zrodlo": "mobywatel",
+        "status": "potwierdzone",
+        "dowod": "https://www.gov.pl/web/cyfryzacja/zglos-urodzenie-dziecka-w-mobywatelu-bez-umawiania-wizyty-w-urzedzie-bez-kolejek",
+        "uwaga": "Od 5.03.2026 zgłoszenie urodzenia w aplikacji; przy okazji wybiera się sposób doręczenia aktu."
+      },
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": "repo: materialy/ZUS/Materiały dla uczestników/rozporządzenie w spr. zakresu informacji o okolicznościach mających wpływ na prawo do zasiłków ...pdf",
+        "uwaga": "Gdy zasiłek wypłaca ZUS, odpisu się NIE składa: ZUS sam pobiera go z rejestru stanu cywilnego na podstawie danych dziecka (§ 13 ust. 2–4). Do pracodawcy odpis albo kopia jest nadal potrzebna."
+      }
+    ],
+    "zrodloDomyslne": "rsc",
+    "zawszeUzytkownik": false
+  },
+  {
+    "id": "zal_zaswiadczenie_szpitalne_uzupelniajacy",
+    "etykieta": "Załącznik: zaświadczenie ze szpitala do uzupełniającego urlopu macierzyńskiego",
+    "grupa": "zalaczniki",
+    "potrzebne_do": [
+      "wniosek_pracodawca",
+      "ZAM"
+    ],
+    "poleZAM": [],
+    "zrodla": [
+      {
+        "zrodlo": "lekarz_szpital",
+        "status": "potwierdzone",
+        "dowod": "repo: materialy/ZUS/Materiały dla uczestników/rozporządzenie w sprawie wniosków dot. uprawnień pracowników związanych z rodzicielstwem .pdf",
+        "uwaga": "§ 14 ust. 2 pkt 1 (zaświadczenie z art. 180² § 5 KP)."
+      }
+    ],
+    "zrodloDomyslne": "lekarz_szpital",
+    "zawszeUzytkownik": true
+  },
+  {
+    "id": "zal_za_zyciem",
+    "etykieta": "Załącznik: kopia zaświadczenia „Za życiem”",
+    "grupa": "zalaczniki",
+    "potrzebne_do": [
+      "wniosek_pracodawca"
+    ],
+    "poleZAM": [],
+    "zrodla": [
+      {
+        "zrodlo": "lekarz_szpital",
+        "status": "potwierdzone",
+        "dowod": "repo: materialy/ZUS/Materiały dla uczestników/rozporządzenie w sprawie wniosków dot. uprawnień pracowników związanych z rodzicielstwem .pdf",
+        "uwaga": "§ 15 ust. 2 pkt 3."
+      }
+    ],
+    "zrodloDomyslne": "lekarz_szpital",
+    "zawszeUzytkownik": true
+  },
+  {
+    "id": "zal_dokumenty_sadowe",
+    "etykieta": "Załącznik: dokumenty z sądu przy przysposobieniu albo rodzinie zastępczej",
+    "grupa": "zalaczniki",
+    "potrzebne_do": [
+      "wniosek_pracodawca",
+      "ZAM"
+    ],
+    "poleZAM": [],
+    "zrodla": [
+      {
+        "zrodlo": "sad",
+        "status": "potwierdzone",
+        "dowod": "repo: materialy/ZUS/Materiały dla uczestników/rozporządzenie w sprawie wniosków dot. uprawnień pracowników związanych z rodzicielstwem .pdf",
+        "uwaga": "§ 18 ust. 2 i § 16 rozporządzenia zasiłkowego: zaświadczenie sądu o dacie wystąpienia o przysposobienie albo orzeczenie o umieszczeniu w rodzinie zastępczej; do urlopu ojcowskiego – postanowienie o przysposobieniu."
+      }
+    ],
+    "zrodloDomyslne": "sad",
+    "zawszeUzytkownik": true
+  },
+  {
+    "id": "zal_zaswiadczenie_platnika_z3",
+    "etykieta": "Załącznik: zaświadczenie płatnika składek Z-3 (pracownik) albo Z-3a (zlecenie)",
+    "grupa": "zalaczniki",
+    "potrzebne_do": [
+      "ZAM"
+    ],
+    "poleZAM": [],
+    "zrodla": [
+      {
+        "zrodlo": "pracodawca",
+        "status": "potwierdzone",
+        "dowod": "repo: materialy/ZUS/Materiały dla uczestników/rozporządzenie w spr. zakresu informacji o okolicznościach mających wpływ na prawo do zasiłków ...pdf",
+        "uwaga": "§ 12 i załączniki 2–3. Wystawia i wysyła płatnik, nie rodzic. Wzory: materialy/ZUS/wzory-formularzy/Z-3_edytowalny.pdf, Z-3a_edytowalny.pdf."
+      }
+    ],
+    "zrodloDomyslne": "pracodawca",
+    "zawszeUzytkownik": true
+  },
+  {
+    "id": "zal_wniosek_ojca_albo_oswiadczenie_matki",
+    "etykieta": "Załącznik: kopia wniosku ojca o pozostałą część urlopu / oświadczenie matki o rezygnacji",
+    "grupa": "zalaczniki",
+    "potrzebne_do": [
+      "wniosek_pracodawca"
+    ],
+    "poleZAM": [],
+    "zrodla": [
+      {
+        "zrodlo": "uzytkownik",
+        "status": "potwierdzone",
+        "dowod": "repo: materialy/ZUS/Materiały dla uczestników/rozporządzenie w sprawie wniosków dot. uprawnień pracowników związanych z rodzicielstwem .pdf",
+        "uwaga": "§ 3 ust. 2 i § 5 ust. 2 pkt 2. Oba dokumenty generuje aplikacja, podpisują rodzice."
+      }
+    ],
+    "zrodloDomyslne": "uzytkownik",
+    "zawszeUzytkownik": true
+  },
+  {
+    "id": "pit2_zlozony",
+    "etykieta": "Czy złożono PIT-2 u tego, kto wypłaca zasiłek (kwota zmniejszająca zaliczkę na podatek)",
+    "grupa": "wyplata",
+    "potrzebne_do": [
+      "silnik"
+    ],
+    "poleZAM": [],
+    "zrodla": [
+      {
+        "zrodlo": "uzytkownik",
+        "status": "zalozenie",
+        "dowod": "",
+        "uwaga": "Oświadczenie PIT-2 składa się płatnikowi albo ZUS; nie szukałem, czy któraś e-usługa je pokazuje. Potrzebne tylko do szacunku „na rękę” i do porównania przy podwyższeniu zasiłku. Pole osoba.pit2 jest w kontrakcie."
+      }
+    ],
+    "zrodloDomyslne": "uzytkownik",
+    "zawszeUzytkownik": true
+  }
+]

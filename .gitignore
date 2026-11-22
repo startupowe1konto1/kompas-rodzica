@@ -1,0 +1,32 @@
+.env
+.env.*
+!.env.example
+node_modules/
+.DS_Store
+Thumbs.db
+
+# Przykładowe sprawy ZUS – nie wolno ich kopiować ani rozpowszechniać (opis zadania ZUS, pkt 2).
+# Trzymamy je wyłącznie lokalnie, poza repozytorium.
+sprawy/
+Sprawy*/
+**/sprawy-zus/
+**/sprawy_zus/
+prywatne/
+
+# Next.js / Node
+/.next/
+/out/
+/build
+/coverage
+*.tsbuildinfo
+next-env.d.ts
+.vercel
+npm-debug.log*
+*.pem
+
+# Lokalny magazyn parametrów panelu admina
+/.data/
+
+# Wyniki testów Playwright
+/test-results/
+/playwright-report/

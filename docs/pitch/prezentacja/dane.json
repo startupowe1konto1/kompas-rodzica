@@ -1,0 +1,1290 @@
+{
+  "zrobiono": "2026-11-21T22:35:26.293Z",
+  "commit": "94817a2",
+  "rodzina": {
+    "porod": "2027-01-01",
+    "mama": 8000,
+    "tata": 9000
+  },
+  "plany": [
+    {
+      "id": "mama-caly-urlop",
+      "nazwa": "Mama: cały urlop macierzyński i swoja część rodzicielskiego",
+      "odcinki": [
+        {
+          "osoba": "mama",
+          "typ": "macierzynski",
+          "od": "2027-01-01",
+          "do": "2027-05-20",
+          "stawka": 100,
+          "dziennie": 230.11,
+          "dni": 140,
+          "miesiecznie": 6903.3,
+          "razem": 32215.4,
+          "sciezka": [
+            {
+              "opis": "Podstawa wymiaru",
+              "wartosc": 6903.2
+            },
+            {
+              "opis": "Stawka za urlop macierzyński",
+              "wzor": "100%",
+              "przepis": "UZ art. 31 ust. 1"
+            },
+            {
+              "opis": "Stawka dzienna",
+              "wzor": "6903,20 zł ÷ 30 × 100%",
+              "wartosc": 230.11
+            },
+            {
+              "opis": "Za 140 dni",
+              "wzor": "140 × 230,11 zł",
+              "wartosc": 32215.4
+            },
+            {
+              "opis": "Zaliczka na podatek (szacunek)",
+              "wartosc": 3865.35,
+              "przepis": "ustawa o PIT art. 34 ust. 3"
+            }
+          ]
+        },
+        {
+          "osoba": "mama",
+          "typ": "rodzicielski",
+          "od": "2027-05-21",
+          "do": "2027-12-30",
+          "stawka": 70,
+          "dziennie": 161.07,
+          "dni": 224,
+          "miesiecznie": 4832.1,
+          "razem": 36079.68,
+          "sciezka": [
+            {
+              "opis": "Podstawa wymiaru",
+              "wartosc": 6903.2
+            },
+            {
+              "opis": "Stawka za urlop rodzicielski",
+              "wzor": "70%",
+              "przepis": "UZ art. 31 ust. 2"
+            },
+            {
+              "opis": "Stawka dzienna",
+              "wzor": "6903,20 zł ÷ 30 × 70%",
+              "wartosc": 161.07
+            },
+            {
+              "opis": "Za 224 dni",
+              "wzor": "224 × 161,07 zł",
+              "wartosc": 36079.68
+            },
+            {
+              "opis": "Zaliczka na podatek (szacunek)",
+              "wartosc": 4329.65,
+              "przepis": "ustawa o PIT art. 34 ust. 3"
+            }
+          ]
+        }
+      ],
+      "suma": 68295.08,
+      "naReke": 60100.08,
+      "podstawy": [
+        {
+          "osoba": "mama",
+          "kwota": 6903.2,
+          "sciezka": [
+            {
+              "opis": "Średnie miesięczne wynagrodzenie z 12 mies. przed miesiącem, w którym zaczyna się zasiłek",
+              "przepis": "UZ art. 36 ust. 1",
+              "wartosc": 8000
+            },
+            {
+              "opis": "Odliczenie składek pracownika (13,71%)",
+              "wzor": "8000,00 zł × (100% − 13,71%)",
+              "wartosc": 6903.2,
+              "przepis": "UZ art. 3 pkt 3"
+            }
+          ]
+        }
+      ],
+      "przepada": [
+        {
+          "pula": "rodzicielski",
+          "dni": 63
+        },
+        {
+          "pula": "rodzicielski_nieprzenoszalne",
+          "osoba": "tata",
+          "dni": 63
+        },
+        {
+          "pula": "ojcowski",
+          "osoba": "tata",
+          "dni": 14
+        }
+      ],
+      "komunikaty": [
+        {
+          "kod": "RODZ_9_TYG_DRUGIEGO_RODZICA",
+          "poziom": "ostrzezenie",
+          "tresc": "Tata ma 9 tygodni urlopu rodzicielskiego tylko dla siebie. Przy tym planie z tej części przepadną 63 dni, bo nie można ich przekazać drugiemu rodzicowi.",
+          "przepis": "KP art. 182¹a § 4"
+        },
+        {
+          "kod": "POWROT_DO_PRACY",
+          "poziom": "konsekwencja",
+          "tresc": "Mama wraca do pracy 31 grudnia 2027.",
+          "przepis": "KP art. 186⁴"
+        }
+      ],
+      "terminy": [
+        {
+          "kod": "POROD",
+          "data": "2027-01-01",
+          "tytul": "Przewidywany poród",
+          "osoba": "mama"
+        },
+        {
+          "kod": "TERMIN_815",
+          "data": "2027-01-22",
+          "tytul": "Ostatni dzień na wniosek o 81,5%",
+          "osoba": "mama",
+          "przepis": "UZ art. 30a ust. 1"
+        },
+        {
+          "kod": "WNIOSEK_RODZICIELSKI",
+          "data": "2027-04-30",
+          "tytul": "Wniosek o urlop rodzicielski",
+          "osoba": "mama",
+          "przepis": "KP art. 182¹d § 1"
+        },
+        {
+          "kod": "POCZATEK_RODZICIELSKI",
+          "data": "2027-05-21",
+          "tytul": "Początek urlopu rodzicielskiego",
+          "osoba": "mama"
+        },
+        {
+          "kod": "KONIEC_RODZICIELSKI",
+          "data": "2027-12-30",
+          "tytul": "Koniec urlopu rodzicielskiego",
+          "osoba": "mama"
+        }
+      ]
+    },
+    {
+      "id": "po-rowno",
+      "nazwa": "Po równo: mama 31 tygodni, tata 30 tygodni",
+      "odcinki": [
+        {
+          "osoba": "mama",
+          "typ": "macierzynski",
+          "od": "2027-01-01",
+          "do": "2027-05-20",
+          "stawka": 100,
+          "dziennie": 230.11,
+          "dni": 140,
+          "miesiecznie": 6903.3,
+          "razem": 32215.4,
+          "sciezka": [
+            {
+              "opis": "Podstawa wymiaru",
+              "wartosc": 6903.2
+            },
+            {
+              "opis": "Stawka za urlop macierzyński",
+              "wzor": "100%",
+              "przepis": "UZ art. 31 ust. 1"
+            },
+            {
+              "opis": "Stawka dzienna",
+              "wzor": "6903,20 zł ÷ 30 × 100%",
+              "wartosc": 230.11
+            },
+            {
+              "opis": "Za 140 dni",
+              "wzor": "140 × 230,11 zł",
+              "wartosc": 32215.4
+            },
+            {
+              "opis": "Zaliczka na podatek (szacunek)",
+              "wartosc": 3865.35,
+              "przepis": "ustawa o PIT art. 34 ust. 3"
+            }
+          ]
+        },
+        {
+          "osoba": "mama",
+          "typ": "rodzicielski",
+          "od": "2027-05-21",
+          "do": "2027-08-05",
+          "stawka": 70,
+          "dziennie": 161.07,
+          "dni": 77,
+          "miesiecznie": 4832.1,
+          "razem": 12402.39,
+          "sciezka": [
+            {
+              "opis": "Podstawa wymiaru",
+              "wartosc": 6903.2
+            },
+            {
+              "opis": "Stawka za urlop rodzicielski",
+              "wzor": "70%",
+              "przepis": "UZ art. 31 ust. 2"
+            },
+            {
+              "opis": "Stawka dzienna",
+              "wzor": "6903,20 zł ÷ 30 × 70%",
+              "wartosc": 161.07
+            },
+            {
+              "opis": "Za 77 dni",
+              "wzor": "77 × 161,07 zł",
+              "wartosc": 12402.39
+            },
+            {
+              "opis": "Zaliczka na podatek (szacunek)",
+              "wartosc": 1488.65,
+              "przepis": "ustawa o PIT art. 34 ust. 3"
+            }
+          ]
+        },
+        {
+          "osoba": "tata",
+          "typ": "rodzicielski",
+          "od": "2027-08-06",
+          "do": "2028-03-02",
+          "stawka": 70,
+          "dziennie": 181.21,
+          "dni": 210,
+          "miesiecznie": 5436.3,
+          "razem": 38054.1,
+          "sciezka": [
+            {
+              "opis": "Podstawa wymiaru",
+              "wartosc": 7766.1
+            },
+            {
+              "opis": "Stawka za urlop rodzicielski",
+              "wzor": "70%",
+              "przepis": "UZ art. 31 ust. 2"
+            },
+            {
+              "opis": "Stawka dzienna",
+              "wzor": "7766,10 zł ÷ 30 × 70%",
+              "wartosc": 181.21
+            },
+            {
+              "opis": "Za 210 dni",
+              "wzor": "210 × 181,21 zł",
+              "wartosc": 38054.1
+            },
+            {
+              "opis": "Zaliczka na podatek (szacunek)",
+              "wartosc": 4565,
+              "przepis": "ustawa o PIT art. 34 ust. 3"
+            }
+          ]
+        },
+        {
+          "osoba": "tata",
+          "typ": "ojcowski",
+          "od": "2027-01-01",
+          "do": "2027-01-14",
+          "stawka": 100,
+          "dziennie": 258.87,
+          "dni": 14,
+          "miesiecznie": 7766.1,
+          "razem": 3624.18,
+          "sciezka": [
+            {
+              "opis": "Podstawa wymiaru",
+              "wartosc": 7766.1
+            },
+            {
+              "opis": "Stawka za urlop ojcowski",
+              "wzor": "100%",
+              "przepis": "UZ art. 31 ust. 1"
+            },
+            {
+              "opis": "Stawka dzienna",
+              "wzor": "7766,10 zł ÷ 30 × 100%",
+              "wartosc": 258.87
+            },
+            {
+              "opis": "Za 14 dni",
+              "wzor": "14 × 258,87 zł",
+              "wartosc": 3624.18
+            },
+            {
+              "opis": "Zaliczka na podatek (szacunek)",
+              "wartosc": 435,
+              "przepis": "ustawa o PIT art. 34 ust. 3"
+            }
+          ]
+        }
+      ],
+      "suma": 86296.07,
+      "naReke": 75942.07,
+      "podstawy": [
+        {
+          "osoba": "mama",
+          "kwota": 6903.2,
+          "sciezka": [
+            {
+              "opis": "Średnie miesięczne wynagrodzenie z 12 mies. przed miesiącem, w którym zaczyna się zasiłek",
+              "przepis": "UZ art. 36 ust. 1",
+              "wartosc": 8000
+            },
+            {
+              "opis": "Odliczenie składek pracownika (13,71%)",
+              "wzor": "8000,00 zł × (100% − 13,71%)",
+              "wartosc": 6903.2,
+              "przepis": "UZ art. 3 pkt 3"
+            }
+          ]
+        },
+        {
+          "osoba": "tata",
+          "kwota": 7766.1,
+          "sciezka": [
+            {
+              "opis": "Średnie miesięczne wynagrodzenie z 12 mies. przed miesiącem, w którym zaczyna się zasiłek",
+              "przepis": "UZ art. 36 ust. 1",
+              "wartosc": 9000
+            },
+            {
+              "opis": "Odliczenie składek pracownika (13,71%)",
+              "wzor": "9000,00 zł × (100% − 13,71%)",
+              "wartosc": 7766.1,
+              "przepis": "UZ art. 3 pkt 3"
+            }
+          ]
+        },
+        {
+          "osoba": "tata",
+          "kwota": 7766.1,
+          "sciezka": [
+            {
+              "opis": "Średnie miesięczne wynagrodzenie z 12 mies. przed miesiącem, w którym zaczyna się zasiłek",
+              "przepis": "UZ art. 36 ust. 1",
+              "wartosc": 9000
+            },
+            {
+              "opis": "Odliczenie składek pracownika (13,71%)",
+              "wzor": "9000,00 zł × (100% − 13,71%)",
+              "wartosc": 7766.1,
+              "przepis": "UZ art. 3 pkt 3"
+            }
+          ]
+        }
+      ],
+      "przepada": [],
+      "komunikaty": [
+        {
+          "kod": "POWROT_DO_PRACY",
+          "poziom": "konsekwencja",
+          "tresc": "Mama wraca do pracy 6 sierpnia 2027.",
+          "przepis": "KP art. 186⁴"
+        },
+        {
+          "kod": "POWROT_DO_PRACY",
+          "poziom": "konsekwencja",
+          "tresc": "Tata wraca do pracy 3 marca 2028.",
+          "przepis": "KP art. 186⁴"
+        }
+      ],
+      "terminy": [
+        {
+          "kod": "WNIOSEK_OJCOWSKI",
+          "data": "2026-12-25",
+          "tytul": "Wniosek o urlop ojcowski",
+          "osoba": "tata",
+          "przepis": "KP art. 182³ § 2"
+        },
+        {
+          "kod": "POROD",
+          "data": "2027-01-01",
+          "tytul": "Przewidywany poród",
+          "osoba": "mama"
+        },
+        {
+          "kod": "POCZATEK_OJCOWSKI",
+          "data": "2027-01-01",
+          "tytul": "Początek urlopu ojcowskiego",
+          "osoba": "tata"
+        },
+        {
+          "kod": "KONIEC_OJCOWSKI",
+          "data": "2027-01-14",
+          "tytul": "Koniec urlopu ojcowskiego",
+          "osoba": "tata"
+        },
+        {
+          "kod": "TERMIN_815",
+          "data": "2027-01-22",
+          "tytul": "Ostatni dzień na wniosek o 81,5%",
+          "osoba": "mama",
+          "przepis": "UZ art. 30a ust. 1"
+        },
+        {
+          "kod": "WNIOSEK_RODZICIELSKI",
+          "data": "2027-04-30",
+          "tytul": "Wniosek o urlop rodzicielski",
+          "osoba": "mama",
+          "przepis": "KP art. 182¹d § 1"
+        },
+        {
+          "kod": "POCZATEK_RODZICIELSKI",
+          "data": "2027-05-21",
+          "tytul": "Początek urlopu rodzicielskiego",
+          "osoba": "mama"
+        },
+        {
+          "kod": "WNIOSEK_RODZICIELSKI",
+          "data": "2027-07-16",
+          "tytul": "Wniosek o urlop rodzicielski",
+          "osoba": "tata",
+          "przepis": "KP art. 182¹d § 1"
+        },
+        {
+          "kod": "KONIEC_RODZICIELSKI",
+          "data": "2027-08-05",
+          "tytul": "Koniec urlopu rodzicielskiego",
+          "osoba": "mama"
+        },
+        {
+          "kod": "POCZATEK_RODZICIELSKI",
+          "data": "2027-08-06",
+          "tytul": "Początek urlopu rodzicielskiego",
+          "osoba": "tata"
+        },
+        {
+          "kod": "KONIEC_RODZICIELSKI",
+          "data": "2028-03-02",
+          "tytul": "Koniec urlopu rodzicielskiego",
+          "osoba": "tata"
+        }
+      ]
+    },
+    {
+      "id": "tata-po-14-tyg",
+      "nazwa": "Tata przejmuje urlop macierzyński po 14 tygodniach",
+      "odcinki": [
+        {
+          "osoba": "mama",
+          "typ": "macierzynski",
+          "od": "2027-01-01",
+          "do": "2027-04-08",
+          "stawka": 100,
+          "dziennie": 230.11,
+          "dni": 98,
+          "miesiecznie": 6903.3,
+          "razem": 22550.78,
+          "sciezka": [
+            {
+              "opis": "Podstawa wymiaru",
+              "wartosc": 6903.2
+            },
+            {
+              "opis": "Stawka za urlop macierzyński",
+              "wzor": "100%",
+              "przepis": "UZ art. 31 ust. 1"
+            },
+            {
+              "opis": "Stawka dzienna",
+              "wzor": "6903,20 zł ÷ 30 × 100%",
+              "wartosc": 230.11
+            },
+            {
+              "opis": "Za 98 dni",
+              "wzor": "98 × 230,11 zł",
+              "wartosc": 22550.78
+            },
+            {
+              "opis": "Zaliczka na podatek (szacunek)",
+              "wartosc": 2706,
+              "przepis": "ustawa o PIT art. 34 ust. 3"
+            }
+          ]
+        },
+        {
+          "osoba": "tata",
+          "typ": "macierzynski",
+          "od": "2027-04-09",
+          "do": "2027-05-20",
+          "stawka": 100,
+          "dziennie": 258.87,
+          "dni": 42,
+          "miesiecznie": 7766.1,
+          "razem": 10872.54,
+          "sciezka": [
+            {
+              "opis": "Podstawa wymiaru",
+              "wartosc": 7766.1
+            },
+            {
+              "opis": "Stawka za urlop macierzyński",
+              "wzor": "100%",
+              "przepis": "UZ art. 31 ust. 1"
+            },
+            {
+              "opis": "Stawka dzienna",
+              "wzor": "7766,10 zł ÷ 30 × 100%",
+              "wartosc": 258.87
+            },
+            {
+              "opis": "Za 42 dni",
+              "wzor": "42 × 258,87 zł",
+              "wartosc": 10872.54
+            },
+            {
+              "opis": "Zaliczka na podatek (szacunek)",
+              "wartosc": 1304.65,
+              "przepis": "ustawa o PIT art. 34 ust. 3"
+            }
+          ]
+        },
+        {
+          "osoba": "tata",
+          "typ": "rodzicielski",
+          "od": "2027-05-21",
+          "do": "2027-12-30",
+          "stawka": 70,
+          "dziennie": 181.21,
+          "dni": 224,
+          "miesiecznie": 5436.3,
+          "razem": 40591.04,
+          "sciezka": [
+            {
+              "opis": "Podstawa wymiaru",
+              "wartosc": 7766.1
+            },
+            {
+              "opis": "Stawka za urlop rodzicielski",
+              "wzor": "70%",
+              "przepis": "UZ art. 31 ust. 2"
+            },
+            {
+              "opis": "Stawka dzienna",
+              "wzor": "7766,10 zł ÷ 30 × 70%",
+              "wartosc": 181.21
+            },
+            {
+              "opis": "Za 224 dni",
+              "wzor": "224 × 181,21 zł",
+              "wartosc": 40591.04
+            },
+            {
+              "opis": "Zaliczka na podatek (szacunek)",
+              "wartosc": 4869.35,
+              "przepis": "ustawa o PIT art. 34 ust. 3"
+            }
+          ]
+        },
+        {
+          "osoba": "tata",
+          "typ": "ojcowski",
+          "od": "2027-01-01",
+          "do": "2027-01-14",
+          "stawka": 100,
+          "dziennie": 258.87,
+          "dni": 14,
+          "miesiecznie": 7766.1,
+          "razem": 3624.18,
+          "sciezka": [
+            {
+              "opis": "Podstawa wymiaru",
+              "wartosc": 7766.1
+            },
+            {
+              "opis": "Stawka za urlop ojcowski",
+              "wzor": "100%",
+              "przepis": "UZ art. 31 ust. 1"
+            },
+            {
+              "opis": "Stawka dzienna",
+              "wzor": "7766,10 zł ÷ 30 × 100%",
+              "wartosc": 258.87
+            },
+            {
+              "opis": "Za 14 dni",
+              "wzor": "14 × 258,87 zł",
+              "wartosc": 3624.18
+            },
+            {
+              "opis": "Zaliczka na podatek (szacunek)",
+              "wartosc": 435,
+              "przepis": "ustawa o PIT art. 34 ust. 3"
+            }
+          ]
+        }
+      ],
+      "suma": 77638.54,
+      "naReke": 68323.54,
+      "podstawy": [
+        {
+          "osoba": "mama",
+          "kwota": 6903.2,
+          "sciezka": [
+            {
+              "opis": "Średnie miesięczne wynagrodzenie z 12 mies. przed miesiącem, w którym zaczyna się zasiłek",
+              "przepis": "UZ art. 36 ust. 1",
+              "wartosc": 8000
+            },
+            {
+              "opis": "Odliczenie składek pracownika (13,71%)",
+              "wzor": "8000,00 zł × (100% − 13,71%)",
+              "wartosc": 6903.2,
+              "przepis": "UZ art. 3 pkt 3"
+            }
+          ]
+        },
+        {
+          "osoba": "tata",
+          "kwota": 7766.1,
+          "sciezka": [
+            {
+              "opis": "Średnie miesięczne wynagrodzenie z 12 mies. przed miesiącem, w którym zaczyna się zasiłek",
+              "przepis": "UZ art. 36 ust. 1",
+              "wartosc": 9000
+            },
+            {
+              "opis": "Odliczenie składek pracownika (13,71%)",
+              "wzor": "9000,00 zł × (100% − 13,71%)",
+              "wartosc": 7766.1,
+              "przepis": "UZ art. 3 pkt 3"
+            }
+          ]
+        },
+        {
+          "osoba": "tata",
+          "kwota": 7766.1,
+          "sciezka": [
+            {
+              "opis": "Średnie miesięczne wynagrodzenie z 12 mies. przed miesiącem, w którym zaczyna się zasiłek",
+              "przepis": "UZ art. 36 ust. 1",
+              "wartosc": 9000
+            },
+            {
+              "opis": "Odliczenie składek pracownika (13,71%)",
+              "wzor": "9000,00 zł × (100% − 13,71%)",
+              "wartosc": 7766.1,
+              "przepis": "UZ art. 3 pkt 3"
+            }
+          ]
+        }
+      ],
+      "przepada": [
+        {
+          "pula": "rodzicielski",
+          "dni": 63
+        },
+        {
+          "pula": "rodzicielski_nieprzenoszalne",
+          "osoba": "mama",
+          "dni": 63
+        }
+      ],
+      "komunikaty": [
+        {
+          "kod": "RODZ_9_TYG_DRUGIEGO_RODZICA",
+          "poziom": "ostrzezenie",
+          "tresc": "Mama ma 9 tygodni urlopu rodzicielskiego tylko dla siebie. Przy tym planie z tej części przepadną 63 dni, bo nie można ich przekazać drugiemu rodzicowi.",
+          "przepis": "KP art. 182¹a § 4"
+        },
+        {
+          "kod": "POWROT_DO_PRACY",
+          "poziom": "konsekwencja",
+          "tresc": "Mama wraca do pracy 9 kwietnia 2027.",
+          "przepis": "KP art. 186⁴"
+        },
+        {
+          "kod": "POWROT_DO_PRACY",
+          "poziom": "konsekwencja",
+          "tresc": "Tata wraca do pracy 31 grudnia 2027.",
+          "przepis": "KP art. 186⁴"
+        },
+        {
+          "kod": "OJCIEC_MUSI_PRZEJAC",
+          "poziom": "konsekwencja",
+          "tresc": "Mama kończy urlop macierzyński 8 kwietnia 2027. Tata przejmuje resztę urlopu od 9 kwietnia 2027 i musi zacząć go dokładnie tego dnia.",
+          "przepis": "KP art. 180 § 4–5, § 8–9"
+        }
+      ],
+      "terminy": [
+        {
+          "kod": "WNIOSEK_OJCOWSKI",
+          "data": "2026-12-25",
+          "tytul": "Wniosek o urlop ojcowski",
+          "osoba": "tata",
+          "przepis": "KP art. 182³ § 2"
+        },
+        {
+          "kod": "POROD",
+          "data": "2027-01-01",
+          "tytul": "Przewidywany poród",
+          "osoba": "mama"
+        },
+        {
+          "kod": "POCZATEK_OJCOWSKI",
+          "data": "2027-01-01",
+          "tytul": "Początek urlopu ojcowskiego",
+          "osoba": "tata"
+        },
+        {
+          "kod": "KONIEC_OJCOWSKI",
+          "data": "2027-01-14",
+          "tytul": "Koniec urlopu ojcowskiego",
+          "osoba": "tata"
+        },
+        {
+          "kod": "TERMIN_815",
+          "data": "2027-01-22",
+          "tytul": "Ostatni dzień na wniosek o 81,5%",
+          "osoba": "mama",
+          "przepis": "UZ art. 30a ust. 1"
+        },
+        {
+          "kod": "PRZEJECIE_OJCA",
+          "data": "2027-03-26",
+          "tytul": "Wniosek o część urlopu macierzyńskiego",
+          "osoba": "tata",
+          "przepis": "KP art. 180 § 9"
+        },
+        {
+          "kod": "REZYGNACJA_MATKI",
+          "data": "2027-04-02",
+          "tytul": "Wniosek o rezygnację z części urlopu macierzyńskiego",
+          "osoba": "mama",
+          "przepis": "KP art. 180 § 8"
+        },
+        {
+          "kod": "KONIEC_MACIERZYNSKI",
+          "data": "2027-04-08",
+          "tytul": "Koniec urlopu macierzyńskiego",
+          "osoba": "mama"
+        },
+        {
+          "kod": "POCZATEK_MACIERZYNSKI",
+          "data": "2027-04-09",
+          "tytul": "Początek urlopu macierzyńskiego",
+          "osoba": "tata"
+        },
+        {
+          "kod": "WNIOSEK_RODZICIELSKI",
+          "data": "2027-04-30",
+          "tytul": "Wniosek o urlop rodzicielski",
+          "osoba": "tata",
+          "przepis": "KP art. 182¹d § 1"
+        },
+        {
+          "kod": "POCZATEK_RODZICIELSKI",
+          "data": "2027-05-21",
+          "tytul": "Początek urlopu rodzicielskiego",
+          "osoba": "tata"
+        },
+        {
+          "kod": "KONIEC_RODZICIELSKI",
+          "data": "2027-12-30",
+          "tytul": "Koniec urlopu rodzicielskiego",
+          "osoba": "tata"
+        }
+      ]
+    },
+    {
+      "id": "tata-swoje-9-tyg",
+      "nazwa": "Mama cały urlop, tata swoje 9 tygodni rodzicielskiego",
+      "odcinki": [
+        {
+          "osoba": "mama",
+          "typ": "macierzynski",
+          "od": "2027-01-01",
+          "do": "2027-05-20",
+          "stawka": 100,
+          "dziennie": 230.11,
+          "dni": 140,
+          "miesiecznie": 6903.3,
+          "razem": 32215.4,
+          "sciezka": [
+            {
+              "opis": "Podstawa wymiaru",
+              "wartosc": 6903.2
+            },
+            {
+              "opis": "Stawka za urlop macierzyński",
+              "wzor": "100%",
+              "przepis": "UZ art. 31 ust. 1"
+            },
+            {
+              "opis": "Stawka dzienna",
+              "wzor": "6903,20 zł ÷ 30 × 100%",
+              "wartosc": 230.11
+            },
+            {
+              "opis": "Za 140 dni",
+              "wzor": "140 × 230,11 zł",
+              "wartosc": 32215.4
+            },
+            {
+              "opis": "Zaliczka na podatek (szacunek)",
+              "wartosc": 3865.35,
+              "przepis": "ustawa o PIT art. 34 ust. 3"
+            }
+          ]
+        },
+        {
+          "osoba": "mama",
+          "typ": "rodzicielski",
+          "od": "2027-05-21",
+          "do": "2027-12-30",
+          "stawka": 70,
+          "dziennie": 161.07,
+          "dni": 224,
+          "miesiecznie": 4832.1,
+          "razem": 36079.68,
+          "sciezka": [
+            {
+              "opis": "Podstawa wymiaru",
+              "wartosc": 6903.2
+            },
+            {
+              "opis": "Stawka za urlop rodzicielski",
+              "wzor": "70%",
+              "przepis": "UZ art. 31 ust. 2"
+            },
+            {
+              "opis": "Stawka dzienna",
+              "wzor": "6903,20 zł ÷ 30 × 70%",
+              "wartosc": 161.07
+            },
+            {
+              "opis": "Za 224 dni",
+              "wzor": "224 × 161,07 zł",
+              "wartosc": 36079.68
+            },
+            {
+              "opis": "Zaliczka na podatek (szacunek)",
+              "wartosc": 4329.65,
+              "przepis": "ustawa o PIT art. 34 ust. 3"
+            }
+          ]
+        },
+        {
+          "osoba": "tata",
+          "typ": "rodzicielski",
+          "od": "2027-12-31",
+          "do": "2028-03-02",
+          "stawka": 70,
+          "dziennie": 181.21,
+          "dni": 63,
+          "miesiecznie": 5436.3,
+          "razem": 11416.23,
+          "sciezka": [
+            {
+              "opis": "Podstawa wymiaru",
+              "wartosc": 7766.1
+            },
+            {
+              "opis": "Stawka za urlop rodzicielski",
+              "wzor": "70%",
+              "przepis": "UZ art. 31 ust. 2"
+            },
+            {
+              "opis": "Stawka dzienna",
+              "wzor": "7766,10 zł ÷ 30 × 70%",
+              "wartosc": 181.21
+            },
+            {
+              "opis": "Za 63 dni",
+              "wzor": "63 × 181,21 zł",
+              "wartosc": 11416.23
+            },
+            {
+              "opis": "Zaliczka na podatek (szacunek)",
+              "wartosc": 1370,
+              "przepis": "ustawa o PIT art. 34 ust. 3"
+            }
+          ]
+        },
+        {
+          "osoba": "tata",
+          "typ": "ojcowski",
+          "od": "2027-01-01",
+          "do": "2027-01-14",
+          "stawka": 100,
+          "dziennie": 258.87,
+          "dni": 14,
+          "miesiecznie": 7766.1,
+          "razem": 3624.18,
+          "sciezka": [
+            {
+              "opis": "Podstawa wymiaru",
+              "wartosc": 7766.1
+            },
+            {
+              "opis": "Stawka za urlop ojcowski",
+              "wzor": "100%",
+              "przepis": "UZ art. 31 ust. 1"
+            },
+            {
+              "opis": "Stawka dzienna",
+              "wzor": "7766,10 zł ÷ 30 × 100%",
+              "wartosc": 258.87
+            },
+            {
+              "opis": "Za 14 dni",
+              "wzor": "14 × 258,87 zł",
+              "wartosc": 3624.18
+            },
+            {
+              "opis": "Zaliczka na podatek (szacunek)",
+              "wartosc": 435,
+              "przepis": "ustawa o PIT art. 34 ust. 3"
+            }
+          ]
+        }
+      ],
+      "suma": 83335.49,
+      "naReke": 73335.49,
+      "podstawy": [
+        {
+          "osoba": "mama",
+          "kwota": 6903.2,
+          "sciezka": [
+            {
+              "opis": "Średnie miesięczne wynagrodzenie z 12 mies. przed miesiącem, w którym zaczyna się zasiłek",
+              "przepis": "UZ art. 36 ust. 1",
+              "wartosc": 8000
+            },
+            {
+              "opis": "Odliczenie składek pracownika (13,71%)",
+              "wzor": "8000,00 zł × (100% − 13,71%)",
+              "wartosc": 6903.2,
+              "przepis": "UZ art. 3 pkt 3"
+            }
+          ]
+        },
+        {
+          "osoba": "tata",
+          "kwota": 7766.1,
+          "sciezka": [
+            {
+              "opis": "Średnie miesięczne wynagrodzenie z 12 mies. przed miesiącem, w którym zaczyna się zasiłek",
+              "przepis": "UZ art. 36 ust. 1",
+              "wartosc": 9000
+            },
+            {
+              "opis": "Odliczenie składek pracownika (13,71%)",
+              "wzor": "9000,00 zł × (100% − 13,71%)",
+              "wartosc": 7766.1,
+              "przepis": "UZ art. 3 pkt 3"
+            }
+          ]
+        },
+        {
+          "osoba": "tata",
+          "kwota": 7766.1,
+          "sciezka": [
+            {
+              "opis": "Średnie miesięczne wynagrodzenie z 12 mies. przed miesiącem, w którym zaczyna się zasiłek",
+              "przepis": "UZ art. 36 ust. 1",
+              "wartosc": 9000
+            },
+            {
+              "opis": "Odliczenie składek pracownika (13,71%)",
+              "wzor": "9000,00 zł × (100% − 13,71%)",
+              "wartosc": 7766.1,
+              "przepis": "UZ art. 3 pkt 3"
+            }
+          ]
+        }
+      ],
+      "przepada": [],
+      "komunikaty": [
+        {
+          "kod": "POWROT_DO_PRACY",
+          "poziom": "konsekwencja",
+          "tresc": "Mama wraca do pracy 31 grudnia 2027.",
+          "przepis": "KP art. 186⁴"
+        },
+        {
+          "kod": "POWROT_DO_PRACY",
+          "poziom": "konsekwencja",
+          "tresc": "Tata wraca do pracy 3 marca 2028.",
+          "przepis": "KP art. 186⁴"
+        }
+      ],
+      "terminy": [
+        {
+          "kod": "WNIOSEK_OJCOWSKI",
+          "data": "2026-12-25",
+          "tytul": "Wniosek o urlop ojcowski",
+          "osoba": "tata",
+          "przepis": "KP art. 182³ § 2"
+        },
+        {
+          "kod": "POROD",
+          "data": "2027-01-01",
+          "tytul": "Przewidywany poród",
+          "osoba": "mama"
+        },
+        {
+          "kod": "POCZATEK_OJCOWSKI",
+          "data": "2027-01-01",
+          "tytul": "Początek urlopu ojcowskiego",
+          "osoba": "tata"
+        },
+        {
+          "kod": "KONIEC_OJCOWSKI",
+          "data": "2027-01-14",
+          "tytul": "Koniec urlopu ojcowskiego",
+          "osoba": "tata"
+        },
+        {
+          "kod": "TERMIN_815",
+          "data": "2027-01-22",
+          "tytul": "Ostatni dzień na wniosek o 81,5%",
+          "osoba": "mama",
+          "przepis": "UZ art. 30a ust. 1"
+        },
+        {
+          "kod": "WNIOSEK_RODZICIELSKI",
+          "data": "2027-04-30",
+          "tytul": "Wniosek o urlop rodzicielski",
+          "osoba": "mama",
+          "przepis": "KP art. 182¹d § 1"
+        },
+        {
+          "kod": "POCZATEK_RODZICIELSKI",
+          "data": "2027-05-21",
+          "tytul": "Początek urlopu rodzicielskiego",
+          "osoba": "mama"
+        },
+        {
+          "kod": "WNIOSEK_RODZICIELSKI",
+          "data": "2027-12-10",
+          "tytul": "Wniosek o urlop rodzicielski",
+          "osoba": "tata",
+          "przepis": "KP art. 182¹d § 1"
+        },
+        {
+          "kod": "KONIEC_RODZICIELSKI",
+          "data": "2027-12-30",
+          "tytul": "Koniec urlopu rodzicielskiego",
+          "osoba": "mama"
+        },
+        {
+          "kod": "POCZATEK_RODZICIELSKI",
+          "data": "2027-12-31",
+          "tytul": "Początek urlopu rodzicielskiego",
+          "osoba": "tata"
+        },
+        {
+          "kod": "KONIEC_RODZICIELSKI",
+          "data": "2028-03-02",
+          "tytul": "Koniec urlopu rodzicielskiego",
+          "osoba": "tata"
+        }
+      ]
+    },
+    {
+      "id": "mama-pol-etatu",
+      "nazwa": "Mama pracuje na 50% etatu w czasie urlopu rodzicielskiego",
+      "odcinki": [
+        {
+          "osoba": "mama",
+          "typ": "macierzynski",
+          "od": "2027-01-01",
+          "do": "2027-05-20",
+          "stawka": 100,
+          "dziennie": 230.11,
+          "dni": 140,
+          "miesiecznie": 6903.3,
+          "razem": 32215.4,
+          "sciezka": [
+            {
+              "opis": "Podstawa wymiaru",
+              "wartosc": 6903.2
+            },
+            {
+              "opis": "Stawka za urlop macierzyński",
+              "wzor": "100%",
+              "przepis": "UZ art. 31 ust. 1"
+            },
+            {
+              "opis": "Stawka dzienna",
+              "wzor": "6903,20 zł ÷ 30 × 100%",
+              "wartosc": 230.11
+            },
+            {
+              "opis": "Za 140 dni",
+              "wzor": "140 × 230,11 zł",
+              "wartosc": 32215.4
+            },
+            {
+              "opis": "Zaliczka na podatek (szacunek)",
+              "wartosc": 3865.61,
+              "przepis": "ustawa o PIT art. 34 ust. 3"
+            }
+          ]
+        },
+        {
+          "osoba": "mama",
+          "typ": "rodzicielski",
+          "od": "2027-05-21",
+          "do": "2028-08-10",
+          "stawka": 70,
+          "dziennie": 80.54,
+          "dni": 448,
+          "miesiecznie": 2416.2,
+          "razem": 36081.92,
+          "sciezka": [
+            {
+              "opis": "Podstawa wymiaru",
+              "wartosc": 6903.2
+            },
+            {
+              "opis": "Stawka za urlop rodzicielski",
+              "wzor": "70%",
+              "przepis": "UZ art. 31 ust. 2"
+            },
+            {
+              "opis": "Stawka dzienna",
+              "wzor": "6903,20 zł ÷ 30 × 70%",
+              "wartosc": 161.07
+            },
+            {
+              "opis": "Pomniejszenie za pracę w trakcie urlopu",
+              "wzor": "161,07 zł × (100% − 50%)",
+              "wartosc": 80.54,
+              "przepis": "UZ art. 31 ust. 4a"
+            },
+            {
+              "opis": "Za 448 dni",
+              "wzor": "448 × 80,54 zł",
+              "wartosc": 36081.92
+            },
+            {
+              "opis": "Zaliczka na podatek (szacunek)",
+              "wartosc": 4333.39,
+              "przepis": "ustawa o PIT art. 34 ust. 3"
+            }
+          ]
+        }
+      ],
+      "suma": 68297.32,
+      "naReke": 60098.32,
+      "podstawy": [
+        {
+          "osoba": "mama",
+          "kwota": 6903.2,
+          "sciezka": [
+            {
+              "opis": "Średnie miesięczne wynagrodzenie z 12 mies. przed miesiącem, w którym zaczyna się zasiłek",
+              "przepis": "UZ art. 36 ust. 1",
+              "wartosc": 8000
+            },
+            {
+              "opis": "Odliczenie składek pracownika (13,71%)",
+              "wzor": "8000,00 zł × (100% − 13,71%)",
+              "wartosc": 6903.2,
+              "przepis": "UZ art. 3 pkt 3"
+            }
+          ]
+        }
+      ],
+      "przepada": [
+        {
+          "pula": "rodzicielski",
+          "dni": 63
+        },
+        {
+          "pula": "rodzicielski_nieprzenoszalne",
+          "osoba": "tata",
+          "dni": 63
+        },
+        {
+          "pula": "ojcowski",
+          "osoba": "tata",
+          "dni": 14
+        }
+      ],
+      "komunikaty": [
+        {
+          "kod": "RODZ_9_TYG_DRUGIEGO_RODZICA",
+          "poziom": "ostrzezenie",
+          "tresc": "Tata ma 9 tygodni urlopu rodzicielskiego tylko dla siebie. Przy tym planie z tej części przepadną 63 dni, bo nie można ich przekazać drugiemu rodzicowi.",
+          "przepis": "KP art. 182¹a § 4"
+        },
+        {
+          "kod": "POWROT_DO_PRACY",
+          "poziom": "konsekwencja",
+          "tresc": "Mama wraca do pracy 11 sierpnia 2028.",
+          "przepis": "KP art. 186⁴"
+        },
+        {
+          "kod": "LACZENIE_WYDLUZA_URLOP",
+          "poziom": "konsekwencja",
+          "tresc": "Pracujesz w czasie urlopu na 50% etatu, więc ten odcinek zużywa z puli tylko 224 dni, a urlop trwa o 224 dni dłużej. Zasiłek za ten czas jest mniejszy o 50%.",
+          "przepis": "KP art. 182¹f § 2, § 4; UZ art. 31 ust. 4a"
+        }
+      ],
+      "terminy": [
+        {
+          "kod": "POROD",
+          "data": "2027-01-01",
+          "tytul": "Przewidywany poród",
+          "osoba": "mama"
+        },
+        {
+          "kod": "TERMIN_815",
+          "data": "2027-01-22",
+          "tytul": "Ostatni dzień na wniosek o 81,5%",
+          "osoba": "mama",
+          "przepis": "UZ art. 30a ust. 1"
+        },
+        {
+          "kod": "WNIOSEK_RODZICIELSKI",
+          "data": "2027-04-30",
+          "tytul": "Wniosek o urlop rodzicielski",
+          "osoba": "mama",
+          "przepis": "KP art. 182¹d § 1"
+        },
+        {
+          "kod": "WNIOSEK_LACZENIE",
+          "data": "2027-04-30",
+          "tytul": "Wniosek o łączenie urlopu rodzicielskiego z pracą",
+          "osoba": "mama",
+          "przepis": "KP art. 182¹e § 2"
+        },
+        {
+          "kod": "POCZATEK_RODZICIELSKI",
+          "data": "2027-05-21",
+          "tytul": "Początek urlopu rodzicielskiego",
+          "osoba": "mama"
+        },
+        {
+          "kod": "KONIEC_RODZICIELSKI",
+          "data": "2028-08-10",
+          "tytul": "Koniec urlopu rodzicielskiego",
+          "osoba": "mama"
+        }
+      ]
+    }
+  ],
+  "przykladBledu": {
+    "kod": "MAC_MIN_14_TYG",
+    "tresc": "Po porodzie mama musi sama, bez przerwy korzystać z urlopu macierzyńskiego do 8 kwietnia 2027. W tym planie mama nie ma urlopu od 12 marca 2027. Dopiero po tym okresie resztę urlopu może przejąć druga osoba.",
+    "przepis": "KP art. 180 § 4"
+  },
+  "aplikacja": {
+    "testy": {
+      "zielone": 1833,
+      "wszystkie": 1833,
+      "pliki": 93
+    },
+    "polaDanych": 57
+  }
+}

@@ -1,0 +1,298 @@
+/* Prezentacja: tokeny z aplikacji (app/globals.css), zasady w ../SPEC.md, cz. 6 i 7. Piksele na scenie 1920 × 1080. */
+@font-face { font-family: "Lato"; font-weight: 400; font-display: block; src: url("../fonty/lato-400-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Lato"; font-weight: 400; font-display: block; src: url("../fonty/lato-400-latin-ext.woff2") format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Lato"; font-weight: 700; font-display: block; src: url("../fonty/lato-700-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Lato"; font-weight: 700; font-display: block; src: url("../fonty/lato-700-latin-ext.woff2") format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Lato"; font-weight: 900; font-display: block; src: url("../fonty/lato-900-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Lato"; font-weight: 900; font-display: block; src: url("../fonty/lato-900-latin-ext.woff2") format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+:root {
+  /* Jeden kolor = jedno znaczenie (jak w aplikacji). */
+  --granat: #00416e;          /* nagłówki, urlop rodzicielski */
+  --granat-ciemny: #283754;   /* „co z tego wynika” */
+  --zielen: #007834;          /* pieniądze, urlop macierzyński, „przysługuje” */
+  --zielen-noc: #013d1c;      /* kafel z kwotą */
+  --morski: #006d77;          /* urlop ojcowski */
+  --bursztyn: #fab856;        /* tylko termin, tekst na nim: granat */
+  --blad: #d5233f;            /* tylko „nie można” */
+  --tlo: #f3f4f6;
+  --bialy: #fff;
+  --tekst: #1b1b1b;
+  --tekst2: #4a4a4a;
+  --linia: #d4d4d4;
+  --linia-jasna: #e5e7eb;
+  --cien: 0 1px 2px rgb(16 24 40 / .06), 0 8px 24px rgb(16 24 40 / .08);
+  --cien-duzy: 0 2px 4px rgb(16 24 40 / .05), 0 30px 70px rgb(0 65 110 / .14);
+  --m: 144px;                 /* margines */
+  --ease: cubic-bezier(.22, 1, .36, 1);
+  --ease-ruch: cubic-bezier(.65, 0, .35, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; background: #dde1e6; font-family: "Lato", "Helvetica Neue", Arial, sans-serif; color: var(--tekst); -webkit-font-smoothing: antialiased; }
+.liczba, .tab { font-variant-numeric: tabular-nums; }
+
+/* Scena 1920 × 1080 skalowana do okna przez deck.js */
+#scena { position: fixed; left: 50%; top: 50%; width: 1920px; height: 1080px; overflow: hidden; transform-origin: 50% 50%; background: var(--tlo); }
+.slajd[data-pomin] { display: none; }
+:focus-visible { outline: 3px solid var(--granat); outline-offset: 2px; }
+.natychmiast, .natychmiast * { transition: none !important; animation-duration: 0s !important; animation-delay: 0s !important; }
+
+/* Tło: cienkie linie jak na ekranie startowym aplikacji i miękka zielona poświata */
+/* Tło jak na ekranie startowym aplikacji (src/components/start/start.css): jasny gradient, miękka poświata
+   za nagłówkiem i pofalowana siatka oktagonów wygaszona maską po lewej u góry, gdzie stoi tekst. */
+#tlo { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+#tlo .podstawa { position: absolute; inset: 0; background: linear-gradient(180deg, #f3f4f6 0%, #fafbfc 40%, #f7f8f9 62%, #eef0f2 100%); }
+#tlo .poswiata { position: absolute; left: -96px; top: -128px; width: 900px; height: 560px; background: radial-gradient(closest-side, rgb(0 120 52 / .1) 0%, rgb(0 120 52 / .05) 55%, rgb(0 120 52 / 0) 100%); }
+#tlo .maska { position: absolute; inset: 0; transition: opacity .6s ease;
+  -webkit-mask-image: radial-gradient(120% 95% at 88% 70%, #000 30%, rgb(0 0 0 / .35) 75%, rgb(0 0 0 / .2) 100%);
+  mask-image: radial-gradient(120% 95% at 88% 70%, #000 30%, rgb(0 0 0 / .35) 75%, rgb(0 0 0 / .2) 100%); }
+#tlo canvas { position: absolute; left: -24px; top: -24px; width: 1968px; height: 1128px; animation: falowanie 36s ease-in-out infinite alternate; }
+@keyframes falowanie { from { transform: translate3d(0, 0, 0) scale(1); } to { transform: translate3d(-14px, 10px, 0) scale(1.035); } }
+/* Slajdy z treścią: siatka słabsza, żeby nie konkurowała z tekstem */
+#tlo.cicho .maska { opacity: .5; }
+.tryb-final #tlo canvas { animation: none; }
+@media (prefers-reduced-motion: reduce) { #tlo canvas { animation: none; } }
+
+/* Slajdy */
+.slajd { position: absolute; inset: 0; z-index: 3; padding: 112px var(--m) 0; opacity: 0; visibility: hidden; transition: opacity .25s ease-out, visibility 0s linear .25s; pointer-events: none; }
+.slajd.aktywny { opacity: 1; visibility: visible; transition: opacity .25s ease-out, visibility 0s; pointer-events: auto; }
+.slajd aside { display: none; }
+
+.kontekst { font-size: 28px; line-height: 1.4; font-weight: 700; color: var(--zielen); }
+.wydarzenie { font-size: 26px; font-weight: 900; color: var(--zielen); }
+.tytul { margin-top: 22px; font-size: 76px; line-height: 1.06; font-weight: 900; letter-spacing: -.015em; color: var(--granat); text-wrap: balance; }
+.lead { margin-top: 26px; font-size: 32px; line-height: 1.4; color: var(--tekst2); max-width: 1100px; }
+.przypis { position: absolute; left: var(--m); right: var(--m); bottom: 52px; display: flex; justify-content: space-between; gap: 40px; font-size: 18px; line-height: 1.45; color: #6b7280; z-index: 4; }
+.przypis .nr { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.symulacja { font-weight: 700; color: var(--granat-ciemny); }
+
+/* ── Oś czasu: jeden element przez cały deck ─────────────────────────────── */
+#os { position: absolute; z-index: 5; left: 0; top: 0; width: 800px; height: 300px;
+  transition: left 1.25s var(--ease-ruch), top 1.25s var(--ease-ruch), width 1.25s var(--ease-ruch), height 1.25s var(--ease-ruch), opacity .8s ease; }
+#os.ukryta { opacity: 0; pointer-events: none; }
+#os .karta { position: absolute; inset: 0; background: var(--bialy); border-radius: 24px; box-shadow: var(--cien-duzy); transition: opacity .7s ease, transform 1.25s var(--ease-ruch); }
+#os.bez-karty .karta { opacity: 0; transform: scale(.97); }
+#os .wnetrze { position: absolute; inset: 28px 32px 24px; display: flex; flex-direction: column; }
+#os .naglowek { display: flex; justify-content: space-between; align-items: baseline; height: 34px; font-size: 20px; color: var(--tekst2); transition: opacity .5s ease; }
+#os .naglowek b { font-size: 22px; font-weight: 900; color: var(--granat); }
+#os .naglowek .plan { font-weight: 700; color: var(--granat); }
+#os .skala { position: relative; height: 34px; margin-left: 112px; border-bottom: 1px solid var(--linia-jasna); transition: opacity .5s ease; }
+#os .skala span { position: absolute; bottom: 9px; transform: translateX(6px); font-size: 17px; color: var(--tekst2); white-space: nowrap; }
+#os .skala span.rok { font-weight: 900; color: var(--tekst); }
+#os .skala i { position: absolute; bottom: -1px; top: 6px; width: 1px; background: var(--linia-jasna); }
+#os.mala .skala span:not(.rok):not(.kw) { opacity: 0; }
+#os.mala .skala i { opacity: 0; }
+#os .wiersze { position: relative; flex: 1; display: flex; flex-direction: column; justify-content: space-evenly; }
+#os .wiersz { position: relative; height: 31%; display: flex; align-items: center; }
+#os .kto { width: 112px; flex: none; font-size: 24px; font-weight: 900; color: var(--granat); transition: opacity .5s ease; }
+#os .tor { position: relative; flex: 1; height: 100%; }
+#os .siatka { position: absolute; inset: 0 0 0 112px; pointer-events: none; transition: opacity .5s ease; }
+#os .siatka i { position: absolute; top: 0; bottom: 0; width: 1px; background: #f0f1f3; }
+#os.bez-karty .naglowek, #os.bez-karty .skala, #os.bez-karty .kto, #os.bez-karty .siatka, #os.bez-karty .znacznik { opacity: 0; }
+
+/* Odcinki: kolory typów z aplikacji (src/components/design.md) */
+.odc { position: absolute; z-index: 1; top: 0; height: 100%; border-radius: 12px; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 0 12px 0 16px; color: #fff; font-size: 20px; font-weight: 900; white-space: nowrap;
+  transition: left 1.6s var(--ease-ruch), width 1.6s var(--ease-ruch), transform 1.6s var(--ease-ruch), background-color 1.2s ease, color .9s ease, box-shadow .9s ease, opacity .6s ease, border-radius 1.2s ease; }
+.odc.macierzynski { background-color: var(--zielen); }
+.odc.rodzicielski { background-color: var(--granat); }
+.odc.ojcowski { background-color: var(--morski); }
+.odc .tyg { flex: none; padding: 3px 10px; border-radius: 999px; background: #fff; color: var(--granat); font-size: 16px; font-weight: 900; transition: opacity .5s ease; }
+.odc .naz { overflow: hidden; text-overflow: clip; transition: opacity .5s ease; }
+.odc.waski .naz { opacity: 0; }
+.odc.waski .tyg, .odc.bez-tyg .tyg { opacity: 0; }
+.odc.przepada.bez-tyg .tyg { opacity: 1; }
+.odc.przepada .tyg { font-size: 15px; }
+/* Tygodnie, które przepadną: kratka w kolorze typu i napis, jak w aplikacji */
+.odc.przepada { background-color: rgb(255 255 255 / 0); color: var(--granat); box-shadow: inset 0 0 0 2px currentColor; }
+.odc.przepada::before { content: ""; position: absolute; inset: 0; border-radius: inherit; opacity: .5; background: repeating-linear-gradient(45deg, currentColor 0 1.5px, transparent 1.5px 10px), repeating-linear-gradient(-45deg, currentColor 0 1.5px, transparent 1.5px 10px); transition: opacity .9s ease; }
+.odc:not(.przepada)::before { content: ""; position: absolute; inset: 0; opacity: 0; transition: opacity .9s ease; }
+.odc.przepada.ojcowski { color: var(--morski); }
+.odc.przepada .naz, .odc.przepada .tyg { position: relative; }
+.odc.przepada .naz { background: #fff; padding: 2px 8px; border-radius: 6px; }
+.odc.przepada .tyg { background: var(--granat); color: #fff; }
+.odc.przepada.ojcowski .tyg { background: var(--morski); }
+.odc.zero { opacity: 0; }
+/* Rozsypanie (slajd 3): odcinek jako fragment z przepisem */
+.odc .przepis { position: absolute; left: 0; right: 0; bottom: -40px; font-size: 19px; font-weight: 700; color: var(--granat); opacity: 0; transition: opacity .5s ease; }
+#os.rozsyp .odc { border-radius: 16px; box-shadow: 0 18px 40px rgb(0 65 110 / .18); }
+#os.rozsyp .odc .przepis { opacity: 1; transition-delay: .7s; }
+
+/* Znaczniki: poród (linia granatowa), dziś (przerywana) */
+.znacznik { position: absolute; top: 62px; bottom: 0; width: 0; transition: opacity .5s ease, left 1.2s var(--ease-ruch); }
+.znacznik::before { content: ""; position: absolute; top: 0; bottom: 24px; left: -1px; border-left: 2px solid var(--granat); }
+.znacznik.dzis::before { border-left: 2px dashed var(--tekst2); }
+.znacznik > span { position: absolute; bottom: -8px; left: 0; transform: translateX(-50%); padding: 3px 10px; border-radius: 999px; background: var(--granat); color: #fff; font-size: 15px; font-weight: 900; white-space: nowrap; }
+.znacznik.dzis > span { bottom: auto; top: -26px; background: var(--tekst2); }
+#os.mala .znacznik.dzis { opacity: 0; }
+
+/* Decyzja (slajd 5): mama kończy urlop, tata przejmuje następnego dnia */
+.decyzja { position: absolute; top: 0; bottom: 0; width: 0; opacity: 0; transition: opacity .6s ease; pointer-events: none; }
+.decyzja.widac { opacity: 1; }
+.decyzja .linia { position: absolute; left: -1px; border-left: 3px dashed var(--granat); transform-origin: top; transform: scaleY(0); transition: transform .9s var(--ease) .3s; }
+.decyzja.widac .linia { transform: scaleY(1); }
+.decyzja .kropka { position: absolute; width: 18px; height: 18px; margin: -9px 0 0 -9px; border-radius: 50%; background: var(--granat); box-shadow: 0 0 0 5px #fff; }
+.decyzja .etykieta { position: absolute; left: -16px; transform: translateY(-100%); padding: 8px 14px; border-radius: 10px; background: var(--granat); color: #fff; font-size: 18px; font-weight: 900; white-space: nowrap; }
+
+/* ── Wspólne: kafle i ikony jak w aplikacji (białe kafle, ikona na zielonym kafelku) ─── */
+.kafel { background: #fff; border-radius: 20px; box-shadow: var(--cien); padding: 32px 34px; }
+.kafel h3 { margin-top: 20px; font-size: 30px; line-height: 1.2; font-weight: 900; color: var(--tekst); }
+.kafel p { margin-top: 10px; font-size: 21px; line-height: 1.45; color: var(--tekst2); }
+.ikona { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 60px; height: 60px; border-radius: 14px; background: var(--zielen); color: #fff; }
+.ikona svg { width: 32px; height: 32px; stroke-width: 1.75; }
+.ikona.mala { width: 34px; height: 34px; border-radius: 999px; }
+.ikona.mala svg { width: 20px; height: 20px; stroke-width: 2; }
+.ikona.bursztyn { background: var(--granat); }
+.etyk { display: flex; align-items: center; gap: 12px; font-size: 20px; font-weight: 900; }
+.tytul.szeroki { max-width: 1320px; }
+/* Element pojawiający się na klik (data-k="1") */
+.slajd [data-k] { opacity: 0; transition: opacity .6s ease; }
+.slajd [data-k].widac { opacity: 1; }
+
+/* Urządzenia ze zrzutami */
+.przegladarka { border-radius: 16px; overflow: hidden; background: #fff; box-shadow: var(--cien-duzy), 0 0 0 1px rgb(0 0 0 / .06); position: relative; }
+.przegladarka .belka { height: 38px; background: #eceef1; display: flex; align-items: center; gap: 9px; padding: 0 18px; }
+.przegladarka .belka i { width: 12px; height: 12px; border-radius: 50%; background: #c8ccd2; }
+.przegladarka .belka span { margin-left: 18px; flex: 1; height: 24px; border-radius: 6px; background: #fff; font-size: 14px; line-height: 24px; color: #6b7280; padding-left: 12px; }
+.przegladarka .okno { position: absolute; top: 38px; left: 0; right: 0; bottom: 0; overflow: hidden; }
+.przegladarka img { display: block; width: 100%; }
+.telefon { border-radius: 40px; padding: 11px; background: #1b1f24; box-shadow: var(--cien-duzy); }
+.telefon .ekran { width: 100%; height: 100%; border-radius: 30px; overflow: hidden; background: #fff; }
+.telefon img { display: block; width: 100%; }
+
+/* ── 1 i 9: tytuł i zamknięcie ─────────────────────────────────────────── */
+.tytulowy { padding-top: 170px; }
+/* Logo z docs/nazwa-i-logo (znak kompasu); nazwa pisana Lato, nie w SVG */
+.marka { display: flex; align-items: center; gap: 24px; }
+.marka .znak { flex: none; width: 76px; height: 76px; display: block; }
+.marka .nazwa { font-size: 44px; line-height: 1; font-weight: 900; letter-spacing: -.015em; color: var(--granat); }
+.marka.duza { margin-top: 40px; gap: 34px; }
+.marka.duza .znak { width: 148px; height: 148px; }
+.marka.duza .nazwa { font-size: 100px; letter-spacing: -.025em; }
+.marka .pod { margin-top: 14px; font-size: 32px; line-height: 1.2; font-weight: 700; color: var(--tekst2); }
+[data-name="zamkniecie"] .zdania { margin-top: 56px; }
+.tytulowy .lead { margin-top: 36px; max-width: 820px; font-size: 30px; }
+.zespol { position: absolute; left: var(--m); bottom: 92px; }
+.zespol .team { font-size: 40px; font-weight: 900; color: var(--zielen); letter-spacing: -.01em; }
+.zespol .imiona { margin-top: 10px; font-size: 24px; color: var(--tekst2); }
+.hero { position: absolute; left: 1110px; top: 230px; width: 700px; height: 680px; }
+.hero .przegladarka { position: absolute; left: 0; top: 0; width: 650px; height: 430px; }
+.hero .telefon { position: absolute; left: 470px; top: 190px; width: 232px; height: 480px; }
+.telefon.koniec { position: absolute; left: 1420px; top: 190px; width: 300px; height: 630px; }
+
+/* ── 2: problem ─────────────────────────────────────────────────────────── */
+.pytania-karty { position: absolute; left: var(--m); top: 370px; width: 1080px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.stat { position: absolute; right: var(--m); top: 370px; width: 500px; padding: 38px 40px; }
+.stat .stat-liczba { font-size: 120px; line-height: .95; font-weight: 900; letter-spacing: -.03em; color: var(--granat); }
+.stat .stat-opis { margin-top: 14px; font-size: 26px; line-height: 1.35; font-weight: 700; color: var(--tekst); }
+.stat .stat-skutek { margin-top: 22px; padding-top: 22px; border-top: 3px solid var(--zielen); font-size: 22px; line-height: 1.45; color: var(--tekst2); }
+.stat .stat-zrodlo { margin-top: 18px; font-size: 16px; color: #6b7280; }
+
+.cel-zus { position: absolute; left: var(--m); right: var(--m); top: 850px; padding: 20px 30px; border-radius: 14px; background: #fff; border-left: 6px solid var(--zielen); box-shadow: var(--cien); font-size: 24px; line-height: 1.45; color: var(--tekst2); }
+.cel-zus b { color: var(--granat); }
+
+/* ── Wymagania a–j ─────────────────────────────────────────────────────── */
+.wymagania { position: absolute; left: var(--m); right: var(--m); top: 330px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.wymagania .kafel { padding: 22px 26px; display: grid; grid-template-columns: 56px 1fr; column-gap: 18px; align-items: start; }
+.wymagania .lit { grid-row: span 2; width: 56px; height: 56px; border-radius: 14px; background: var(--zielen); color: #fff; font-size: 22px; font-weight: 900; display: flex; align-items: center; justify-content: center; }
+.wymagania h3 { margin-top: 0; font-size: 25px; }
+.wymagania p { margin-top: 6px; font-size: 19px; line-height: 1.4; }
+
+/* ── Uczciwe symulacje ─────────────────────────────────────────────────── */
+.lista-uslug { display: flex; flex-direction: column; gap: 14px; }
+.lista-uslug p { display: grid; grid-template-columns: 34px 170px 1fr; align-items: center; gap: 16px; padding: 16px 22px; border-radius: 14px; background: #fff; box-shadow: var(--cien); font-size: 21px; line-height: 1.35; color: var(--tekst2); }
+.lista-uslug b { font-size: 22px; font-weight: 900; color: var(--granat); }
+
+/* ── 3: przykład rodziny ───────────────────────────────────────────────── */
+.porownanie { position: absolute; left: var(--m); right: var(--m); top: 720px; display: grid; grid-template-columns: 560px 1fr; gap: 64px; align-items: center; }
+.hook-kw { font-size: 130px; line-height: 1; font-weight: 900; letter-spacing: -.03em; color: var(--zielen); white-space: nowrap; }
+.hook-kw small { font-size: 68px; margin-left: 10px; }
+.roznica-opis { margin-top: 8px; font-size: 26px; font-weight: 700; color: var(--tekst2); }
+.pasek-w { display: grid; grid-template-columns: 330px 1fr 200px; align-items: center; gap: 24px; padding: 14px 0; }
+.pasek-n { font-size: 24px; font-weight: 700; color: var(--tekst2); }
+.pasek-t { height: 22px; border-radius: 11px; background: #e5e7eb; overflow: hidden; }
+.pasek-t i { display: block; height: 100%; width: var(--w); border-radius: 11px; }
+.pasek-a { background: #8fa3b8; }
+.pasek-c { background: var(--zielen); }
+.pasek-w[data-k] .pasek-c { width: 0; transition: width 1.4s var(--ease-ruch) .15s; }
+.pasek-w[data-k].widac .pasek-c { width: var(--w); }
+.pasek-k { text-align: right; font-size: 30px; font-weight: 900; color: var(--granat); white-space: nowrap; }
+.pasek-k.z { color: var(--zielen); }
+
+/* ── 4: rozwiązanie ────────────────────────────────────────────────────── */
+.dwie-kol { position: absolute; left: var(--m); right: var(--m); top: 320px; display: grid; grid-template-columns: 700px 1fr; gap: 64px; align-items: start; }
+.lista-kafli { display: flex; flex-direction: column; gap: 14px; }
+.kafel.poziomy { display: flex; gap: 22px; align-items: flex-start; padding: 22px 26px; }
+.kafel.poziomy h3 { margin-top: 2px; font-size: 26px; }
+.kafel.poziomy p { margin-top: 4px; font-size: 20px; }
+.dwie-kol .przegladarka { height: 560px; }
+
+/* ── 5: decyzja i skutek ───────────────────────────────────────────────── */
+.skutki { position: absolute; left: var(--m); right: var(--m); top: 710px; display: grid; grid-template-columns: 1fr 520px; gap: 32px; }
+.wynika { border-radius: 20px; padding: 28px 34px; background: var(--granat-ciemny); color: #fff; }
+.wynika .etyk { color: #c9d6e8; }
+.wynika #skutek { margin-top: 14px; font-size: 28px; line-height: 1.4; font-weight: 700; }
+.przepis-sm { margin-top: 10px; font-size: 18px; font-weight: 700; color: #9fe0b8; }
+.termin-kafel { border-radius: 20px; padding: 28px 34px; background: var(--bursztyn); color: var(--granat); }
+.termin-kafel .data { margin-top: 10px; font-size: 44px; line-height: 1.1; font-weight: 900; }
+.termin-kafel p:last-child { margin-top: 8px; font-size: 22px; line-height: 1.4; }
+.termin-kafel.maly { margin-top: 44px; max-width: 480px; }
+
+/* ── 6: kwota z przepisem ──────────────────────────────────────────────── */
+.s6 { display: grid; grid-template-columns: 640px 1fr; gap: 80px; align-items: center; height: 820px; }
+.s6 .tytul { margin-top: 0; font-size: 72px; }
+.s6 .lead { font-size: 28px; }
+.rachunek { padding: 30px 44px 36px; }
+.rachunek-tyt { font-size: 20px; font-weight: 900; color: var(--zielen); }
+.rachunek .w { display: grid; grid-template-columns: 1fr 320px; gap: 4px 24px; padding: 22px 0; border-bottom: 1px solid var(--linia-jasna); }
+.rachunek .w .o { font-size: 26px; font-weight: 700; color: var(--tekst); }
+.rachunek .w .f { grid-column: 1; font-size: 20px; color: var(--tekst2); }
+.rachunek .w .p { grid-column: 1; font-size: 19px; font-weight: 700; color: var(--zielen); }
+.rachunek .w .v { grid-column: 2; grid-row: 1 / span 3; align-self: center; text-align: right; font-size: 40px; font-weight: 900; color: var(--granat); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.rachunek .w.suma { border-bottom: 0; padding-bottom: 0; }
+.rachunek .w.suma .o { font-size: 28px; font-weight: 900; color: var(--zielen); }
+.rachunek .w.suma .v { font-size: 60px; color: var(--zielen); }
+
+/* ── 7: aplikacja ──────────────────────────────────────────────────────── */
+.ekrany { position: absolute; left: var(--m); right: var(--m); top: 270px; height: 600px; display: flex; gap: 40px; align-items: center; justify-content: center; }
+.ekrany .przegladarka { flex: none; width: 900px; height: 570px; }
+.ekrany .telefon { flex: none; width: 250px; height: 530px; }
+.funkcje { position: absolute; left: var(--m); right: var(--m); top: 900px; display: flex; justify-content: center; gap: 16px; }
+.funkcje > span { display: inline-flex; align-items: center; gap: 12px; padding: 8px 22px 8px 8px; border-radius: 999px; background: #fff; box-shadow: var(--cien); font-size: 20px; font-weight: 700; color: var(--tekst); white-space: nowrap; }
+
+/* ── 8: korzyści ───────────────────────────────────────────────────────── */
+.korzysci { position: absolute; left: var(--m); right: var(--m); top: 300px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.korzysci .kafel { padding: 38px 42px; }
+.korzysci h3 { font-size: 36px; }
+.korzysci ul { list-style: none; margin-top: 12px; }
+.korzysci li { position: relative; padding-left: 36px; margin-top: 14px; font-size: 26px; line-height: 1.4; color: var(--tekst); }
+.korzysci li::before { content: ""; position: absolute; left: 0; top: 13px; width: 14px; height: 14px; border-radius: 50%; background: var(--zielen); }
+.wdrozenie { position: absolute; left: var(--m); right: var(--m); top: 760px; padding: 26px 34px; border-radius: 14px; background: #fff; border-left: 6px solid var(--zielen); box-shadow: var(--cien); font-size: 26px; line-height: 1.45; color: var(--tekst2); }
+.wdrozenie b { color: var(--granat); }
+
+/* ── 10: załącznik ─────────────────────────────────────────────────────── */
+.s9 { display: grid; grid-template-columns: 1fr 600px; gap: 80px; margin-top: 64px; align-items: start; }
+.licencje .w { display: grid; grid-template-columns: 210px 1fr; gap: 24px; padding: 20px 0; border-top: 1px solid var(--linia); font-size: 25px; line-height: 1.4; }
+.licencje .w:last-child { border-bottom: 1px solid var(--linia); }
+.licencje .w span:first-child { font-weight: 900; color: var(--zielen); }
+.ai { border-radius: 20px; background: #fff; box-shadow: var(--cien); color: var(--tekst2); padding: 40px 44px; }
+.ai p { font-size: 28px; line-height: 1.45; }
+.ai p + p { margin-top: 24px; }
+.ai p b { color: var(--zielen); }
+
+/* Zamknięcie */
+.zdania p { font-size: 74px; line-height: 1.12; font-weight: 900; letter-spacing: -.015em; color: var(--granat); }
+.linki { margin-top: 60px; display: flex; flex-direction: column; font-size: 28px; }
+.linki div { display: grid; grid-template-columns: 160px 1fr; gap: 16px; padding: 14px 0; border-top: 1px solid var(--linia); max-width: 820px; }
+.linki div:last-child { border-bottom: 1px solid var(--linia); }
+.linki span:first-child { font-size: 24px; font-weight: 700; color: var(--tekst2); align-self: center; }
+.linki span:last-child { font-weight: 900; color: var(--zielen); }
+
+/* Obsługa */
+#hud { position: fixed; right: 14px; bottom: 10px; font: 13px/1 Arial, sans-serif; color: #6b7785; opacity: .65; user-select: none; }
+#notatki { position: fixed; left: 0; right: 0; bottom: 0; max-height: 38vh; overflow: auto; padding: 18px 28px; background: rgb(0 40 68 / .96); color: #f3f4f6; font: 19px/1.55 Arial, sans-serif; display: none; z-index: 50; }
+#notatki.on { display: block; }
+#postep { position: fixed; left: 0; bottom: 0; height: 3px; background: var(--zielen); opacity: .5; transition: width .4s ease; z-index: 40; }
+.tryb-final #hud, .tryb-final #postep { display: none; }
+.odc .naz:empty { display: none; }
+.odc .naz:empty + .tyg { margin-left: auto; }

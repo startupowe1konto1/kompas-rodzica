@@ -1,0 +1,431 @@
+<title>Nazwa i logo Przewodnika</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap">
+<style>
+/* Układ: jedna kolumna jak karta urzędowa; belka w zieleni u góry, sekcje rozdzielone cienką linią, logo na kaflach. */
+:root {
+  --zielen: #007834;
+  --zielen-noc: #013d1c;
+  --granat: #00416e;
+  --bursztyn: #fab856;
+  --bg: #f3f4f6;
+  --kafel: #ffffff;
+  --tekst: #1b1b1b;
+  --tekst-drugi: #4a4a4a;
+  --linia: #d4d4d4;
+  --akcent: #007834;
+  --znacznik-bg: #e6f0fa;
+  --znacznik-tekst: #00416e;
+  --font: "Lato", "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1712; --kafel: #17221b; --tekst: #eef2ef; --tekst-drugi: #b5c0b8;
+    --linia: #2c3a31; --akcent: #5fc98a; --znacznik-bg: #1d3347; --znacznik-tekst: #cfe3f7; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1712; --kafel: #17221b; --tekst: #eef2ef; --tekst-drugi: #b5c0b8;
+  --linia: #2c3a31; --akcent: #5fc98a; --znacznik-bg: #1d3347; --znacznik-tekst: #cfe3f7; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--tekst); font-family: var(--font); font-size: 16px; line-height: 1.55; }
+.belka { height: 6px; background: var(--zielen); }
+.strona { max-width: 1040px; margin: 0 auto; padding-block: 32px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: flex; flex-direction: column; gap: 48px; }
+h1, h2, h3 { text-wrap: balance; margin: 0; line-height: 1.15; }
+h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight: 900; }
+h2 { font-size: 1.5rem; font-weight: 900; }
+h3 { font-size: 1.2rem; font-weight: 900; }
+p { margin: 0; max-width: 68ch; }
+.etykieta { font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--akcent); }
+.prowadzenie { color: var(--tekst-drugi); font-size: 1.08rem; }
+section { display: flex; flex-direction: column; gap: 20px; }
+.naglowek-sekcji { display: flex; flex-direction: column; gap: 6px; border-top: 1px solid var(--linia); padding-top: 24px; }
+
+/* Obserwacje */
+.obserwacje { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 16px; }
+.obs { background: var(--kafel); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.obs b { font-weight: 900; }
+.wniosek { background: var(--zielen-noc); color: #fff; border-radius: 16px; padding: 20px 24px; display: flex; flex-direction: column; gap: 6px; }
+.wniosek p { max-width: none; }
+
+/* Nazwy */
+.nazwy { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: 16px; }
+.nazwa { background: var(--kafel); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 10px; min-width: 0; border: 2px solid transparent; }
+.nazwa.top { border-color: var(--zielen); }
+.nazwa .duza { font-size: 1.9rem; font-weight: 900; line-height: 1.1; }
+.nazwa .pod { color: var(--tekst-drugi); font-size: .95rem; }
+.nazwa .haslo { font-weight: 700; }
+.nazwa dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; font-size: .95rem; }
+.nazwa dt { font-weight: 700; }
+.nazwa dd { margin: 0; color: var(--tekst-drugi); }
+.znacznik { align-self: flex-start; font-size: .78rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: var(--znacznik-bg); color: var(--znacznik-tekst); }
+.znacznik.top { background: var(--zielen); color: #fff; }
+.odrzucone { font-size: .95rem; color: var(--tekst-drugi); }
+.hasla { display: flex; flex-wrap: wrap; gap: 10px; padding: 0; margin: 0; list-style: none; }
+.hasla li { background: var(--kafel); border-radius: 999px; padding: 10px 18px; font-weight: 700; }
+
+/* Logo */
+.przelacznik { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.przelacznik span { font-weight: 700; margin-right: 4px; }
+.przelacznik button { font: inherit; font-weight: 700; cursor: pointer; min-height: 44px; padding: 8px 16px; border-radius: 999px;
+  border: 2px solid var(--linia); background: var(--kafel); color: var(--tekst); transition: border-color .15s, background-color .15s; }
+.przelacznik button[aria-pressed="true"] { background: var(--zielen); border-color: var(--zielen); color: #fff; }
+.przelacznik button:focus-visible { outline: 3px solid var(--bursztyn); outline-offset: 2px; }
+.logotypy { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(440px, 100%), 1fr)); gap: 16px; }
+@media (max-width: 520px) { .logotypy { grid-template-columns: 1fr; } }
+.koncept { background: var(--kafel); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+.koncept .opis { padding: 20px; display: flex; flex-direction: column; gap: 8px; }
+.plansza { display: flex; align-items: center; gap: 14px; padding: 28px 20px; flex-wrap: wrap; }
+.plansza.jasna { background: #ffffff; color: #1b1b1b; border-bottom: 1px solid #ececec; }
+.plansza.ciemna { background: var(--zielen-noc); color: #fff; }
+.znak { width: 72px; height: 72px; flex: none; }
+.lockup { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.lockup .marka { font-size: 1.75rem; font-weight: 900; line-height: 1; letter-spacing: -.01em; }
+.lockup .opis-marki { font-size: .82rem; line-height: 1.25; font-weight: 700; padding-top: 6px; border-top: 3px solid var(--bursztyn); max-width: 15em; }
+.plansza.jasna .marka { color: #00416e; }
+.plansza.jasna .opis-marki { color: #4a4a4a; }
+.rozmiary { display: flex; align-items: flex-end; gap: 14px; padding: 14px 20px; border-top: 1px solid var(--linia); font-size: .8rem; color: var(--tekst-drugi); flex-wrap: wrap; }
+.rozmiary figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+
+/* Zasady */
+.zasady { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 16px; }
+.zasady div { background: var(--kafel); border-radius: 16px; padding: 20px; min-width: 0; }
+.zasady ul { margin: 8px 0 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: 6px; }
+.rekomendacja { background: var(--kafel); border-left: 6px solid var(--zielen); border-radius: 8px; padding: 20px 24px; display: flex; flex-direction: column; gap: 8px; }
+.stopka { font-size: .85rem; color: var(--tekst-drugi); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- Bobas: śpiąca buzia, neutralna płciowo. Kolory przez zmienne: --twarz, --kreska, --policzki -->
+    <symbol id="bobas" viewBox="0 0 64 64">
+      <circle cx="15.5" cy="36" r="4.5" fill="var(--twarz)"/>
+      <circle cx="48.5" cy="36" r="4.5" fill="var(--twarz)"/>
+      <circle cx="32" cy="35" r="17" fill="var(--twarz)"/>
+      <path d="M32 19 C30.5 13.5 37 11 39.5 14.5 C41.2 17 38 19.6 35.8 17.6" fill="none" stroke="var(--twarz)" stroke-width="3" stroke-linecap="round"/>
+      <path d="M24 34.5 q3 3.2 6 0 M34 34.5 q3 3.2 6 0" fill="none" stroke="var(--kreska)" stroke-width="2.4" stroke-linecap="round"/>
+      <circle cx="22.5" cy="40.5" r="2.7" fill="var(--policzki)"/>
+      <circle cx="41.5" cy="40.5" r="2.7" fill="var(--policzki)"/>
+      <path d="M29.2 43.2 q2.8 2.6 5.6 0" fill="none" stroke="var(--kreska)" stroke-width="2.2" stroke-linecap="round"/>
+    </symbol>
+    <!-- Wybrany: kompas z bobasem (Kompas Rodzica) -->
+    <symbol id="znak-kompas" viewBox="0 0 64 64">
+      <rect width="64" height="64" rx="15" fill="#007834"/>
+      <circle cx="32" cy="33" r="25" fill="none" stroke="#fff" stroke-width="3.5"/>
+      <circle cx="32" cy="33" r="20.5" fill="none" stroke="#fff" stroke-width="1.4" stroke-dasharray="1.6 3.77" opacity=".75"/>
+      <path d="M32 2 L38 13.5 H26 Z" fill="#fab856" transform="rotate(30 32 33)"/>
+      <use href="#bobas" x="7" y="7.2" width="50" height="50" style="--twarz:#fff;--kreska:#00416e;--policzki:#fab856"/>
+    </symbol>
+    <symbol id="znak-kompas-mono" viewBox="0 0 64 64">
+      <circle cx="32" cy="33" r="25" fill="none" stroke="#00416e" stroke-width="3.5"/>
+      <circle cx="32" cy="33" r="20.5" fill="none" stroke="#00416e" stroke-width="1.4" stroke-dasharray="1.6 3.77" opacity=".75"/>
+      <path d="M32 2 L38 13.5 H26 Z" fill="#00416e" transform="rotate(30 32 33)"/>
+      <use href="#bobas" x="7" y="7.2" width="50" height="50" style="--twarz:#00416e;--kreska:#fff;--policzki:transparent"/>
+    </symbol>
+    <!-- A. Kafel aplikacji -->
+    <symbol id="znak-kafel" viewBox="0 0 64 64">
+      <rect width="64" height="64" rx="15" fill="#007834"/>
+      <use href="#bobas" style="--twarz:#fff;--kreska:#00416e;--policzki:#fab856"/>
+    </symbol>
+    <!-- B. Pieczątka -->
+    <symbol id="znak-pieczec" viewBox="0 0 120 120">
+      <circle cx="60" cy="60" r="57" fill="#fff" stroke="#00416e" stroke-width="3"/>
+      <circle cx="60" cy="60" r="36" fill="#007834"/>
+      <circle cx="60" cy="60" r="39.5" fill="none" stroke="#00416e" stroke-width="1.5"/>
+      <path id="luk" d="M60 60 m-47 0 a47 47 0 1 1 94 0 a47 47 0 1 1 -94 0" fill="none"/>
+      <text font-family="Lato, Arial, sans-serif" font-weight="900" font-size="9.2" fill="#00416e" letter-spacing="1.2">
+        <textPath href="#luk" startOffset="0" textLength="288">PRZEWODNIK PRZYSZŁEGO RODZICA • SYMULACJA •</textPath>
+      </text>
+      <use href="#bobas" x="23" y="21" width="74" height="74" style="--twarz:#fff;--kreska:#00416e;--policzki:#fab856"/>
+    </symbol>
+    <!-- C. Kalendarz -->
+    <symbol id="znak-kalendarz" viewBox="0 0 64 64">
+      <rect x="5" y="10" width="54" height="50" rx="11" fill="#007834"/>
+      <path d="M5 21 a11 11 0 0 1 11-11 h32 a11 11 0 0 1 11 11 v3 H5z" fill="#00416e"/>
+      <rect x="17" y="4" width="6" height="12" rx="3" fill="#fab856"/>
+      <rect x="41" y="4" width="6" height="12" rx="3" fill="#fab856"/>
+      <use href="#bobas" x="11" y="18" width="42" height="42" style="--twarz:#fff;--kreska:#00416e;--policzki:#fab856"/>
+    </symbol>
+    <!-- D. Pinezka przewodnika -->
+    <symbol id="znak-pinezka" viewBox="0 0 64 64">
+      <path d="M32 2 C17.6 2 7 12.6 7 27 c0 17.5 25 35 25 35 s25-17.5 25-35 C57 12.6 46.4 2 32 2z" fill="#00416e"/>
+      <circle cx="32" cy="27" r="19" fill="#007834"/>
+      <use href="#bobas" x="11" y="4" width="42" height="42" style="--twarz:#fff;--kreska:#00416e;--policzki:#fab856"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="belka" aria-hidden="true"></div>
+<main class="strona">
+  <header style="display:flex;flex-direction:column;gap:12px">
+    <span class="etykieta">HackNation 2026 · zadanie ZUS · propozycje do wyboru</span>
+    <h1>Nazwa i logo dla Zasiłkowego Przewodnika Przyszłego Rodzica</h1>
+    <p class="prowadzenie">Wybór zespołu na górze, niżej wszystkie propozycje, z których wybieraliśmy.</p>
+  </header>
+
+  <section>
+    <div class="naglowek-sekcji">
+      <span class="etykieta">Wybrane</span>
+      <h2>Kompas Rodzica</h2>
+      <p class="prowadzenie">Bobas w środku kompasu, bursztynowa strzałka wskazuje kierunek. Hasło: „Ile, od kiedy i co złożyć.”</p>
+    </div>
+    <div class="koncept">
+      <div class="plansza jasna">
+        <svg class="znak" style="width:96px;height:96px" role="img" aria-label="Znak Kompasu Rodzica: bobas w kompasie"><use href="#znak-kompas"/></svg>
+        <div class="lockup"><span class="marka" style="font-size:2.3rem">Kompas Rodzica</span><span class="opis-marki">Zasiłkowy przewodnik przyszłego rodzica</span></div>
+      </div>
+      <div class="plansza ciemna" style="flex-direction:column;align-items:flex-start;gap:20px;padding:36px 24px">
+        <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+          <svg class="znak" style="width:56px;height:56px" aria-hidden="true"><use href="#znak-kompas"/></svg>
+          <div class="lockup"><span class="marka" style="font-size:1.4rem">Kompas Rodzica</span><span class="opis-marki">Zasiłkowy przewodnik przyszłego rodzica</span></div>
+        </div>
+        <p style="font-size:clamp(1.8rem,5vw,2.8rem);font-weight:900;line-height:1.1;max-width:16ch">Ile, od kiedy i co złożyć.</p>
+        <span style="background:#fab856;color:#00416e;font-weight:900;padding:14px 22px;border-radius:12px">Sprawdź swój plan</span>
+        <span style="font-size:.85rem;opacity:.85">To symulacja. Wynik nie jest decyzją ZUS.</span>
+      </div>
+      <div class="rozmiary">
+        <figure><svg width="64" height="64" aria-hidden="true"><use href="#znak-kompas"/></svg>64 px</figure>
+        <figure><svg width="32" height="32" aria-hidden="true"><use href="#znak-kompas"/></svg>32 px</figure>
+        <figure><svg width="16" height="16" aria-hidden="true"><use href="#znak-kompas"/></svg>16 px (favicon)</figure>
+        <figure style="background:#fff;padding:6px;border-radius:8px"><svg width="52" height="52" aria-hidden="true"><use href="#znak-kompas-mono"/></svg><span style="color:#4a4a4a">jeden kolor</span></figure>
+      </div>
+      <div class="opis">
+        <h3>Pliki w repo (docs/nazwa-i-logo/)</h3>
+        <p>kompas-rodzica-znak.svg (kafel), favicon.svg, kompas-rodzica-znak-mono.svg (granat, do druku w jednym kolorze), kompas-rodzica-poziome.svg i kompas-rodzica-poziome-ciemne.svg (znak z nazwą, krój Lato).</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="naglowek-sekcji">
+      <span class="etykieta">Podpatrzone</span>
+      <h2>Jak wyglądają aplikacje państwowe</h2>
+    </div>
+    <div class="obserwacje">
+      <div class="obs"><b>mObywatel</b><p>Czerwony, zaokrąglony kwadrat z prostym białym znakiem, obok krótka nazwa. Ikona działa sama, bez napisu.</p></div>
+      <div class="obs"><b>ZUS, eZUS, mZUS</b><p>Zieleń, krótki skrót i pełna nazwa instytucji w dwóch liniach obok. Rodzina nazw z przedrostkami e- i m-. Dla rodziców ZUS ma już mZUS.</p></div>
+      <div class="obs"><b>gov.pl i ministerstwa</b><p>Godło, nazwa urzędu w dwóch liniach i cienka biało-czerwona kreska pod spodem. Dużo bieli, płaskie kolory, bez ozdobników.</p></div>
+    </div>
+    <div class="wniosek">
+      <b>Co z tego bierzemy</b>
+      <p>Krótka, zapamiętywalna nazwa plus długi, „urzędowy” podpis w dwóch liniach. Prosty biały piktogram w kaflu, który da się rozpoznać nawet w rozmiarze ikony w przeglądarce. Kreska pod podpisem w bursztynie zamiast biało-czerwonej, żeby nie udawać urzędu.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="naglowek-sekcji">
+      <span class="etykieta">Nazwy</span>
+      <h2>Sześć propozycji</h2>
+      <p class="prowadzenie">Pełna nazwa „Zasiłkowy Przewodnik Przyszłego Rodzica” może zostać jako podpis pod krótką nazwą, tak jak „Zakład Ubezpieczeń Społecznych” pod ZUS. Szybkie wyszukiwanie nie pokazało aplikacji o tych nazwach, ale to nie jest sprawdzenie znaków towarowych.</p>
+    </div>
+    <div class="nazwy">
+      <article class="nazwa top">
+        <span class="znacznik top">Polecam</span>
+        <div class="duza">Plan Bobasa</div>
+        <div class="pod">Zasiłkowy przewodnik przyszłego rodzica</div>
+        <div class="haslo">„Zasiłek bez zawiłek.”</div>
+        <dl><dt>Za</dt><dd>Mówi, co robi aplikacja (plan) i dla kogo. Pasuje do logo z bobasem, łatwo ją powtórzyć na scenie.</dd>
+        <dt>Przeciw</dt><dd>Brzmi lżej niż usługa urzędowa. Ciężar przejmuje podpis w dwóch liniach.</dd></dl>
+      </article>
+      <article class="nazwa top">
+        <span class="znacznik top">Najbardziej urzędowa</span>
+        <div class="duza">eRodzic</div>
+        <div class="pod">Zasiłki i urlopy w jednym planie</div>
+        <div class="haslo">„Od dwóch kresek na teście do pierwszego przelewu.”</div>
+        <dl><dt>Za</dt><dd>Od razu pasuje do rodziny eZUS i mZUS. Jury ZUS zobaczy w tym własną usługę.</dd>
+        <dt>Przeciw</dt><dd>Wygląda na oficjalną usługę, więc podpis „symulacja” musi stać tuż przy nazwie.</dd></dl>
+      </article>
+      <article class="nazwa">
+        <span class="znacznik">Konkretna</span>
+        <div class="duza">Urlopnik</div>
+        <div class="pod">Planer urlopów i zasiłków dla rodziców</div>
+        <div class="haslo">„Zaplanuj urlop, zanim maluch zaplanuje go za Ciebie.”</div>
+        <dl><dt>Za</dt><dd>Jedno słowo, mówi o tym, czym rodzic żyje: ile tygodni i kiedy.</dd>
+        <dt>Przeciw</dt><dd>Nie mówi o pieniądzach, a kwota to najważniejsza liczba w wyniku.</dd></dl>
+      </article>
+      <article class="nazwa">
+        <span class="znacznik">Z przymrużeniem oka</span>
+        <div class="duza">Zasiłkomat</div>
+        <div class="pod">Wpisz dane, wyjmij plan</div>
+        <div class="haslo">„Policz, zanim się urodzi.”</div>
+        <dl><dt>Za</dt><dd>Zabawna i zapamiętywalna, końcówka -mat kojarzy się z czymś, co działa samo.</dd>
+        <dt>Przeciw</dt><dd>Może sugerować, że aplikacja wypłaca pieniądze. Przy ZUS to ryzykowne skojarzenie.</dd></dl>
+      </article>
+      <article class="nazwa">
+        <span class="znacznik">Ciepła</span>
+        <div class="duza">Gniazdko</div>
+        <div class="pod">Planer urlopów i zasiłków dla przyszłych rodziców</div>
+        <div class="haslo">„Uwij plan na pierwszy rok.”</div>
+        <dl><dt>Za</dt><dd>Kojarzy się z domem i pierwszymi miesiącami z dzieckiem.</dd>
+        <dt>Przeciw</dt><dd>Pierwsze skojarzenie może być elektryczne. Bez podpisu nie wiadomo, o co chodzi.</dd></dl>
+      </article>
+      <article class="nazwa">
+        <span class="znacznik">Spokojna</span>
+        <div class="duza">Kompas Rodzica</div>
+        <div class="pod">Zasiłki i urlopy krok po kroku</div>
+        <div class="haslo">„Wiesz, ile, od kiedy i co złożyć.”</div>
+        <dl><dt>Za</dt><dd>Poważna, pasuje do słowa „przewodnik” z zadania.</dd>
+        <dt>Przeciw</dt><dd>„Kompas” to popularne słowo w nazwach, łatwo zginie w tłumie.</dd></dl>
+      </article>
+    </div>
+    <p class="odrzucone"><b>Odrzucone:</b> Becik (becikowe wypłaca gmina, nie ZUS, więc nazwa wprowadza w błąd), mBobas i mRodzic (za blisko mObywatela i mZUS, w demo wyglądałyby na podróbkę), ZUSik (ten jest już nazwą czatu w aplikacji).</p>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <h3>Hasła do dowolnej nazwy</h3>
+      <ul class="hasla">
+        <li>Zasiłek bez zawiłek.</li>
+        <li>Od dwóch kresek na teście do pierwszego przelewu.</li>
+        <li>Najpierw plan, potem pieluchy.</li>
+        <li>Ile, od kiedy i co złożyć.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="naglowek-sekcji">
+      <span class="etykieta">Logo</span>
+      <h2>Cztery szkice z bobasem</h2>
+      <p class="prowadzenie">Ten sam śpiący bobas w czterech oprawach. Zamknięte oczy i lekki uśmiech znaczą spokój, a brak kokardek i różu czy błękitu pasuje do każdej rodziny. Przełącz nazwę, żeby zobaczyć ją w logo.</p>
+    </div>
+    <div class="przelacznik" role="group" aria-label="Nazwa w logo">
+      <span>Nazwa w logo:</span>
+      <button type="button" id="n-plan" data-nazwa="Plan Bobasa" aria-pressed="true">Plan Bobasa</button>
+      <button type="button" id="n-erodzic" data-nazwa="eRodzic" aria-pressed="false">eRodzic</button>
+      <button type="button" id="n-urlopnik" data-nazwa="Urlopnik" aria-pressed="false">Urlopnik</button>
+      <button type="button" id="n-zasilkomat" data-nazwa="Zasiłkomat" aria-pressed="false">Zasiłkomat</button>
+      <button type="button" id="n-gniazdko" data-nazwa="Gniazdko" aria-pressed="false">Gniazdko</button>
+      <button type="button" id="n-kompas" data-nazwa="Kompas Rodzica" aria-pressed="false">Kompas Rodzica</button>
+    </div>
+    <div class="logotypy">
+      <article class="koncept">
+        <div class="plansza jasna">
+          <svg class="znak" role="img" aria-label="Znak: bobas w zielonym kaflu"><use href="#znak-kafel"/></svg>
+          <div class="lockup"><span class="marka" data-marka>Plan Bobasa</span><span class="opis-marki">Zasiłkowy przewodnik przyszłego rodzica</span></div>
+        </div>
+        <div class="plansza ciemna">
+          <svg class="znak" aria-hidden="true"><use href="#znak-kafel"/></svg>
+          <div class="lockup"><span class="marka" data-marka>Plan Bobasa</span><span class="opis-marki">Zasiłkowy przewodnik przyszłego rodzica</span></div>
+        </div>
+        <div class="rozmiary">
+          <figure><svg width="48" height="48" aria-hidden="true"><use href="#znak-kafel"/></svg>48 px</figure>
+          <figure><svg width="32" height="32" aria-hidden="true"><use href="#znak-kafel"/></svg>32 px</figure>
+          <figure><svg width="16" height="16" aria-hidden="true"><use href="#znak-kafel"/></svg>16 px</figure>
+        </div>
+        <div class="opis">
+          <span class="znacznik top">A · Polecam</span>
+          <h3>Bobas w kaflu</h3>
+          <p>Ten sam układ co ikony aplikacji państwowych: zaokrąglony kwadrat w jednym kolorze i biały znak. Najlepiej działa jako ikona w przeglądarce i na ekranie telefonu.</p>
+        </div>
+      </article>
+
+      <article class="koncept">
+        <div class="plansza jasna">
+          <svg class="znak" role="img" aria-label="Znak: okrągła pieczątka z bobasem"><use href="#znak-pieczec"/></svg>
+          <div class="lockup"><span class="marka" data-marka>Plan Bobasa</span><span class="opis-marki">Zasiłkowy przewodnik przyszłego rodzica</span></div>
+        </div>
+        <div class="plansza ciemna">
+          <svg class="znak" aria-hidden="true"><use href="#znak-pieczec"/></svg>
+          <div class="lockup"><span class="marka" data-marka>Plan Bobasa</span><span class="opis-marki">Zasiłkowy przewodnik przyszłego rodzica</span></div>
+        </div>
+        <div class="rozmiary">
+          <figure><svg width="48" height="48" aria-hidden="true"><use href="#znak-pieczec"/></svg>48 px</figure>
+          <figure><svg width="32" height="32" aria-hidden="true"><use href="#znak-pieczec"/></svg>32 px</figure>
+          <figure><svg width="16" height="16" aria-hidden="true"><use href="#znak-pieczec"/></svg>16 px</figure>
+        </div>
+        <div class="opis">
+          <span class="znacznik">B · Najbardziej urzędowy</span>
+          <h3>Pieczątka</h3>
+          <p>Okrągła pieczęć z napisem na obwodzie, jak na urzędowym dokumencie, tylko w środku śpi bobas. Słowo „symulacja” jest wpisane w sam znak. Dobra na slajd i naklejkę, w małym rozmiarze napis znika.</p>
+        </div>
+      </article>
+
+      <article class="koncept">
+        <div class="plansza jasna">
+          <svg class="znak" role="img" aria-label="Znak: kalendarz z bobasem"><use href="#znak-kalendarz"/></svg>
+          <div class="lockup"><span class="marka" data-marka>Plan Bobasa</span><span class="opis-marki">Zasiłkowy przewodnik przyszłego rodzica</span></div>
+        </div>
+        <div class="plansza ciemna">
+          <svg class="znak" aria-hidden="true"><use href="#znak-kalendarz"/></svg>
+          <div class="lockup"><span class="marka" data-marka>Plan Bobasa</span><span class="opis-marki">Zasiłkowy przewodnik przyszłego rodzica</span></div>
+        </div>
+        <div class="rozmiary">
+          <figure><svg width="48" height="48" aria-hidden="true"><use href="#znak-kalendarz"/></svg>48 px</figure>
+          <figure><svg width="32" height="32" aria-hidden="true"><use href="#znak-kalendarz"/></svg>32 px</figure>
+          <figure><svg width="16" height="16" aria-hidden="true"><use href="#znak-kalendarz"/></svg>16 px</figure>
+        </div>
+        <div class="opis">
+          <span class="znacznik">C · Mówi o planowaniu</span>
+          <h3>Bobas w kalendarzu</h3>
+          <p>Kartka kalendarza z bobasem w miejscu daty. Łączy dwie rzeczy, którymi aplikacja się zajmuje: dziecko i oś czasu urlopów. Dobrze się łączy z nazwami Plan Bobasa i Urlopnik.</p>
+        </div>
+      </article>
+
+      <article class="koncept">
+        <div class="plansza jasna">
+          <svg class="znak" role="img" aria-label="Znak: pinezka z bobasem"><use href="#znak-pinezka"/></svg>
+          <div class="lockup"><span class="marka" data-marka>Plan Bobasa</span><span class="opis-marki">Zasiłkowy przewodnik przyszłego rodzica</span></div>
+        </div>
+        <div class="plansza ciemna">
+          <svg class="znak" aria-hidden="true"><use href="#znak-pinezka"/></svg>
+          <div class="lockup"><span class="marka" data-marka>Plan Bobasa</span><span class="opis-marki">Zasiłkowy przewodnik przyszłego rodzica</span></div>
+        </div>
+        <div class="rozmiary">
+          <figure><svg width="48" height="48" aria-hidden="true"><use href="#znak-pinezka"/></svg>48 px</figure>
+          <figure><svg width="32" height="32" aria-hidden="true"><use href="#znak-pinezka"/></svg>32 px</figure>
+          <figure><svg width="16" height="16" aria-hidden="true"><use href="#znak-pinezka"/></svg>16 px</figure>
+        </div>
+        <div class="opis">
+          <span class="znacznik">D · Mówi o przewodniku</span>
+          <h3>Pinezka</h3>
+          <p>Znacznik z mapy, w którym siedzi bobas: „tu jesteś, stąd prowadzimy”. Pasuje do słowa „przewodnik” i do nazwy Kompas Rodzica. Na ciemnym tle granat pinezki słabo odcina się od zieleni.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <div class="naglowek-sekcji">
+      <span class="etykieta">Zasady</span>
+      <h2>Czego pilnujemy przy logo</h2>
+    </div>
+    <div class="zasady">
+      <div><h3>Nie wolno</h3><ul>
+        <li>Godła ani orła w żadnej formie. Godło chroni ustawa o godle, barwach i hymnie, a regulamin wymaga rozwiązania wolnego od wad prawnych.</li>
+        <li>Logotypów ZUS, mObywatela i gov.pl, liter „ZUS” w kroju logo ani seledynu z eZUS (zasada z naszego design.md).</li>
+        <li>Biało-czerwonej kreski jak na gov.pl. Wyglądałaby, jakby aplikację wydał urząd.</li>
+      </ul></div>
+      <div><h3>Pilnujemy</h3><ul>
+        <li>Znak musi być czytelny w 16 px (ikona w karcie przeglądarki). Dlatego bobas ma tylko głowę, oczy, policzki i loczek.</li>
+        <li>Kolory z tokenów aplikacji: zieleń #007834, granat #00416e, bursztyn #fab856. Biały znak na zieleni ma kontrast 5,6:1.</li>
+        <li>Krój Lato 900, ten sam co w aplikacji. Żadnych nowych zależności ani fontów do dopisania w docs/zewnetrzne.md.</li>
+        <li>Rysunki są nasze, narysowane od zera w SVG, więc prawa można bez kłopotu przenieść na ZUS.</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="rekomendacja">
+      <span class="etykieta">Moja rekomendacja</span>
+      <h3>Plan Bobasa + bobas w kaflu (A)</h3>
+      <p>Nazwa mówi, co aplikacja robi, kafel wygląda jak ikona aplikacji państwowej, a pełna nazwa z zadania zostaje jako podpis. Jeśli zespół chce brzmieć bardziej urzędowo: eRodzic z pieczątką (B) na slajdach i kaflem (A) jako ikoną.</p>
+    </div>
+    <p class="stopka">Szkice robocze do wyboru przez zespół. Dane i nazwy są propozycjami, nie sprawdzaliśmy rejestru znaków towarowych.</p>
+  </section>
+</main>
+
+<script>
+(function () {
+  var przyciski = document.querySelectorAll('.przelacznik button');
+  var marki = document.querySelectorAll('[data-marka]');
+  przyciski.forEach(function (b) {
+    b.addEventListener('click', function () {
+      przyciski.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      marki.forEach(function (m) { m.textContent = b.dataset.nazwa; });
+    });
+  });
+})();
+</script>

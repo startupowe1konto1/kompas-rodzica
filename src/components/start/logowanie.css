@@ -1,0 +1,160 @@
+/* Zwykły (globalny) CSS, jak start.css: turbopack zamienia każdy *.css w globalny arkusz, stąd przedrostek
+   `logowanie-`. Ruch kroków logowania (EkranLogowania.tsx) i symulacji węzła (SymulacjaLogowania.tsx).
+   Tylko transform i opacity. Przy prefers-reduced-motion nic się nie rusza, zmienia się sama treść. */
+
+:root {
+  /* Mocne ease-out do wejść i ease-in-out do ruchu na ekranie (karta przykładana do czytnika). */
+  --logowanie-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --logowanie-ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+@keyframes logowanie-wejscie {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Wejście kroku (metoda → symulacja → osoba → zgoda): przesunięcie z przenikaniem. */
+.logowanie-wejscie {
+  animation: logowanie-wejscie 260ms var(--logowanie-ease-out) both;
+}
+
+/* Zmiana fazy w środku symulacji: krócej, bo to ta sama karta. */
+.logowanie-faza {
+  animation: logowanie-wejscie 220ms var(--logowanie-ease-out) both;
+}
+
+/* Telefon (mObywatel, aplikacja banku): dwa pierścienie rozchodzą się co 0,9 s. */
+.logowanie-puls::before,
+.logowanie-puls::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 3px solid var(--color-granat);
+  border-radius: 9999px;
+  opacity: 0;
+  animation: logowanie-puls 1.8s var(--logowanie-ease-out) infinite;
+  pointer-events: none;
+}
+
+.logowanie-puls::after {
+  animation-delay: 0.9s;
+}
+
+@keyframes logowanie-puls {
+  from {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+
+/* e-dowód: karta wjeżdża skosem i kładzie się na telefonie (ruch na ekranie → ease-in-out). */
+.logowanie-karta {
+  animation: logowanie-przyloz 900ms var(--logowanie-ease-in-out) both;
+}
+
+@keyframes logowanie-przyloz {
+  from {
+    opacity: 0;
+    transform: translate(28px, -36px) rotate(-8deg);
+  }
+  30% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0);
+  }
+}
+
+/* Fale NFC: zaczynają po przyłożeniu karty, kolejno co 150 ms (opóźnienie w stylu elementu). */
+.logowanie-fala {
+  animation: logowanie-fala 1.2s ease-in-out infinite both;
+}
+
+@keyframes logowanie-fala {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Pasek postępu: czas trwania fazy ustawiany w stylu elementu (animation-duration). */
+.logowanie-postep {
+  transform-origin: left center;
+  animation: logowanie-postep 1s linear both;
+}
+
+@keyframes logowanie-postep {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* „Zalogowano”: koło wchodzi z 0,9, ptaszek się rysuje. */
+.logowanie-ptaszek {
+  animation: logowanie-ptaszek 240ms var(--logowanie-ease-out) both;
+}
+
+.logowanie-ptaszek path {
+  stroke-dasharray: 24;
+  animation: logowanie-kreska 280ms var(--logowanie-ease-out) 120ms both;
+}
+
+@keyframes logowanie-ptaszek {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes logowanie-kreska {
+  from {
+    stroke-dashoffset: 24;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logowanie-wejscie,
+  .logowanie-faza,
+  .logowanie-karta,
+  .logowanie-fala,
+  .logowanie-ptaszek,
+  .logowanie-ptaszek path {
+    animation: none;
+  }
+
+  .logowanie-puls::before,
+  .logowanie-puls::after {
+    display: none;
+  }
+
+  /* Pełny pasek przy trwającym czekaniu by mylił: zostaje sam tekst stanu. */
+  .logowanie-pasek {
+    display: none;
+  }
+}

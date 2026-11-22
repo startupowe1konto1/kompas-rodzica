@@ -1,0 +1,1191 @@
+[
+  {
+    "nazwa": "topmostSubform[0].Page1[0].PESEL[0]",
+    "skrot": "Page1.PESEL",
+    "typ": "tekst",
+    "strona": 1,
+    "sekcja": "Twoje dane",
+    "opis": "Wpisz swój numer PESEL",
+    "pozycja": {
+      "x": 240,
+      "y": 536
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page1[0].Dataurodzenia[0]",
+    "skrot": "Page1.Dataurodzenia",
+    "typ": "tekst",
+    "strona": 1,
+    "sekcja": "Twoje dane",
+    "opis": "Jeśli nie masz nadanego numeru PESEL, wpisz swoją datę urodzenia w formacie dd mm rrrr",
+    "pozycja": {
+      "x": 239,
+      "y": 509
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page1[0].Rodzajseriainumerdokumentu[0]",
+    "skrot": "Page1.Rodzajseriainumerdokumentu",
+    "typ": "tekst",
+    "strona": 1,
+    "sekcja": "Twoje dane",
+    "opis": "Jeśli nie masz nadanego numeru PESEL, wpisz rodzaj, serię i numer dokumentu potwierdzającego Twoją tożsamość",
+    "pozycja": {
+      "x": 241,
+      "y": 464
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page1[0].Imie[0]",
+    "skrot": "Page1.Imie",
+    "typ": "tekst",
+    "strona": 1,
+    "sekcja": "Twoje dane",
+    "opis": "Wpisz swoje imię",
+    "pozycja": {
+      "x": 241,
+      "y": 429
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page1[0].Nazwisko[0]",
+    "skrot": "Page1.Nazwisko",
+    "typ": "tekst",
+    "strona": 1,
+    "sekcja": "Twoje dane",
+    "opis": "Wpisz swoje nazwisko",
+    "pozycja": {
+      "x": 241,
+      "y": 401
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page1[0].Ulica[0]",
+    "skrot": "Page1.Ulica",
+    "typ": "tekst",
+    "strona": 1,
+    "sekcja": "Twoje dane",
+    "opis": "Twój adres - wpisz ulicę",
+    "pozycja": {
+      "x": 241,
+      "y": 375
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page1[0].Numerdomu[0]",
+    "skrot": "Page1.Numerdomu",
+    "typ": "tekst",
+    "strona": 1,
+    "sekcja": "Twoje dane",
+    "opis": "Twój adres - wpisz numer domu",
+    "pozycja": {
+      "x": 241,
+      "y": 348
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page1[0].Numerlokalu[0]",
+    "skrot": "Page1.Numerlokalu",
+    "typ": "tekst",
+    "strona": 1,
+    "sekcja": "Twoje dane",
+    "opis": "Twój adres - wpisz numer lokalu",
+    "pozycja": {
+      "x": 402,
+      "y": 348
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page1[0].Kodpocztowy[0]",
+    "skrot": "Page1.Kodpocztowy",
+    "typ": "tekst",
+    "strona": 1,
+    "sekcja": "Twoje dane",
+    "opis": "Twój adres - wpisz kod pocztowy",
+    "pozycja": {
+      "x": 241,
+      "y": 321
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page1[0].Poczta[0]",
+    "skrot": "Page1.Poczta",
+    "typ": "tekst",
+    "strona": 1,
+    "sekcja": "Twoje dane",
+    "opis": "Twój adres - wpisz miejscowość",
+    "pozycja": {
+      "x": 401,
+      "y": 321
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page1[0].Nazwapaństwa[0]",
+    "skrot": "Page1.Nazwapaństwa",
+    "typ": "tekst",
+    "strona": 1,
+    "sekcja": "Twoje dane",
+    "opis": "Jeśli Twój adres jest inny niż polski, wpisz nazwę państwa",
+    "pozycja": {
+      "x": 242,
+      "y": 295
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page1[0].Numertelefonu[0]",
+    "skrot": "Page1.Numertelefonu",
+    "typ": "tekst",
+    "strona": 1,
+    "sekcja": "Twoje dane",
+    "opis": "Wpisz swój numer telefonu. Ułatwi nam to kontakt w Twojej sprawie. To pole jest dobrowolne",
+    "pozycja": {
+      "x": 242,
+      "y": 258
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page1[0].NIP[0]",
+    "skrot": "Page1.NIP",
+    "typ": "tekst",
+    "strona": 1,
+    "sekcja": "Dane płatnika składek",
+    "opis": "Wpisz NIP płatnika składek",
+    "pozycja": {
+      "x": 240,
+      "y": 193
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page1[0].REGON[0]",
+    "skrot": "Page1.REGON",
+    "typ": "tekst",
+    "strona": 1,
+    "sekcja": "Dane płatnika składek",
+    "opis": "Jeśli płatnik składek nie ma nadanego NIP, wpisz REGON",
+    "pozycja": {
+      "x": 240,
+      "y": 167
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page1[0].PESEL_1[0]",
+    "skrot": "Page1.PESEL_1",
+    "typ": "tekst",
+    "strona": 1,
+    "sekcja": "Dane płatnika składek",
+    "opis": "Jeśli płatnik składek nie ma nadanego NIP i REGON, wpisz PESEL",
+    "pozycja": {
+      "x": 240,
+      "y": 131
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page1[0].Rodzajseriainumerdokumentu_1[0]",
+    "skrot": "Page1.Rodzajseriainumerdokumentu_1",
+    "typ": "tekst",
+    "strona": 1,
+    "sekcja": "Dane płatnika składek",
+    "opis": "Jeśli płatnik składek nie ma nadanego NIP, REGON i PESEL, wpisz rodzaj, serię i numer dokumentu potwierdzającego jego tożsamość",
+    "pozycja": {
+      "x": 242,
+      "y": 96
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page1[0].Nazwaplatnika[0]",
+    "skrot": "Page1.Nazwaplatnika",
+    "typ": "tekst",
+    "strona": 1,
+    "sekcja": "Dane płatnika składek",
+    "opis": "Wpisz nazwę albo imię i nazwisko płatnika składek",
+    "pozycja": {
+      "x": 242,
+      "y": 60
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page2[0].Numerrachunku[0]",
+    "skrot": "Page2.Numerrachunku",
+    "typ": "tekst",
+    "strona": 2,
+    "sekcja": "Rachunek bankowy",
+    "opis": "Jeśli chcesz otrzymywać wypłatę zasiłku na rachunek bankowy, wpisz numer rachunku. To pole jest dobrowolne. Jeśli nie wypełnisz tego pola, zasiłek wypłacimy Ci przekazem pocztowym na podany wyżej adres",
+    "pozycja": {
+      "x": 43,
+      "y": 710
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page2[0].macierzynskiego[0]",
+    "skrot": "Page2.macierzynskiego",
+    "typ": "checkbox",
+    "strona": 2,
+    "sekcja": "Zakres wniosku",
+    "opis": "Zaznacz, jeśli wnioskujesz o zasiłek macierzyński za okres urlopu macierzyńskiego",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 41,
+      "y": 616
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page2[0].nawarunkach[0]",
+    "skrot": "Page2.nawarunkach",
+    "typ": "checkbox",
+    "strona": 2,
+    "sekcja": "Zakres wniosku",
+    "opis": "Zaznacz, jeśli wnioskujesz o zasiłek macierzyński za okres urlopu na warunkach urlopu macierzyńskiego",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 41,
+      "y": 589
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page2[0].Okres[0]",
+    "skrot": "Page2.Okres",
+    "typ": "tekst",
+    "strona": 2,
+    "sekcja": "Zakres wniosku",
+    "opis": "Jeśli wnioskujesz o zasiłek macierzyński za okres urlopu macierzyńskiego lub urlopu na warunkach urlopu macierzyńskiego, wpisz okres od-do",
+    "pozycja": {
+      "x": 276,
+      "y": 589
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page2[0].rodzicielskiego[0]",
+    "skrot": "Page2.rodzicielskiego",
+    "typ": "checkbox",
+    "strona": 2,
+    "sekcja": "Zakres wniosku",
+    "opis": "Zaznacz, jeśli wnioskujesz o zasiłek macierzyński za okres urlopu rodzicielskiego",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 41,
+      "y": 553
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page2[0].Okres2[0]",
+    "skrot": "Page2.Okres2",
+    "typ": "tekst",
+    "strona": 2,
+    "sekcja": "Zakres wniosku",
+    "opis": "Jeśli wnioskujesz o zasiłek macierzyński za okres urlopu rodzicielskiego, wpisz okres od-do",
+    "pozycja": {
+      "x": 187,
+      "y": 537
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page2[0].czesc[0]",
+    "skrot": "Page2.czesc",
+    "typ": "tekst",
+    "strona": 2,
+    "sekcja": "Zakres wniosku",
+    "opis": "Wpisz, która to część urlopu rodzicielskiego",
+    "pozycja": {
+      "x": 224,
+      "y": 500
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page2[0].uzMacierzynskiego[0]",
+    "skrot": "Page2.uzMacierzynskiego",
+    "typ": "checkbox",
+    "strona": 2,
+    "sekcja": "Zakres wniosku",
+    "opis": "Zaznacz, jeśli wnioskujesz o zasiłek macierzyński za okres uzupełniającego urlopu macierzyńskiego",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 41,
+      "y": 473
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page2[0].Okres3[0]",
+    "skrot": "Page2.Okres3",
+    "typ": "tekst",
+    "strona": 2,
+    "sekcja": "Zakres wniosku",
+    "opis": "Jeśli wnioskujesz o zasiłek macierzyński za okres uzupełniającego urlopu macierzyńskiego, wpisz okres od-do",
+    "pozycja": {
+      "x": 259,
+      "y": 456
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page2[0].ojcowskiego[0]",
+    "skrot": "Page2.ojcowskiego",
+    "typ": "checkbox",
+    "strona": 2,
+    "sekcja": "Zakres wniosku",
+    "opis": "Zaznacz, jeśli wnioskujesz o zasiłek macierzyński za okres urlopu ojcowskiego",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 41,
+      "y": 419
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page2[0].Okres4[0]",
+    "skrot": "Page2.Okres4",
+    "typ": "tekst",
+    "strona": 2,
+    "sekcja": "Zakres wniosku",
+    "opis": "Jeśli wnioskujesz o zasiłek macierzyński za okres urlopu ojcowskiego, wpisz okres od-do",
+    "pozycja": {
+      "x": 188,
+      "y": 403
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page2[0].Numerlokalu2[0]",
+    "skrot": "Page2.Numerlokalu2",
+    "typ": "tekst",
+    "strona": 2,
+    "sekcja": "Zakres wniosku",
+    "opis": "Wpisz, która to część urlopu ojcowskiego",
+    "pozycja": {
+      "x": 223,
+      "y": 366
+    },
+    "uwaga": "Myląca nazwa pola: to „która część urlopu ojcowskiego”, a nie numer lokalu."
+  },
+  {
+    "nazwa": "topmostSubform[0].Page2[0].Data2[0]",
+    "skrot": "Page2.Data2",
+    "typ": "tekst",
+    "strona": 2,
+    "sekcja": "Zakres wniosku",
+    "opis": "Jeśli wnioskujesz o zasiłek macierzyński na zasadach uzupełniającego urlopu macierzyńskiego, wpisz datę zakończenia okresu pobierania zasiłku macierzyńskiego za okres urlopu macierzyńskiego / urlopu na warunkach urlopu macierzyńskiego (w formacie dd mm rrrr)",
+    "pozycja": {
+      "x": 400,
+      "y": 340
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page2[0].informuje[0]",
+    "skrot": "Page2.informuje",
+    "typ": "checkbox",
+    "strona": 2,
+    "sekcja": "Zakres wniosku",
+    "opis": "Zaznacz, jeśli zamierzasz skorzystać z pełnego wymiaru urlopu macierzyńskiego/ urlopu na warunkach urlopu macierzyńskiego i urlopu rodzicielskiego z tytułu sprawowania opieki nad dzieckiem i co najmniej jeden dzień urlopu rodzicielskiego przypadać będzie w pierwszym roku życia dziecka",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 41,
+      "y": 302
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page2[0].TAK[0]",
+    "skrot": "Page2.TAK",
+    "typ": "checkbox",
+    "strona": 2,
+    "sekcja": "Informacje o ubezpieczeniu",
+    "opis": "Zaznacz, jeśli prowadzisz pozarolniczą działalność gospodarczą albo jesteś osobą współpracującą z osobą prowadzącą pozarolniczą działalność, jesteś duchownym albo marynarzem i jesteś objęty ubezpieczeniem w razie choroby i macierzyństwa",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 41,
+      "y": 207
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page2[0].NIE[0]",
+    "skrot": "Page2.NIE",
+    "typ": "checkbox",
+    "strona": 2,
+    "sekcja": "Informacje o ubezpieczeniu",
+    "opis": "Zaznacz, jeśli prowadzisz pozarolniczą działalność gospodarczą albo jesteś osobą współpracującą z osobą prowadzącą pozarolniczą działalność, jesteś duchownym albo marynarzem, ale nie jesteś objęty ubezpieczeniem w razie choroby i macierzyństwa",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 95,
+      "y": 207
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page2[0].ZaznaczX1a[0]",
+    "skrot": "Page2.ZaznaczX1a",
+    "typ": "checkbox",
+    "strona": 2,
+    "sekcja": "Okoliczność 1: urodzenie albo przyjęcie dziecka",
+    "opis": "Zaznacz, jeśli wnioskujesz o zasiłek macierzyński w związku z urodzeniem dziecka lub dzieci",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 59,
+      "y": 149
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page2[0].ZaznaczX1b[0]",
+    "skrot": "Page2.ZaznaczX1b",
+    "typ": "checkbox",
+    "strona": 2,
+    "sekcja": "Okoliczność 1: urodzenie albo przyjęcie dziecka",
+    "opis": "Zaznacz, jeśli wnioskujesz o zasiłek macierzyński w związku z przyjęciem na wychowanie dziecka lub dzieci i wystąpieniem do sądu opiekuńczego w sprawie jego przysposobienia",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 58,
+      "y": 122
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page2[0].Data[0]",
+    "skrot": "Page2.Data",
+    "typ": "tekst",
+    "strona": 2,
+    "sekcja": "Okoliczność 1: urodzenie albo przyjęcie dziecka",
+    "opis": "Jeśli wnioskujesz o zasiłek macierzyński w związku z przyjęciem na wychowanie dziecka lub dzieci, wpisz datę przyjęcia dziecka/ dzieci na wychowanie (w formacie dd mm rrrr)",
+    "pozycja": {
+      "x": 364,
+      "y": 105
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page2[0].ZaznaczX1c[0]",
+    "skrot": "Page2.ZaznaczX1c",
+    "typ": "checkbox",
+    "strona": 2,
+    "sekcja": "Okoliczność 1: urodzenie albo przyjęcie dziecka",
+    "opis": "Zaznacz, jeśli wnioskujesz o zasiłek macierzyński w związku z przyjęciem na wychowanie dziecka lub dzieci w ramach rodziny zastępczej, z wyjątkiem rodziny zastępczej zawodowej",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 59,
+      "y": 78
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page3[0].Tekst1[0]",
+    "skrot": "Page3.Tekst1",
+    "typ": "tekst",
+    "strona": 3,
+    "sekcja": "Okoliczność 1: urodzenie albo przyjęcie dziecka",
+    "opis": "Wpisz dane dziecka lub dzieci: imię i  nazwisko oraz datę i miejsce urodzenia",
+    "pozycja": {
+      "x": 63,
+      "y": 670
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page3[0].podajimie1[0]",
+    "skrot": "Page3.podajimie1",
+    "typ": "tekst",
+    "strona": 3,
+    "sekcja": "Okoliczność 1: urodzenie albo przyjęcie dziecka",
+    "opis": "Jeśli oświadczasz, że dziecko lub dzieci posiadają zaświadczenie, o którym mowa w art. 4 ust. 3 ustawy z dnia 4 listopada 2016 r. o wspieraniu kobiet w ciąży i rodzin \"Za życiem\", wpisz imię lub imiona dzieci",
+    "pozycja": {
+      "x": 223,
+      "y": 637
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page3[0].ZaznaczX1[0]",
+    "skrot": "Page3.ZaznaczX1",
+    "typ": "checkbox",
+    "strona": 3,
+    "sekcja": "Okoliczność 1: urodzenie albo przyjęcie dziecka",
+    "opis": "Zaznacz, jeśli oświadczasz, że dziecko lub dzieci posiadają zaświadczenie, o którym mowa w art. 4 ust. 3 ustawy z dnia 4 listopada 2016 r. o wspieraniu kobiet w ciąży i rodzin \"Za życiem\"",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 59,
+      "y": 635
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page3[0].Data2a[0]",
+    "skrot": "Page3.Data2a",
+    "typ": "tekst",
+    "strona": 3,
+    "sekcja": "Okoliczność 2: przewidywana data porodu",
+    "opis": "Jeśli wnioskujesz o zasiłek macierzyński w związku z przewidywaną datą porodu, wpisz tę datę (w formacie dd mm rrrr)",
+    "pozycja": {
+      "x": 221,
+      "y": 574
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page3[0]._2[0]",
+    "skrot": "Page3._2",
+    "typ": "checkbox",
+    "strona": 3,
+    "sekcja": "Okoliczność 2: przewidywana data porodu",
+    "opis": "Zaznacz, jeśli wnioskujesz o zasiłek macierzyński w związku z przewidywaną datą porodu",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 59,
+      "y": 573
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page3[0]._3[0]",
+    "skrot": "Page3._3",
+    "typ": "checkbox",
+    "strona": 3,
+    "sekcja": "Okoliczność 3: urodzenie po ustaniu zatrudnienia",
+    "opis": "Zaznacz, jeśli wnioskujesz o zasiłek macierzyński w związku z urodzeniem dziecka lub dzieci po ustaniu zatrudnienia; mój pracodawca",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 59,
+      "y": 537
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page3[0].upadlosc[0]",
+    "skrot": "Page3.upadlosc",
+    "typ": "checkbox",
+    "strona": 3,
+    "sekcja": "Okoliczność 3: urodzenie po ustaniu zatrudnienia",
+    "opis": "Zaznacz, jeśli Twój pracodawca ogłosił upadłość",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 95,
+      "y": 510
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page3[0].likwidacje[0]",
+    "skrot": "Page3.likwidacje",
+    "typ": "checkbox",
+    "strona": 3,
+    "sekcja": "Okoliczność 3: urodzenie po ustaniu zatrudnienia",
+    "opis": "Zaznacz, jeśli Twój pracodawca ogłosił likwidację",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 95,
+      "y": 484
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page3[0].rozwiazal[0]",
+    "skrot": "Page3.rozwiazal",
+    "typ": "checkbox",
+    "strona": 3,
+    "sekcja": "Okoliczność 3: urodzenie po ustaniu zatrudnienia",
+    "opis": "Zaznacz, jeśli Twój pracodawca rozwiązał z Tobą umowę o pracę z naruszeniem przepisów prawa, stwierdzonym prawomocnym orzeczeniem sądu",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 95,
+      "y": 458
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page3[0].zmarl[0]",
+    "skrot": "Page3.zmarl",
+    "typ": "checkbox",
+    "strona": 3,
+    "sekcja": "Okoliczność 3: urodzenie po ustaniu zatrudnienia",
+    "opis": "Zaznacz, jeśli Twój pracodawca zmarł",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 95,
+      "y": 430
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page3[0].Tekst13B[0]",
+    "skrot": "Page3.Tekst13B",
+    "typ": "tekst",
+    "strona": 3,
+    "sekcja": "Okoliczność 3: urodzenie po ustaniu zatrudnienia",
+    "opis": "Wpisz dane dziecka lub dzieci: imię i  nazwisko oraz datę i miejsce urodzenia",
+    "pozycja": {
+      "x": 62,
+      "y": 347
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page3[0].ZaznaczX1d[0]",
+    "skrot": "Page3.ZaznaczX1d",
+    "typ": "checkbox",
+    "strona": 3,
+    "sekcja": "Okoliczność 3: urodzenie po ustaniu zatrudnienia",
+    "opis": "Zaznacz, jeśli oświadczasz, że dziecko lub dzieci posiadają zaświadczenie, o którym mowa w art. 4 ust. 3 ustawy z dnia 4 listopada 2016 r. o wspieraniu kobiet w ciąży i rodzin \"Za życiem\"",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 59,
+      "y": 311
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page3[0].podajimie[0]",
+    "skrot": "Page3.podajimie",
+    "typ": "tekst",
+    "strona": 3,
+    "sekcja": "Okoliczność 3: urodzenie po ustaniu zatrudnienia",
+    "opis": "Jeśli oświadczasz, że dziecko lub dzieci posiadają zaświadczenie, o którym mowa w art. 4 ust. 3 ustawy z dnia 4 listopada 2016 r. o wspieraniu kobiet w ciąży i rodzin \"Za życiem\", wpisz imię lub imiona dzieci",
+    "pozycja": {
+      "x": 222,
+      "y": 311
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page3[0]._4[0]",
+    "skrot": "Page3._4",
+    "typ": "checkbox",
+    "strona": 3,
+    "sekcja": "Okoliczność 4: pobyt dziecka w szpitalu (uzupełniający urlop macierzyński)",
+    "opis": "Zaznacz, jeśli wnioskujesz o zasiłek macierzyński w związku z urodzeniem dziecka i jego pobytem w szpitalu (uzupełniający urlop macierzyński)",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 59,
+      "y": 251
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page3[0].skroceniem[0]",
+    "skrot": "Page3.skroceniem",
+    "typ": "checkbox",
+    "strona": 3,
+    "sekcja": "Okoliczność 4: pobyt dziecka w szpitalu (uzupełniający urlop macierzyński)",
+    "opis": "Zaznacz, jeśli wnioskujesz o zasiłek macierzyński w związku z urodzeniem dziecka przed ukończeniem 28 tygodnia ciąży",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 94,
+      "y": 224
+    },
+    "uwaga": "Nazwa skopiowana z okoliczności 5; na stronie 3 to „urodzenie przed ukończeniem 28. tygodnia ciąży”."
+  },
+  {
+    "nazwa": "topmostSubform[0].Page3[0].przerwaniem4A[0]",
+    "skrot": "Page3.przerwaniem4A",
+    "typ": "checkbox",
+    "strona": 3,
+    "sekcja": "Okoliczność 4: pobyt dziecka w szpitalu (uzupełniający urlop macierzyński)",
+    "opis": "Zaznacz, jeśli wnioskujesz o zasiłek macierzyński w związku z masą urodzeniową dziecka nie większą niż 1000 g",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 94,
+      "y": 197
+    },
+    "uwaga": "Nazwa skopiowana z okoliczności 5; na stronie 3 to „masa urodzeniowa nie większa niż 1000 g”."
+  },
+  {
+    "nazwa": "topmostSubform[0].Page3[0].przerwaniem4B[0]",
+    "skrot": "Page3.przerwaniem4B",
+    "typ": "checkbox",
+    "strona": 3,
+    "sekcja": "Okoliczność 4: pobyt dziecka w szpitalu (uzupełniający urlop macierzyński)",
+    "opis": "Zaznacz, jeśli wnioskujesz o zasiłek macierzyński w związku z urodzeniem dziecka po ukończeniu 28. tygodnia ciąży i przed ukończeniem 37 tygodnia ciąży i z masą urodzeniową większą niż 1000 g",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 94,
+      "y": 170
+    },
+    "uwaga": "Nazwa skopiowana z okoliczności 5; na stronie 3 to „28.–37. tydzień i masa > 1000 g”."
+  },
+  {
+    "nazwa": "topmostSubform[0].Page3[0].podjeciem[0]",
+    "skrot": "Page3.podjeciem",
+    "typ": "checkbox",
+    "strona": 3,
+    "sekcja": "Okoliczność 4: pobyt dziecka w szpitalu (uzupełniający urlop macierzyński)",
+    "opis": "Zaznacz, jeśli wnioskujesz o zasiłek macierzyński w związku z urodzeniem dziecka po ukończeniu 37 tygodnia ciąży i pobyt dziecka w szpitalu trwał co najmniej 2 kolejne dni przy czym pierwszy z tych dni przypadał w okresie od 5 do 28 dnia po porodzie",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 94,
+      "y": 144
+    },
+    "uwaga": "Nazwa skopiowana z okoliczności 5; na stronie 3 to „po 37. tygodniu i szpital ≥ 2 dni (5.–28. dzień)”."
+  },
+  {
+    "nazwa": "topmostSubform[0].Page3[0].Tekst4a[0]",
+    "skrot": "Page3.Tekst4a",
+    "typ": "tekst",
+    "strona": 3,
+    "sekcja": "Okoliczność 4: pobyt dziecka w szpitalu (uzupełniający urlop macierzyński)",
+    "opis": "Wpisz okres pobytu dziecka w szpitalu od-do",
+    "pozycja": {
+      "x": 62,
+      "y": 69
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page4[0].Tekst4c[0]",
+    "skrot": "Page4.Tekst4c",
+    "typ": "tekst",
+    "strona": 4,
+    "sekcja": "Okoliczność 4: pobyt dziecka w szpitalu (uzupełniający urlop macierzyński)",
+    "opis": "Wpisz dane dzieci: imię i nazwisko oraz datę i miejsce urodzenia",
+    "pozycja": {
+      "x": 62,
+      "y": 642
+    },
+    "uwaga": "Leży na górze strony 4, przed okolicznością 5: dane dziecka do okoliczności 4."
+  },
+  {
+    "nazwa": "topmostSubform[0].Page4[0]._5[0]",
+    "skrot": "Page4._5",
+    "typ": "checkbox",
+    "strona": 4,
+    "sekcja": "Okoliczność 5: sytuacja matki dziecka",
+    "opis": "Zaznacz, jeśli wnioskujesz o zasiłek macierzyński w związku z sytuacją matki dziecka, to jest",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 59,
+      "y": 605
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page4[0].skroceniem[0]",
+    "skrot": "Page4.skroceniem",
+    "typ": "checkbox",
+    "strona": 4,
+    "sekcja": "Okoliczność 5: sytuacja matki dziecka",
+    "opis": "Zaznacz, jeśli wnioskujesz o zasiłek macierzyński w związku z sytuacją matki dziecka, to jest skróceniem przez matkę okresu wypłaty zasiłku macierzyńskiego po wykorzystaniu co najmniej 14 tygodni po porodzie",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 94,
+      "y": 578
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page4[0].przerwaniem4A[0]",
+    "skrot": "Page4.przerwaniem4A",
+    "typ": "checkbox",
+    "strona": 4,
+    "sekcja": "Okoliczność 5: sytuacja matki dziecka",
+    "opis": "Zaznacz, jeśli wnioskujesz o zasiłek macierzyński w związku z sytuacją matki dziecka, to jest przerwaniem na wniosek matki okresu wypłaty zasiłku macierzyńskiego z powodu jej pobytu w szpitalu po wykorzystaniu zasiłku macierzyńskiego w wymiarze co najmniej 8 tygodni po porodzie; o wypisaniu matki ze szpitala zobowiązuję się poinformować płatnika zasiłku",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 94,
+      "y": 551
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page4[0].przerwaniem4B[0]",
+    "skrot": "Page4.przerwaniem4B",
+    "typ": "checkbox",
+    "strona": 4,
+    "sekcja": "Okoliczność 5: sytuacja matki dziecka",
+    "opis": "Zaznacz, jeśli wnioskujesz o zasiłek macierzyński w związku z sytuacją matki dziecka, to jest przerwaniem przez matkę okresu wypłaty zasiłku macierzyńskiego z powodu posiadania orzeczenia o niezdolności do samodzielnej egzystencji lub o niepełnosprawności w stopniu znacznym po wykorzystaniu co najmniej 8 tygodni zasiłku macierzyńskiego po porodzie",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 94,
+      "y": 513
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page4[0].podjeciem[0]",
+    "skrot": "Page4.podjeciem",
+    "typ": "checkbox",
+    "strona": 4,
+    "sekcja": "Okoliczność 5: sytuacja matki dziecka",
+    "opis": "Zaznacz, jeśli wnioskujesz o zasiłek macierzyński w związku z sytuacją matki dziecka, to jest podjęciem pracy przez matkę w wymiarze nie niższym niż połowa pełnego etatu; o ustaniu zatrudnienia matki zobowiązuję się poinformować płatnika zasiłku",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 94,
+      "y": 475
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page4[0].porzuceniem[0]",
+    "skrot": "Page4.porzuceniem",
+    "typ": "checkbox",
+    "strona": 4,
+    "sekcja": "Okoliczność 5: sytuacja matki dziecka",
+    "opis": "Zaznacz, jeśli wnioskujesz o zasiłek macierzyński w związku z sytuacją matki dziecka, to jest porzuceniem dziecka lub dzieci przez matkę",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 94,
+      "y": 449
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page4[0].smiercia[0]",
+    "skrot": "Page4.smiercia",
+    "typ": "checkbox",
+    "strona": 4,
+    "sekcja": "Okoliczność 5: sytuacja matki dziecka",
+    "opis": "Zaznacz, jeśli wnioskujesz o zasiłek macierzyński w związku z sytuacją matki dziecka, to jest śmiercią matki",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 94,
+      "y": 422
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page4[0].Data5[0]",
+    "skrot": "Page4.Data5",
+    "typ": "tekst",
+    "strona": 4,
+    "sekcja": "Okoliczność 5: sytuacja matki dziecka",
+    "opis": "Wpisz datę wystąpienia podanej okoliczności (w formacie dd mm rrrr)",
+    "pozycja": {
+      "x": 61,
+      "y": 396
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page4[0].Tekst4b[0]",
+    "skrot": "Page4.Tekst4b",
+    "typ": "tekst",
+    "strona": 4,
+    "sekcja": "Okoliczność 5: sytuacja matki dziecka",
+    "opis": "Wpisz dane dzieci: imię i nazwisko oraz datę i miejsce urodzenia",
+    "pozycja": {
+      "x": 62,
+      "y": 264
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page4[0].podajimie[0]",
+    "skrot": "Page4.podajimie",
+    "typ": "tekst",
+    "strona": 4,
+    "sekcja": "Okoliczność 5: sytuacja matki dziecka",
+    "opis": "Jeśli oświadczasz, że dziecko lub dzieci posiadają zaświadczenie, o którym mowa w art. 4 ust. 3 ustawy z dnia 4 listopada 2016 r. o wspieraniu kobiet w ciąży i rodzin \"Za życiem\", wpisz imię lub imiona dzieci",
+    "pozycja": {
+      "x": 222,
+      "y": 228
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page4[0].ZaznaczX1d[0]",
+    "skrot": "Page4.ZaznaczX1d",
+    "typ": "checkbox",
+    "strona": 4,
+    "sekcja": "Okoliczność 5: sytuacja matki dziecka",
+    "opis": "Zaznacz, jeśli oświadczasz, że dziecko lub dzieci posiadają zaświadczenie, o którym mowa w art. 4 ust. 3 ustawy z dnia 4 listopada 2016 r. o wspieraniu kobiet w ciąży i rodzin \"Za życiem\"",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 59,
+      "y": 227
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page4[0].Tekst13[0]",
+    "skrot": "Page4.Tekst13",
+    "typ": "tekst",
+    "strona": 4,
+    "sekcja": "Okoliczność 5: sytuacja matki dziecka",
+    "opis": "Wpisz dane matki: imię i  nazwisko oraz  PESEL, jeśli nie ma nadanego PESEL, podaj serię i numer dokumentu tożsamości i datę urodzenia",
+    "pozycja": {
+      "x": 62,
+      "y": 97
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page5[0]._6[0]",
+    "skrot": "Page5._6",
+    "typ": "checkbox",
+    "strona": 5,
+    "sekcja": "Okoliczność 6: wypisanie ze szpitala",
+    "opis": "Zaznacz, jeśli wnioskujesz o zasiłek macierzyński w związku z wypisaniem ze szpitala",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 59,
+      "y": 729
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page5[0].Data6[0]",
+    "skrot": "Page5.Data6",
+    "typ": "tekst",
+    "strona": 5,
+    "sekcja": "Okoliczność 6: wypisanie ze szpitala",
+    "opis": "Wpisz datę wypisania ze szpitala (w formacie dd mm rrrr)",
+    "pozycja": {
+      "x": 292,
+      "y": 702
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page5[0].mnie5[0]",
+    "skrot": "Page5.mnie5",
+    "typ": "checkbox",
+    "strona": 5,
+    "sekcja": "Okoliczność 6: wypisanie ze szpitala",
+    "opis": "Zaznacz, jeśli wnioskujesz o zasiłek macierzyński w związku z wypisaniem ze szpitala siebie",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 77,
+      "y": 701
+    },
+    "uwaga": "„Mnie” = wnioskodawca wypisany ze szpitala."
+  },
+  {
+    "nazwa": "topmostSubform[0].Page5[0].dziecka5[0]",
+    "skrot": "Page5.dziecka5",
+    "typ": "checkbox",
+    "strona": 5,
+    "sekcja": "Okoliczność 6: wypisanie ze szpitala",
+    "opis": "Zaznacz, jeśli wnioskujesz o zasiłek macierzyński w związku z wypisaniem ze szpitala dziecka",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 166,
+      "y": 701
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page5[0].TAK2[0]",
+    "skrot": "Page5.TAK2",
+    "typ": "checkbox",
+    "strona": 5,
+    "sekcja": "Oświadczenie przy urlopie ojcowskim (zasiłek z innego tytułu)",
+    "opis": "Zaznacz, jeśli drugi rodzic dziecka lub dzieci będzie korzystał z zasiłku macierzyńskiego za okres urlopu rodzicielskiego lub uzupełniającego urlopu macierzyńskiego",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 42,
+      "y": 607
+    },
+    "uwaga": "Opis (tooltip) w PDF mówi o drugim rodzicu, ale według położenia na stronie (y=607, nad sekcją „Informacja”) to TAK w oświadczeniu „Pobierałem z innego tytułu zasiłek za okres urlopu ojcowskiego”. Do sprawdzenia wzrokowo po wypełnieniu."
+  },
+  {
+    "nazwa": "topmostSubform[0].Page5[0].NIE2[0]",
+    "skrot": "Page5.NIE2",
+    "typ": "checkbox",
+    "strona": 5,
+    "sekcja": "Oświadczenie przy urlopie ojcowskim (zasiłek z innego tytułu)",
+    "opis": "Zaznacz, jeśli drugi rodzic dziecka lub dzieci nie będzie korzystał z zasiłku macierzyńskiego za okres urlopu rodzicielskiego lub uzupełniającego urlopu macierzyńskiego",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 95,
+      "y": 607
+    },
+    "uwaga": "Jak Page5.TAK2: według położenia to NIE w oświadczeniu o urlopie ojcowskim."
+  },
+  {
+    "nazwa": "topmostSubform[0].Page5[0].Okres1[0]",
+    "skrot": "Page5.Okres1",
+    "typ": "tekst",
+    "strona": 5,
+    "sekcja": "Oświadczenie przy urlopie ojcowskim (zasiłek z innego tytułu)",
+    "opis": "Jeśli drugi rodzic dziecka lub dzieci będzie korzystał z zasiłku macierzyńskiego za okres urlopu rodzicielskiego lub uzupełniającego urlopu macierzyńskiego, wpisz okres od-do",
+    "pozycja": {
+      "x": 98,
+      "y": 582
+    },
+    "uwaga": "Według położenia: „tytuł i okres pobierania” zasiłku za urlop ojcowski z innego tytułu (tooltip mówi o drugim rodzicu)."
+  },
+  {
+    "nazwa": "topmostSubform[0].Page5[0].TAK[0]",
+    "skrot": "Page5.TAK",
+    "typ": "checkbox",
+    "strona": 5,
+    "sekcja": "Informacja o drugim rodzicu (rodzicielski / uzupełniający)",
+    "opis": "Zaznacz, jeśli prowadzisz pozarolniczą działalność gospodarczą albo jesteś osobą współpracującą z osobą prowadzącą pozarolniczą działalność, jesteś duchownym albo marynarzem i jesteś objęty ubezpieczeniem w razie choroby i macierzyństwa",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 41,
+      "y": 469
+    },
+    "uwaga": "Tooltip w PDF mówi o działalności gospodarczej (skopiowany ze strony 2), ale według położenia (y=469, sekcja „Informacja”) to TAK dla „drugi rodzic będzie korzystał z zasiłku”. Do sprawdzenia wzrokowo."
+  },
+  {
+    "nazwa": "topmostSubform[0].Page5[0].NIE[0]",
+    "skrot": "Page5.NIE",
+    "typ": "checkbox",
+    "strona": 5,
+    "sekcja": "Informacja o drugim rodzicu (rodzicielski / uzupełniający)",
+    "opis": "Zaznacz, jeśli prowadzisz pozarolniczą działalność gospodarczą albo jesteś osobą współpracującą z osobą prowadzącą pozarolniczą działalność, jesteś duchownym albo marynarzem, ale nie jesteś objęty ubezpieczeniem w razie choroby i macierzyństwa",
+    "opcje": [
+      "Off",
+      "1"
+    ],
+    "pozycja": {
+      "x": 95,
+      "y": 469
+    },
+    "uwaga": "Jak Page5.TAK: według położenia to NIE dla „drugi rodzic będzie korzystał z zasiłku”."
+  },
+  {
+    "nazwa": "topmostSubform[0].Page5[0].Okres[0]",
+    "skrot": "Page5.Okres",
+    "typ": "tekst",
+    "strona": 5,
+    "sekcja": "Informacja o drugim rodzicu (rodzicielski / uzupełniający)",
+    "opis": "Jeśli drugi rodzic dziecka lub dzieci będzie korzystał z zasiłku macierzyńskiego za okres urlopu rodzicielskiego lub uzupełniającego urlopu macierzyńskiego, wpisz okres od-do",
+    "pozycja": {
+      "x": 98,
+      "y": 443
+    },
+    "uwaga": "Okres, w którym drugi rodzic będzie korzystał z zasiłku (od–do)."
+  },
+  {
+    "nazwa": "topmostSubform[0].Page5[0].PESEL[0]",
+    "skrot": "Page5.PESEL",
+    "typ": "tekst",
+    "strona": 5,
+    "sekcja": "Dane drugiego rodzica / członka rodziny",
+    "opis": "Wpisz numer PESEL drugiego rodzica",
+    "pozycja": {
+      "x": 238,
+      "y": 387
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page5[0].Dataurodzenia[0]",
+    "skrot": "Page5.Dataurodzenia",
+    "typ": "tekst",
+    "strona": 5,
+    "sekcja": "Dane drugiego rodzica / członka rodziny",
+    "opis": "Jeśli drugi rodzic nie ma nadanego numeru PESEL, wpisz jego datę urodzenia w formacie dd mm rrrr",
+    "pozycja": {
+      "x": 239,
+      "y": 360
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page5[0].Rodzajseriainumerdokumentu[0]",
+    "skrot": "Page5.Rodzajseriainumerdokumentu",
+    "typ": "tekst",
+    "strona": 5,
+    "sekcja": "Dane drugiego rodzica / członka rodziny",
+    "opis": "Jeśli drugi rodzic nie ma nadanego numeru PESEL, wpisz rodzaj, serię i numer dokumentu potwierdzającego jego tożsamość",
+    "pozycja": {
+      "x": 241,
+      "y": 315
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page5[0].Imie[0]",
+    "skrot": "Page5.Imie",
+    "typ": "tekst",
+    "strona": 5,
+    "sekcja": "Dane drugiego rodzica / członka rodziny",
+    "opis": "Wpisz imię drugiego rodzica",
+    "pozycja": {
+      "x": 241,
+      "y": 280
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page5[0].Nazwisko[0]",
+    "skrot": "Page5.Nazwisko",
+    "typ": "tekst",
+    "strona": 5,
+    "sekcja": "Dane drugiego rodzica / członka rodziny",
+    "opis": "Wpisz nazwisko drugiego rodzica",
+    "pozycja": {
+      "x": 241,
+      "y": 253
+    }
+  },
+  {
+    "nazwa": "topmostSubform[0].Page5[0].Data[0]",
+    "skrot": "Page5.Data",
+    "typ": "tekst",
+    "strona": 5,
+    "sekcja": "Data i podpis",
+    "opis": "Wpisz datę wypełnienia formularza w formacie dd mm rrrr. Obok znajduje się pole na podpis",
+    "pozycja": {
+      "x": 78,
+      "y": 184
+    }
+  }
+]

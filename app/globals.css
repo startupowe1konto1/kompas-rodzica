@@ -1,0 +1,146 @@
+@import "tailwindcss";
+
+/*
+ * Tokeny designu toru C. Zasady i uzasadnienie: src/components/design.md.
+ * Kolory zmierzone na zus.pl i eZUS (21.11.2026); bez logotypów ZUS.
+ * Tylko jasny motyw.
+ */
+@theme {
+  --font-sans: var(--font-lato), "Helvetica Neue", Arial, sans-serif;
+
+  /* Główne */
+  --color-zielen: #007834;
+  --color-zielen-ciemna: #025a28;
+  --color-zielen-noc: #013d1c; /* kafel z kwotą (wynik), tło ekranu startowego */
+  --color-granat: #00416e;
+  --color-granat-ciemny: #283754;
+  --color-bursztyn: #fab856; /* tylko tło, tekst na nim: granat */
+  --color-niebieski-jasny: #e6f0fa; /* kafel „na rękę” (wynik, plan), tekst granat #00416e = 9,2:1 (L 0,049 / 0,860) */
+  --color-lawenda: #e9e3f5; /* wstęp sekcji „Zarobki”; tekst granat 8,5:1 */
+
+  /* Neutralne */
+  --color-szary-kafel: #ececec;
+  --color-szary-linia: #d4d4d4; /* ozdobne podziały, nie ramki pól */
+  --color-szary-ramka: #858585; /* ramki pól, ≥ 3:1 */
+  --color-tekst: #1b1b1b;
+  --color-tekst-drugi: #4a4a4a;
+
+  /* Stany */
+  --color-blad: #d5233f;
+  --color-sukces: #4e7522;
+  --color-info: #0052a5;
+
+  /* Odcinki osi czasu */
+  --color-odc-macierzynski: #007834;
+  --color-odc-rodzicielski: #00416e;
+  --color-odc-ojcowski: #006d77;
+  --color-odc-uzupelniajacy: #5b3f8c;
+  --color-odc-chorobowy: #5e6670;
+  --color-odc-wychowawczy: #7a5c2e;
+  --color-odc-praca: #ececec;
+  --color-nie-przysluguje: #5e6670;
+
+  /* Tło strony (bento: białe kafle na jasnoszarym) */
+  --color-tlo: #f3f4f6;
+
+  /* Kształty */
+  --radius-przycisk: 8px;
+  --radius-karta: 16px;
+  --radius-komunikat: 12px;
+  --radius-odcinek: 6px;
+  --shadow-kafel: 0 1px 2px rgb(16 24 40 / 0.06), 0 8px 24px rgb(16 24 40 / 0.08);
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  background: var(--color-tlo);
+  color: var(--color-tekst);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+@media (min-width: 64rem) {
+  body {
+    font-size: 1.0625rem;
+  }
+}
+
+/* Fokus widoczny na każdym tle: granat 3 px z odstępem. */
+:focus-visible {
+  outline: 3px solid var(--color-granat);
+  outline-offset: 2px;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/*
+ * Wydruk harmonogramu wypłat (/plan/harmonogram): A4 pionowo, czarny tekst na białym tle,
+ * bez paska kroków, stopki, przycisków i nawigacji. Tylko strony z `[data-harmonogram]`,
+ * żeby nie zmieniać wydruku innych ekranów. Wiersze tabeli nie łamią się między stronami.
+ */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 15mm 12mm;
+  }
+
+  html:has([data-harmonogram]),
+  body:has([data-harmonogram]) {
+    background: #fff !important;
+    color: #000 !important;
+    font-size: 10pt;
+  }
+
+  body:has([data-harmonogram]) nav,
+  body:has([data-harmonogram]) footer,
+  body:has([data-harmonogram]) [data-bez-druku],
+  body:has([data-harmonogram]) a[href="#tresc"] {
+    display: none !important;
+  }
+
+  [data-harmonogram],
+  [data-harmonogram] * {
+    color: #000 !important;
+    background: #fff !important;
+    box-shadow: none !important;
+    print-color-adjust: exact;
+  }
+
+  [data-harmonogram] [aria-busy="true"] {
+    opacity: 1 !important;
+  }
+
+  [data-harmonogram] table {
+    page-break-inside: auto;
+  }
+
+  [data-harmonogram] thead {
+    display: table-header-group;
+  }
+
+  [data-harmonogram] tfoot {
+    display: table-row-group;
+  }
+
+  [data-harmonogram] tr {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}

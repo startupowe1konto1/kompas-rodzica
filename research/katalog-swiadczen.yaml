@@ -1,0 +1,2214 @@
+# Katalog świadczeń, formalności i uprawnień – Przewodnik przyszłego rodzica (HackNation 2026, zadanie ZUS)
+#
+# ZASÓB PRZYGOTOWANY PRZED WYDARZENIEM – wymienić w README i w prezentacji (FAQ HackNation, pyt. 11).
+# Stan na 2026-11-20. Źródła: zus.pl, gov.pl, teksty ustaw z api.sejm.gov.pl, podatki.gov.pl.
+#
+# Pole `typ`: swiadczenie (pieniądze na wniosek) | formalnosc (zgłoszenie, obowiązek) |
+#             uprawnienie (prawo z mocy przepisów, zwykle wobec pracodawcy) | decyzja (wybór wariantu)
+# Pole `weryfikacja`:
+#   potwierdzone   – każda wartość odczytana ze źródła w dniu `sprawdzono`
+#   czesciowo      – część wartości potwierdzona, reszta opisana w `do_sprawdzenia`
+#   do_weryfikacji – NIE używać w aplikacji przed sprawdzeniem
+# Pole `do_monitorowania`: rzeczy, które mogą się zmienić (projekty ustaw, limity na kolejny rok).
+#
+# Aplikacja filtruje rekordy po `dla_kogo` i `etap`, a terminy liczy od zdarzenia z pola `termin.od`.
+
+schemat:
+  rola:
+  - matka
+  - ojciec
+  - oboje
+  - opiekun
+  status_zawodowy:
+  - etat
+  - zlecenie_z_chorobowym
+  - zlecenie_bez_chorobowego
+  - dzielo
+  - jdg_z_chorobowym
+  - jdg_bez_chorobowego
+  - bezrobotna
+  - studentka
+  - rolnik_krus
+  etap:
+  - planowanie
+  - ciaza
+  - porod_do_21_dni
+  - do_3_miesiecy
+  - do_12_miesiecy
+  - od_12_do_36_miesiecy
+  instytucja:
+  - ZUS
+  - pracodawca
+  - gmina
+  - USC
+  - KRUS
+  - urząd skarbowy
+  - inne
+  zdarzenie:
+  - poczatek_ciazy
+  - porod
+  - wystawienie_karty_urodzenia
+  - ukonczenie_12_miesiecy
+  - poczatek_urlopu
+  - rozpoczecie_uczeszczania_do_zlobka
+  - nadanie_numeru_PESEL
+  typ:
+  - swiadczenie
+  - formalnosc
+  - uprawnienie
+  - decyzja
+  pola_dodatkowe: 'Część rekordów ma pola spoza podstawowego zestawu: kto_wyplaca, wylaczenia, ojciec, odnowienie,
+    przerwa_w_aktywnosci, kroki, etapy_dodatkowe, zakres, warianty, skladki, urzedowy_formularz, tresc_wniosku,
+    zalaczniki, podstawa_prawna, uwagi_zrodlowe, uwagi_dla_aplikacji, do_monitorowania.'
+rekordy:
+- id: zgloszenie_urodzenia
+  nazwa: Zgłoszenie urodzenia dziecka (akt urodzenia, PESEL, meldunek)
+  typ: formalnosc
+  instytucja: USC
+  dla_kogo:
+    rola:
+    - matka
+    - ojciec
+    status_zawodowy: wszystkie
+    warunki:
+    - Zgłasza matka albo ojciec z pełną zdolnością do czynności prawnych (w urzędzie także rodzic, który skończył
+      16 lat).
+    - Tylko dziecko urodzone w Polsce.
+    - Ojciec, który nie jest mężem matki, musi wcześniej złożyć oświadczenie o uznaniu ojcostwa (patrz rekord uznanie_ojcostwa).
+    - W mObywatelu zgłasza tylko rodzic osobiście – bez pełnomocnika. W urzędzie pełnomocnik jest możliwy.
+    - Dziecko martwo urodzone zgłasza się w ciągu 3 dni od wystawienia karty martwego urodzenia.
+  etap: porod_do_21_dni
+  termin:
+    od: wystawienie_karty_urodzenia
+    limit: 21 dni
+    skutek_spoznienia: Kierownik USC sam wybiera imię dziecka i rejestruje urodzenie na podstawie karty urodzenia.
+      Nie tracisz pieniędzy, ale bez aktu i numeru PESEL nie złożysz wniosków o świadczenia.
+  kwota: null
+  jak_zlozyc:
+    kanaly:
+    - USC osobiście
+    - online przez gov.pl
+    - aplikacja mObywatel
+    uwagi: 'W urzędzie – USC właściwy dla miejsca urodzenia dziecka; wystarczy dowód osobisty lub paszport, dokumenty
+      dostajesz tego samego dnia. Online przez gov.pl – profil zaufany, e-dowód albo podpis kwalifikowany oraz adres
+      do e-Doręczeń (od 1.01.2026 tylko tą drogą). W aplikacji mObywatel (od 5.03.2026) – potrzebny mDowód, profil
+      zaufany i aktywna skrzynka e-Doręczeń; ścieżka: Usługi → Załatw sprawę → Rodzina → Zgłoś urodzenie dziecka;
+      jednym zgłoszeniem do pięciorga dzieci. Kartę urodzenia przekazuje do USC szpital (lekarz lub położna) w ciągu
+      3 dni – rodzic jej nie dostarcza. Usługa bezpłatna.
+
+      '
+  efekt: 'Kierownik USC sporządza akt urodzenia (w urzędzie od razu, przy zgłoszeniu online – następnego dnia roboczego,
+    jeśli ma już kartę urodzenia). Dostajesz: jeden bezpłatny odpis skrócony aktu urodzenia, powiadomienie o nadaniu
+    numeru PESEL i zaświadczenie o zameldowaniu dziecka. Przy zgłoszeniu online wybierasz odbiór: skrzynka e-Doręczeń,
+    poczta albo osobiście w urzędzie.
+
+    '
+  odblokowuje:
+  - swiadczenie_800_plus
+  - becikowe
+  - swiadczenie_rodzicielskie
+  zrodlo:
+  - https://www.gov.pl/web/gov/zglos-urodzenie-dziecka
+  - https://www.gov.pl/web/cyfryzacja/zglos-urodzenie-dziecka-w-mobywatelu-bez-umawiania-wizyty-w-urzedzie-bez-kolejek
+  - https://info.mobywatel.gov.pl/aktualnosci/zglos-urodzenie-dziecka-w-mObywatelu
+  weryfikacja: potwierdzone
+  sprawdzono: 2026-11-20
+  do_monitorowania:
+  - Strona usługi na gov.pl (aktualizacja 31.12.2025) nie wspomina o mObywatelu – informacja pochodzi z komunikatu
+    Ministerstwa Cyfryzacji z 6.03.2026 i strony info.mobywatel.gov.pl.
+  do_sprawdzenia: []
+- id: zasilek_chorobowy_w_ciazy
+  nazwa: Zasiłek chorobowy w czasie ciąży (zwolnienie lekarskie)
+  typ: swiadczenie
+  instytucja: ZUS
+  dla_kogo:
+    rola:
+    - matka
+    status_zawodowy:
+    - etat
+    - zlecenie_z_chorobowym
+    - jdg_z_chorobowym
+    warunki:
+    - Ubezpieczenie chorobowe (obowiązkowe albo dobrowolne).
+    - Okres wyczekiwania – 30 dni nieprzerwanego ubezpieczenia obowiązkowego (etat) albo 90 dni dobrowolnego (zlecenie,
+      działalność). Ciąża nie znosi okresu wyczekiwania.
+    - Do okresu wyczekiwania wlicza się wcześniejsze ubezpieczenie chorobowe, jeśli przerwa nie przekroczyła 30
+      dni albo wynikała z urlopu wychowawczego lub bezpłatnego.
+    - Bez okresu wyczekiwania – absolwentka, która została ubezpieczona w ciągu 90 dni od ukończenia szkoły lub
+      uzyskania dyplomu; wypadek w drodze do pracy lub z pracy; co najmniej 10 lat obowiązkowego ubezpieczenia chorobowego
+      (tylko ubezpieczone obowiązkowo).
+    - Przy działalności gospodarczej zasiłek nie przysługuje, gdy zaległość w składkach przekracza 1% minimalnego
+      wynagrodzenia. Po spłacie całości w ciągu 6 miesięcy ZUS wypłaci zasiłek za cały okres.
+    - Zasiłek chorobowy nie przysługuje w czasie urlopu wychowawczego ani bezpłatnego.
+  etap: ciaza
+  termin:
+    od: null
+    limit: 6 miesięcy od ostatniego dnia okresu, za który zasiłek przysługuje
+    skutek_spoznienia: Po tym terminie zasiłek przepada (roszczenie się przedawnia).
+  kwota:
+    opis: 100% podstawy wymiaru od pierwszego dnia zwolnienia, także za pobyt w szpitalu. Warunek – zwolnienie z
+      kodem B (niezdolność do pracy w ciąży).
+    okres: Najwyżej 270 dni (poza ciążą 182 dni).
+    uwagi: Zwolnienie wystawia się z powodu choroby w czasie ciąży, a nie z powodu samej ciąży. Jeśli wcześniej
+      chorowałaś bez kodu B, a potem dostaniesz zwolnienie z kodem B, okres 270 dni liczy się od nowa.
+  jak_zlozyc:
+    kanaly:
+    - e-ZLA wystawia lekarz
+    - pracodawca lub zleceniodawca
+    - PUE/eZUS
+    uwagi: Etat – przez pierwsze 33 dni choroby w roku (14 dni po 50. roku życia) pracodawca wypłaca wynagrodzenie
+      chorobowe, w ciąży 100%; zasiłek z ZUS przysługuje od 34. (15.) dnia. Zlecenie i działalność – zasiłek od
+      pierwszego dnia, bez wynagrodzenia chorobowego. Zasiłek wypłaca pracodawca, jeśli zgłasza do ubezpieczenia
+      chorobowego ponad 20 osób; w pozostałych przypadkach ZUS. Przedsiębiorczyni zawsze dostaje zasiłek z ZUS i
+      składa wniosek ZAS-53 (opis zadania ZUS; Z-3b zlikwidowany od 24.10.2026).
+  zrodlo:
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-chorobowy
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-chorobowy/z-ubezpieczenia-chorobowego/wysokosc
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-chorobowy/z-ubezpieczenia-chorobowego/prawo-do-zasilku-i-okres-przyslugiwania
+  - https://www.zus.pl/documents/10182/167567/1184_26+Poradnik+dla+rodzic%C3%B3w.pdf/9378de60-151e-9b9f-ba65-abdf41d9f5b4
+  - https://api.sejm.gov.pl/eli/acts/DU/1999/636/text/U/D19990636Lj.pdf
+  - https://api.sejm.gov.pl/eli/acts/DU/1974/141/text/U/D19740141Lj.pdf
+  weryfikacja: potwierdzone
+  sprawdzono: 2026-11-20
+  do_sprawdzenia: []
+- id: zasilek_macierzynski_urlop_macierzynski
+  nazwa: Zasiłek macierzyński za okres urlopu macierzyńskiego
+  typ: swiadczenie
+  instytucja: ZUS
+  dla_kogo:
+    rola:
+    - matka
+    status_zawodowy:
+    - etat
+    - zlecenie_z_chorobowym
+    - jdg_z_chorobowym
+    warunki:
+    - Ubezpieczenie chorobowe obowiązkowe albo dobrowolne w dniu porodu.
+  etap: porod_do_21_dni
+  termin:
+    od: porod
+    limit: 6 miesięcy od ostatniego dnia okresu, za który zasiłek przysługuje
+    skutek_spoznienia: Po tym terminie zasiłek przepada (roszczenie się przedawnia). Termin wynosi 3 lata, jeśli
+      zasiłku nie wypłacono przez błąd ZUS albo pracodawcy.
+    uwagi: Do 6 tygodni urlopu można wykorzystać przed porodem. Wniosek o zasiłek za okres przed porodem składa
+      się najpóźniej 14 dni przed planowanym początkiem urlopu, razem z zaświadczeniem o przewidywanej dacie porodu.
+      Zasiłek macierzyński nie wymaga okresu wyczekiwania – wystarczy ubezpieczenie chorobowe w dniu porodu.
+  kwota:
+    opis: 100% podstawy wymiaru
+    okres:
+      jedno_dziecko: 20 tygodni
+      dwoje: 31 tygodni
+      troje: 33 tygodnie
+      czworo: 35 tygodni
+      piecioro_i_wiecej: 37 tygodni
+      smierc_dziecka: Gdy dziecko urodzi się martwe albo umrze przed 8. tygodniem życia – 8 tygodni po porodzie,
+        nie krócej niż 7 dni od śmierci dziecka.
+    minimum: Jeśli miesięczny zasiłek po odliczeniu zaliczki na podatek jest niższy niż 1000 zł (kwota świadczenia
+      rodzicielskiego), płatnik zasiłku dopłaca różnicę. Dopłata nie przysługuje do zasiłku za urlop ojcowski ani
+      do „zasiłku w wysokości zasiłku macierzyńskiego”.
+  jak_zlozyc:
+    kanaly:
+    - pracodawca
+    - zleceniodawca
+    - PUE/eZUS
+    - placówka ZUS
+    dokumenty:
+      etat: Wniosek o urlop macierzyński u pracodawcy. Jeśli zasiłek wypłaca ZUS, pracodawca przekazuje dokumenty
+        do ZUS razem z zaświadczeniem Z-3 – osobnego wniosku ZAM nie trzeba składać.
+      zlecenie_z_chorobowym: Wniosek o zasiłek macierzyński (własne pismo albo formularz ZAM) u zleceniodawcy. Jeśli
+        zasiłek wypłaca ZUS, zleceniodawca dołącza zaświadczenie Z-3a.
+      jdg_z_chorobowym: Wniosek ZAM prosto do ZUS (Z-3b zlikwidowany od 24.10.2026), najwygodniej przez eZUS. Zaświadczenia
+        Z-3 ani Z-3a nie potrzeba.
+      wszyscy: Dane dziecka (imię i nazwisko, PESEL, data i miejsce urodzenia) oraz dane drugiego rodzica. Za okres
+        przed porodem – zaświadczenie lekarskie o przewidywanej dacie porodu.
+    uwagi: ZUS może sam pobrać odpis aktu urodzenia z rejestru stanu cywilnego. Strona ZUS „Niezbędne dokumenty”
+      (aktualizacja 24.10.2026) wymaga danych dziecka; starsze opisy mówią o okazaniu skróconego odpisu aktu urodzenia.
+  powiazane:
+  - wybor_wariantu_81_5
+  - zasilek_macierzynski_urlop_rodzicielski
+  - przejecie_urlopu_przez_ojca
+  - zasilek_po_ustaniu_ubezpieczenia
+  - jdg_dobrowolne_chorobowe
+  - porod_na_urlopie_wychowawczym
+  zrodlo:
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-macierzynski/komu-przysluguje
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-macierzynski/wysokosc
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-macierzynski/postepowanie-w-sprawie-zasilkow/platnicy-zasilku
+  - https://www.zus.pl/-/jak-uzyskac-zasilek-macierzynski-z-tytulu-urodzenia-dziecka
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-macierzynski/niezbedne-dokumenty
+  - https://www.zus.pl/wzory-formularzy/zasilki/zasilek-macierzynski
+  - https://www.zus.pl/documents/10182/167567/1184_26+Poradnik+dla+rodzic%C3%B3w.pdf/9378de60-151e-9b9f-ba65-abdf41d9f5b4
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-macierzynski/postepowanie-w-sprawie-zasilkow/przedawnienie-roszczenia-o-wyplate-zasilku
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-macierzynski/prawo-do-zasilku-i-okres-przyslugiwania/za-okres-urlopu-macierzynskiego-albo-urlopu-na-warunkach-urlopu-macierzynskiego
+  weryfikacja: potwierdzone
+  sprawdzono: 2026-11-20
+  do_sprawdzenia: []
+  kto_wyplaca:
+    pracodawca_lub_zleceniodawca: Gdy zgłasza do ubezpieczenia chorobowego ponad 20 osób (stan na 30 listopada poprzedniego
+      roku).
+    ZUS: Gdy płatnik zgłasza najwyżej 20 osób; zawsze przy działalności gospodarczej i przy zasiłku za okres po
+      ustaniu ubezpieczenia.
+    termin_wyplaty: ZUS wypłaca najpóźniej w ciągu 30 dni od wyjaśnienia ostatniej okoliczności potrzebnej do ustalenia
+      prawa. Pracodawca – w terminie wypłaty wynagrodzeń.
+- id: wybor_wariantu_81_5
+  nazwa: Wybór sposobu wypłaty – 81,5% przez cały okres zamiast 100% i 70%
+  typ: decyzja
+  instytucja: ZUS
+  dla_kogo:
+    rola:
+    - matka
+    status_zawodowy:
+    - etat
+    - zlecenie_z_chorobowym
+    - jdg_z_chorobowym
+  etap: porod_do_21_dni
+  termin:
+    od: porod
+    limit: 21 dni
+    skutek_spoznienia: 'Zostaje wariant domyślny: 100% za urlop macierzyński i 70% za rodzicielski. To NIE jest
+      utrata pieniędzy – przy pełnym wykorzystaniu obu urlopów suma jest praktycznie ta sama (20 tyg. x 100% + 32
+      tyg. x 70% daje średnio ok. 81,5%). Różni się rozkład wypłat w czasie.
+
+      '
+  kwota:
+    opis: 81,5% podstawy za urlop macierzyński i rodzicielski łącznie
+    wyjatek: 9 tygodni urlopu rodzicielskiego zastrzeżone dla drugiego rodzica zawsze płatne 70%.
+    wyrownanie: 'Jeśli w pierwszym roku życia dziecka nie wykorzystasz ani dnia urlopu rodzicielskiego, na wniosek
+      dostajesz wyrównanie zasiłku za urlop macierzyński do 100%.
+
+      '
+  jak_zlozyc:
+    kanaly:
+    - pracodawca
+    - PUE/eZUS
+    uwagi: Wniosek o zasiłek za oba urlopy w pełnym wymiarze albo deklaracja wykorzystania pełnego urlopu rodzicielskiego.
+  zrodlo:
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-macierzynski/wysokosc
+  - https://www.zus.pl/-/jak-uzyskac-zasilek-macierzynski-z-tytulu-urodzenia-dziecka
+  weryfikacja: potwierdzone
+  sprawdzono: 2026-11-20
+  uwagi_zrodlowe: Termin 21 dni po porodzie dotyczy wniosku o zasiłek macierzyński (art. 30a i art. 31 ust. 3 ustawy
+    zasiłkowej), nie wniosku o urlop. Dawny łączny wniosek urlopowy (art. 179(1) Kodeksu pracy) jest uchylony. Strona
+    gov.pl o urlopach rodzicielskich podaje 80% – obowiązuje wartość z ustawy i zus.pl, czyli 81,5%.
+- id: zasilek_macierzynski_urlop_rodzicielski
+  nazwa: Zasiłek macierzyński za okres urlopu rodzicielskiego
+  typ: swiadczenie
+  instytucja: ZUS
+  dla_kogo:
+    rola:
+    - oboje
+    status_zawodowy:
+    - etat
+    - zlecenie_z_chorobowym
+    - jdg_z_chorobowym
+  etap: do_12_miesiecy
+  termin:
+    od: poczatek_urlopu
+    limit: Etat – wniosek o urlop u pracodawcy najpóźniej 21 dni przed jego początkiem. Zlecenie, działalność i
+      zasiłek po ustaniu ubezpieczenia – wniosek o zasiłek przed pierwszym dniem okresu, którego dotyczy.
+    do_kiedy: Ostatnia część najpóźniej do końca roku kalendarzowego, w którym dziecko kończy 6 lat.
+    liczba_czesci: Jednorazowo albo najwyżej w 5 częściach. Części liczy się według liczby wniosków o urlop; wlicza
+      się też wnioski o zasiłek za ten okres złożone przez ubezpieczoną matkę lub ubezpieczonego ojca.
+    skutek_spoznienia: Osobie spoza etatu ZUS nie wypłaci zasiłku za okres objęty spóźnionym wnioskiem, chyba że
+      opóźnienie nie wynikało z jej winy. Pracownik dostanie zasiłek, jeśli pracodawca mimo spóźnienia udzieli urlopu.
+  kwota:
+    opis: 70% podstawy wymiaru (albo 81,5% przy wyborze wariantu w 21 dni po porodzie)
+    okres:
+      jedno_dziecko: 41 tygodni
+      wiecej_dzieci_przy_jednym_porodzie: 43 tygodnie
+      dziecko_z_zaswiadczeniem_za_zyciem_jedno: 65 tygodni
+      dziecko_z_zaswiadczeniem_za_zyciem_wiecej_dzieci: 67 tygodni
+      uwagi: 65 i 67 tygodni dotyczą rodziców dziecka z zaświadczeniem „Za życiem” (ciężka, nieodwracalna choroba
+        lub upośledzenie; art. 4 ust. 3 ustawy z 4.11.2016). Do wniosku dołącza się oświadczenie, że dziecko ma
+        takie zaświadczenie. Oboje rodzice mogą korzystać z urlopu jednocześnie; łączny wymiar się nie zwiększa.
+    czesc_nieprzenoszalna: '9 tygodni dla każdego z rodziców – nie można ich oddać drugiemu rodzicowi. Przykład
+      ZUS: matka może wykorzystać najwyżej 32 tygodnie z 41, pozostałe 9 tylko ojciec. Kto wykorzystał co najmniej
+      9 tygodni urlopu, wykorzystał swoją część.'
+  jak_zlozyc:
+    kanaly:
+    - pracodawca
+    - PUE/eZUS
+  zrodlo:
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-macierzynski/prawo-do-zasilku-i-okres-przyslugiwania/za-okres-dodatkowego-urlopu-rodzicielskiego
+  - https://api.sejm.gov.pl/eli/acts/DU/1974/141/text/U/D19740141Lj.pdf
+  - https://www.zus.pl/documents/10182/24202/Komentarz+do+ustawy+o+%C5%9Bwiadczeniach+pieni%C4%99%C5%BCnych+z+ubezpieczenia+spo%C5%82ecznego+w+razie+choroby+i+macierzy%C5%84stwa+kwiecie%C5%84+2022.pdf/7a31a278-8c06-cee4-3542-1d5bb8b36ad6
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-macierzynski/niezbedne-dokumenty
+  weryfikacja: czesciowo
+  sprawdzono: 2026-11-20
+  do_sprawdzenia:
+  - Skutek spóźnienia dla osób spoza etatu pochodzi z Komentarza ZUS z 2023 r. – potwierdzić, że ZUS nadal tak postępuje.
+  - Strona ZUS podaje też wymiary 38 i 62 tygodnie przy przyjęciu dziecka na wychowanie – opis jest niejasny, do
+    wyjaśnienia przy rekordzie o adopcji.
+  powiazane:
+  - wybor_wariantu_81_5
+  - laczenie_urlopu_rodzicielskiego_z_praca
+- id: urlop_ojcowski
+  nazwa: Urlop ojcowski i zasiłek za jego okres
+  typ: swiadczenie
+  instytucja: ZUS
+  dla_kogo:
+    rola:
+    - ojciec
+    status_zawodowy:
+    - etat
+    - zlecenie_z_chorobowym
+    - jdg_z_chorobowym
+    warunki:
+    - Niezależny od urlopu matki; nie przechodzi na matkę. Przysługuje także wtedy, gdy matka nie ma ubezpieczenia
+      chorobowego.
+    - Ojciec na zleceniu albo z działalnością dostaje zasiłek za ten okres, jeśli ma dobrowolne ubezpieczenie chorobowe.
+    - Uwaga dla dobrowolnie ubezpieczonych – na czas zasiłku ubezpieczenie chorobowe ustaje z mocy prawa. Trzeba
+      się wyrejestrować (ZUS ZWUA), zgłosić do ubezpieczenia zdrowotnego (ZUS ZZA), a po zasiłku ponownie zgłosić
+      do chorobowego (ZUS ZUA) w ciągu 7 dni od końca okresu zasiłku – także wtedy, gdy zasiłek jeszcze nie wpłynął.
+      Przy zleceniu dokumenty składa zleceniodawca. Bez ponownego zgłoszenia dobrowolnego ubezpieczenia chorobowego
+      już nie ma.
+  etap: do_12_miesiecy
+  termin:
+    od: porod
+    limit: do ukończenia przez dziecko 12. miesiąca życia
+    wniosek: Etat – wniosek u pracodawcy najpóźniej 7 dni przed początkiem urlopu; pracodawca musi go uwzględnić.
+      Zlecenie i działalność – wniosek o zasiłek przed pierwszym dniem okresu, z datą jego rozpoczęcia.
+    skutek_spoznienia: Urlop przepada po pierwszych urodzinach dziecka.
+    uwagi: Przy adopcji – do 12 miesięcy od uprawomocnienia się postanowienia o przysposobieniu, nie dłużej niż
+      do ukończenia przez dziecko 14 lat.
+  kwota:
+    opis: 100% podstawy wymiaru
+    okres: Do 2 tygodni (14 dni), jednorazowo albo w 2 częściach. Żadna część nie może być krótsza niż tydzień;
+      części nie muszą następować po sobie.
+    minimum: Do zasiłku za urlop ojcowski nie ma dopłaty do 1000 zł.
+  jak_zlozyc:
+    kanaly:
+    - pracodawca
+    - zleceniodawca
+    - PUE/eZUS
+    uwagi: Potrzebne są dane dziecka (imię i nazwisko, PESEL, data i miejsce urodzenia), dane drugiego rodzica i
+      oświadczenie, czy zasiłek za urlop ojcowski nie został już pobrany z innego tytułu.
+  zrodlo:
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-macierzynski/prawo-do-zasilku-i-okres-przyslugiwania/za-okres-dodatkowego-urlopu-ojcowskiego
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-macierzynski/wysokosc
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-macierzynski/niezbedne-dokumenty
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-macierzynski/postepowanie-w-sprawie-zasilkow/osoby-podlegajace-dobrowolnemu-ubezpieczeniu-chorobowemu
+  - https://www.zus.pl/documents/10182/167567/1184_26+Poradnik+dla+rodzic%C3%B3w.pdf/9378de60-151e-9b9f-ba65-abdf41d9f5b4
+  - https://api.sejm.gov.pl/eli/acts/DU/1974/141/text/U/D19740141Lj.pdf
+  weryfikacja: potwierdzone
+  sprawdzono: 2026-11-20
+  do_sprawdzenia: []
+- id: uzupelniajacy_urlop_macierzynski
+  nazwa: Uzupełniający urlop macierzyński (wcześniak albo pobyt dziecka w szpitalu)
+  typ: swiadczenie
+  instytucja: ZUS
+  dla_kogo:
+    rola:
+    - oboje
+    status_zawodowy:
+    - etat
+    - zlecenie_z_chorobowym
+    - jdg_z_chorobowym
+    warunki:
+    - Przysługuje za czas pobytu dziecka w szpitalu – nie za samo wcześniactwo.
+    - Przypadek 1 – dziecko urodzone przed ukończeniem 28. tygodnia ciąży albo z masą urodzeniową do 1000 g.
+    - Przypadek 2 – dziecko urodzone po ukończeniu 28. i przed ukończeniem 37. tygodnia ciąży, z masą urodzeniową
+      ponad 1000 g.
+    - Przypadek 3 – dziecko urodzone po ukończeniu 37. tygodnia ciąży, jeśli było w szpitalu co najmniej 2 kolejne
+      dni, a pierwszy z nich wypadł między 5. a 28. dniem po porodzie.
+    - Korzysta jedno z rodziców. Urlopu ani zasiłku za ten okres nie da się podzielić między matkę i ojca.
+  etap: do_3_miesiecy
+  termin:
+    od: koniec urlopu macierzyńskiego (urlop uzupełniający zaczyna się bezpośrednio po nim)
+    limit: Etat – wniosek u pracodawcy najpóźniej 21 dni przed końcem urlopu macierzyńskiego. Zlecenie i działalność
+      – wniosek przed końcem pobierania zasiłku macierzyńskiego.
+    skutek_spoznienia: null
+  kwota:
+    opis: 100% podstawy wymiaru
+    okres:
+      przypadek_1: Tydzień urlopu za każdy tydzień pobytu dziecka w szpitalu do końca 15. tygodnia po porodzie –
+        najwyżej 15 tygodni.
+      przypadek_2: Tydzień urlopu za każdy tydzień pobytu dziecka w szpitalu do końca 8. tygodnia po porodzie –
+        najwyżej 8 tygodni.
+      przypadek_3: Tydzień urlopu za każdy tydzień pobytu dziecka w szpitalu od 5. dnia do końca 8. tygodnia po
+        porodzie – najwyżej 8 tygodni.
+    zasady_liczenia: Okresy pobytu w szpitalu sumuje się. Niepełny tydzień zaokrągla się w górę do pełnego. Przy
+      porodzie mnogim liczy się masa najlżejszego dziecka i pobyt dziecka najdłużej leżącego w szpitalu.
+  zrodlo:
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-macierzynski/prawo-do-zasilku-i-okres-przyslugiwania/za-okres-uzupelniajacego-urlopu-macierzynskiego
+  - https://api.sejm.gov.pl/eli/acts/DU/1974/141/text/U/D19740141Lj.pdf
+  - https://www.zus.pl/-/jak-uzyskac-zasilek-macierzynski-z-tytulu-urodzenia-dziecka
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-macierzynski/niezbedne-dokumenty
+  - https://www.zus.pl/documents/10182/167567/1184_26+Poradnik+dla+rodzic%C3%B3w.pdf/9378de60-151e-9b9f-ba65-abdf41d9f5b4
+  weryfikacja: potwierdzone
+  sprawdzono: 2026-11-20
+  do_sprawdzenia: []
+  jak_zlozyc:
+    kanaly:
+    - pracodawca
+    - zleceniodawca
+    - PUE/eZUS
+    uwagi: Udzielany jednorazowo. Do wniosku dołącza się zaświadczenie ze szpitala (okres pobytu dziecka oraz tydzień
+      ciąży lub masa urodzeniowa) i oświadczenie, że drugi rodzic nie będzie korzystał z tego urlopu ani zasiłku.
+      We wniosku podaje się datę końca urlopu macierzyńskiego. Jeśli wniosek o urlop rodzicielski był już złożony,
+      trzeba zaktualizować jego daty (wniosek ZAM).
+  uwagi_zrodlowe: 'Poradnik ZUS 2026 pisze o rodzicach „zatrudnionych na podstawie umowy o pracę” i o pobycie dziecka
+    w szpitalu „co najmniej 5 dni”. Strona ZUS i Kodeks pracy mówią inaczej: zasiłek dostają też osoby spoza etatu,
+    a warunek to 2 kolejne dni pobytu, z pierwszym między 5. a 28. dniem po porodzie. W katalogu przyjęto stronę
+    ZUS i ustawę. Skutku spóźnienia z wnioskiem źródła nie opisują.'
+- id: swiadczenie_rodzicielskie
+  nazwa: Świadczenie rodzicielskie („kosiniakowe”)
+  typ: swiadczenie
+  instytucja: gmina
+  dla_kogo:
+    rola:
+    - matka
+    status_zawodowy:
+    - zlecenie_bez_chorobowego
+    - dzielo
+    - jdg_bez_chorobowego
+    - bezrobotna
+    - studentka
+    warunki:
+    - Brak prawa do zasiłku macierzyńskiego.
+    - Matka i ojciec nie mogą pobierać go jednocześnie na to samo dziecko.
+  etap: do_3_miesiecy
+  termin:
+    od: porod
+    limit: 3 miesiące
+    skutek_spoznienia: 'Wniosek w ciągu 3 miesięcy od urodzenia – świadczenie od miesiąca narodzin. Później – dopiero
+      od miesiąca złożenia wniosku. Okres świadczenia (np. 52 tygodnie) liczy się od dnia porodu, więc miesiące
+      sprzed wniosku przepadają – ok. 1000 zł za każdy.
+
+      '
+  kwota:
+    opis: 1000 zł miesięcznie, niezależnie od dochodu (za niepełny miesiąc proporcjonalnie do liczby dni)
+    okres:
+      jedno_dziecko: 52 tygodnie
+      dwoje: 65 tygodni
+      troje: 67 tygodni
+      czworo: 69 tygodni
+      piecioro_i_wiecej: 71 tygodni
+    wydluzenie: 'Za pobyt dziecka w szpitalu po porodzie okres wydłuża się o tydzień za każdy tydzień pobytu: do
+      15 tygodni (urodzenie przed 28. tygodniem ciąży albo masa do 1000 g) albo do 8 tygodni (pozostałe przypadki
+      opisane na stronie). Wniosek o wydłużenie – najpóźniej do końca miesiąca następującego po okresie podstawowym;
+      potrzebne zaświadczenie ze szpitala.
+
+      '
+    uwagi: 'Jedno świadczenie bez względu na liczbę dzieci. Matka pobierająca zasiłek dla bezrobotnych dostaje różnicę
+      między 1000 zł a zasiłkiem netto.
+
+      '
+  jak_zlozyc:
+    kanaly:
+    - portal Emp@tia
+    - urząd gminy lub ośrodek pomocy społecznej
+    - pocztą
+    uwagi: 'Emp@tia wymaga profilu zaufanego albo podpisu kwalifikowanego. Wniosek rozpatruje gmina właściwa dla
+      miejsca zamieszkania (urząd miasta lub gminy, ośrodek pomocy społecznej, centrum świadczeń). Decyzja w ciągu
+      miesiąca, w trudnych sprawach – dwóch. Potrzebne: numery PESEL, e-mail, numer rachunku. Odwołanie w 14 dni
+      do samorządowego kolegium odwoławczego.
+
+      '
+  zrodlo:
+  - https://www.gov.pl/web/gov/uzyskaj-swiadczenie-rodzicielskie
+  - https://api.sejm.gov.pl/eli/acts/DU/2026/1240/text.pdf
+  weryfikacja: potwierdzone
+  sprawdzono: 2026-11-20
+  do_sprawdzenia: []
+  ojciec:
+    opis: W pierwszej kolejności świadczenie należy się matce. Ojciec dostaje je w trzech sytuacjach.
+    sytuacje:
+    - Matka skróciła (na swój wniosek) pobieranie świadczenia rodzicielskiego albo zasiłku macierzyńskiego – po
+      wykorzystaniu co najmniej 14 tygodni od urodzenia dziecka.
+    - Matka zmarła.
+    - Matka porzuciła dziecko.
+    termin: 3 miesiące na wniosek liczy się wtedy od dnia skrócenia, śmierci matki albo porzucenia dziecka.
+  wylaczenia:
+  - Choć jedno z rodziców pobiera zasiłek macierzyński (także za urlop rodzicielski lub uzupełniający urlop macierzyński).
+  - Nie opiekujesz się dzieckiem osobiście – także wtedy, gdy praca na to nie pozwala.
+  - Dziecko jest w pieczy zastępczej.
+  - Na to samo dziecko jest już przyznane: świadczenie rodzicielskie, dodatek do zasiłku rodzinnego za urlop wychowawczy,
+      świadczenie pielęgnacyjne, specjalny zasiłek opiekuńczy albo zasiłek dla opiekuna.
+  - Podobne świadczenie przysługuje za granicą (chyba że przepisy o koordynacji stanowią inaczej).
+- id: becikowe
+  nazwa: Jednorazowa zapomoga z tytułu urodzenia dziecka („becikowe”)
+  typ: swiadczenie
+  instytucja: gmina
+  dla_kogo:
+    rola:
+    - matka
+    - ojciec
+    - opiekun
+    status_zawodowy: wszystkie
+    warunki:
+    - Dochód na osobę w rodzinie nie przekracza 1922 zł netto miesięcznie.
+    - Matka była pod opieką medyczną najpóźniej od 10. tygodnia ciąży do porodu (zaświadczenie od lekarza lub położnej).
+  etap: do_12_miesiecy
+  termin:
+    od: porod
+    limit: 12 miesięcy
+    skutek_spoznienia: Wniosek nie zostanie rozpatrzony, świadczenie przepada.
+  kwota:
+    opis: 1000 zł jednorazowo
+  jak_zlozyc:
+    kanaly:
+    - urząd gminy lub ośrodek pomocy społecznej
+    - portal Emp@tia
+  uwagi_dla_aplikacji: 'Warunek opieki medycznej od 10. tygodnia trzeba pokazać już na etapie ciąży – po porodzie
+    nie da się go nadrobić.
+
+    '
+  zrodlo:
+  - https://www.gov.pl/web/gov/uzyskaj-becikowe
+  weryfikacja: potwierdzone
+  sprawdzono: 2026-11-20
+- id: swiadczenie_800_plus
+  nazwa: Świadczenie wychowawcze 800+
+  typ: swiadczenie
+  instytucja: ZUS
+  dla_kogo:
+    rola:
+    - matka
+    - ojciec
+    - opiekun
+    status_zawodowy: wszystkie
+    warunki:
+    - Niezależne od dochodu. Na każde dziecko do 18. roku życia.
+  etap: do_3_miesiecy
+  termin:
+    od: porod
+    limit: 3 miesiące
+    skutek_spoznienia: 'Po 3 miesiącach od urodzenia świadczenie przysługuje dopiero od miesiąca, w którym wpłynął
+      wniosek. Za wcześniejsze miesiące nie ma wyrównania – tracisz 800 zł za każdy pominięty miesiąc.
+
+      '
+  kwota:
+    opis: '800 zł miesięcznie na dziecko. Za miesiąc urodzenia (i miesiąc 18. urodzin) proporcjonalnie do liczby
+      dni, z zaokrągleniem do 10 groszy w górę. Przy opiece naprzemiennej orzeczonej przez sąd – po połowie dla
+      każdego z rodziców.
+
+      '
+  jak_zlozyc:
+    kanaly:
+    - PUE/eZUS
+    - aplikacja mZUS
+    - bankowość elektroniczna
+    - portal Emp@tia
+    uwagi: 'Tylko elektronicznie. Rodzic składa wniosek SW-R. Przez mZUS, bank i Emp@tię wniosek złoży tylko rodzic
+      z numerem PESEL; opiekunowie (SW-O) i dyrektorzy placówek (SW-D) – tylko przez eZUS. Jeśli składasz przez
+      bank albo Emp@tię i nie masz konta eZUS, ZUS założy je sam na podstawie danych z wniosku. ZUS nie wydaje decyzji
+      o przyznaniu – informacja trafia na eZUS i e-mailem.
+
+      '
+  odnowienie:
+    opis: 'Okres świadczeniowy trwa od 1 czerwca do 31 maja. Wniosek na kolejny okres składa się co roku, od 1 lutego.
+      Wniosek złożony do 30 czerwca daje prawo od 1 czerwca. Po 30 czerwca – dopiero od miesiąca złożenia wniosku.
+
+      '
+    terminy:
+    - Wniosek od 1 lutego do 30 kwietnia – wypłata do 30 czerwca.
+    - Wniosek w maju – wypłata z wyrównaniem za czerwiec do 31 lipca.
+    - Wniosek w czerwcu – wypłata z wyrównaniem za czerwiec do 31 sierpnia.
+    - Wniosek w lipcu – świadczenie tylko od lipca (czerwiec przepada, 800 zł na dziecko), wypłata do 30 września.
+    - Wniosek w sierpniu – świadczenie tylko od sierpnia (czerwiec i lipiec przepadają), wypłata do 31 października.
+    automatyczne_odnawianie:
+      stan: projekt ustawy – jeszcze NIE uchwalony (stan na 2026-11-18)
+      opis: 'Rada Ministrów przyjęła 20.10.2026 projekt ustawy o automatycznym odnawianiu 800+ bez corocznego wniosku.
+        Projekt jest w Sejmie (druk nr 3267, wpłynął 21.10.2026, I czytanie w komisjach 17.11.2026). Planowany start:
+        okres świadczeniowy 2027/2028, czyli od 1 czerwca 2027. Pierwszy wniosek na nowo narodzone dziecko nadal
+        będzie potrzebny. Do czasu uchwalenia ustawy obowiązuje coroczny wniosek (na okres 2027/2028 trzeba śledzić,
+        czy ustawa weszła w życie).
+
+        '
+  zrodlo:
+  - https://www.zus.pl/swiadczenia/swiadczenia-dla-rodzin/swiadczenie-wychowawcze-800-plus
+  - https://api.sejm.gov.pl/eli/acts/DU/2026/508/text.pdf
+  - https://www.gov.pl/web/rodzina/rodzicu-koniec-ze-skladaniem-wnioskow-o-800-kazdego-roku
+  - https://api.sejm.gov.pl/sejm/term10/processes/3267
+  weryfikacja: potwierdzone
+  sprawdzono: 2026-11-20
+  do_monitorowania:
+  - Przed 1 lutego 2027 sprawdzić, czy ustawa o automatycznym odnawianiu (druk sejmowy 3267) została uchwalona i
+    od kiedy działa.
+  do_sprawdzenia: []
+- id: aktywnie_w_domu
+  nazwa: Aktywny Rodzic – świadczenie „aktywnie w domu”
+  typ: swiadczenie
+  instytucja: ZUS
+  dla_kogo:
+    rola:
+    - matka
+    - ojciec
+    - opiekun
+    status_zawodowy: wszystkie
+    warunki:
+    - Dziecko mieszka z Tobą i jest na Twoim utrzymaniu. Mieszkasz w Polsce.
+    - Dziecko w wieku od 12. do 35. miesiąca – od pierwszego dnia miesiąca, w którym kończy 12 miesięcy, do końca
+      miesiąca przed ukończeniem 36. miesiąca.
+    - Bez względu na dochód i bez warunku pracy.
+    - Z opiekunów tylko opiekun faktyczny (złożył do sądu wniosek o adopcję). Nie przysługuje, gdy dziecko jest
+      w pieczy zastępczej. Opiekun prawny nie może złożyć wniosku.
+    - Na to samo dziecko w danym miesiącu tylko jedno świadczenie z programu Aktywny Rodzic. Można je zmieniać wielokrotnie.
+    - Nie przysługuje obywatelom Ukrainy ze statusem UKR.
+  etap: od_12_do_36_miesiecy
+  termin:
+    od: ukonczenie_12_miesiecy
+    limit: Wniosek najwcześniej w miesiącu, w którym dziecko kończy 12. miesiąc. Najlepiej złożyć go w tym właśnie
+      miesiącu.
+    skutek_spoznienia: 'Świadczenie przysługuje od miesiąca, w którym wpłynął wniosek. Nie ma wyrównania wstecz
+      i nie ma tu reguły „3 miesięcy”. Każdy miesiąc zwłoki to 500 zł mniej.
+
+      '
+  kwota:
+    opis: 500 zł miesięcznie na dziecko (250 zł dla każdego z rodziców przy opiece naprzemiennej orzeczonej przez
+      sąd)
+    uwagi: 'Kwota taka sama dla dziecka z niepełnosprawnością. Za niepełny miesiąc wypłacana w całości. Bez podatku
+      i składek. Nie można wybrać 1000 zł przez 12 miesięcy, jak przy dawnym RKO.
+
+      '
+    limit_laczny: Jeśli na dziecko pobierano wcześniej rodzinny kapitał opiekuńczy (RKO), RKO i „aktywnie w domu”
+      razem nie mogą przekroczyć 12 000 zł.
+  jak_zlozyc:
+    kanaly:
+    - PUE/eZUS
+    - aplikacja mZUS
+    - bankowość elektroniczna
+    - portal Emp@tia
+    uwagi: 'Tylko elektronicznie – wniosków papierowych ZUS nie rozpatruje. Pieniądze idą na rachunek bankowy podany
+      we wniosku. Korespondencja i decyzje tylko przez eZUS. Kto składa przez bank albo Emp@tię i nie ma konta eZUS,
+      temu ZUS zakłada je sam.
+
+      '
+  zrodlo:
+  - https://www.zus.pl/aktywnyrodzic/wiadczenie-aktywnie-w-domu
+  - https://www.zus.pl/aktywnyrodzic
+  - https://www.zus.pl/baza-wiedzy/aktywnyrodzic/pytania-i-odpowiedzi
+  - https://api.sejm.gov.pl/eli/acts/DU/2026/532/text.pdf
+  - https://www.zus.pl/mzus
+  weryfikacja: potwierdzone
+  sprawdzono: 2026-11-20
+  do_sprawdzenia: []
+  wylaczenia:
+  - Rodzic pozbawiony władzy rodzicielskiej.
+  - Dziecko w pieczy zastępczej.
+  - Na to samo dziecko za ten sam miesiąc przyznano „aktywni rodzice w pracy” albo „aktywnie w żłobku”.
+  - Na dziecko przysługuje podobne świadczenie za granicą (nie dotyczy państw UE/EFTA i Wielkiej Brytanii).
+  - Strona ZUS nie wymienia zasiłku macierzyńskiego jako przeszkody. Świadczenia z programu można łączyć z 800+
+    i świadczeniami rodzinnymi.
+- id: aktywni_rodzice_w_pracy
+  nazwa: Aktywny Rodzic – świadczenie „aktywni rodzice w pracy”
+  typ: swiadczenie
+  instytucja: ZUS
+  dla_kogo:
+    rola:
+    - matka
+    - ojciec
+    - opiekun
+    status_zawodowy:
+    - etat
+    - zlecenie_z_chorobowym
+    - zlecenie_bez_chorobowego
+    - jdg_z_chorobowym
+    - jdg_bez_chorobowego
+    - rolnik_krus
+    warunki:
+    - Dziecko w wieku od 12. do 35. miesiąca (od pierwszego dnia miesiąca, w którym kończy 12 miesięcy, do końca
+      miesiąca przed ukończeniem 36. miesiąca).
+    - Dziecko NIE chodzi do żłobka, klubu dziecięcego, przedszkola ani do dziennego opiekuna.
+    - Oboje rodzice (albo rodzic i osoba, z którą wspólnie wychowuje dziecko) są aktywni zawodowo – łączna podstawa
+      składek emerytalno-rentowych co najmniej 100% minimalnego wynagrodzenia.
+    - Każde z nich osobno – podstawa co najmniej 50% minimalnego wynagrodzenia, a 30% przy działalności na preferencyjnych
+      zasadach (ulga na start, preferencyjne składki, mały ZUS plus).
+    - Rodzic samodzielnie wychowujący dziecko – podstawa co najmniej 100% minimalnego wynagrodzenia (30% z ulgi
+      nie wystarcza).
+    - Minimalne wynagrodzenie od 1 stycznia 2026 – 4806 zł.
+    - Za aktywność liczy się też pobieranie zasiłku macierzyńskiego, chorobowego, opiekuńczego lub świadczenia rehabilitacyjnego
+      – ale nie po ustaniu ubezpieczenia (np. zasiłek macierzyński po zakończeniu umowy się nie liczy).
+    - Ubezpieczenie w KRUS (obowiązkowe albo dobrowolne od co najmniej 12 miesięcy) i służba mundurowa liczą się
+      jak 100% minimalnego wynagrodzenia.
+    - Urlop bezpłatny przez cały miesiąc nie jest aktywnością zawodową.
+    - Z opiekunów – opiekun faktyczny, rodzina zastępcza, prowadzący rodzinny dom dziecka. Opiekun prawny nie może
+      złożyć wniosku.
+    - Nie przysługuje obywatelom Ukrainy ze statusem UKR.
+  etap: od_12_do_36_miesiecy
+  termin:
+    od: ukonczenie_12_miesiecy
+    limit: Wniosek najwcześniej w miesiącu, w którym dziecko kończy 12. miesiąc – wcześniej nie można. Najlepiej
+      złożyć go w tym właśnie miesiącu.
+    skutek_spoznienia: 'Świadczenie przysługuje od miesiąca, w którym wpłynął wniosek. Nie ma wyrównania wstecz.
+      Każdy miesiąc zwłoki to 1500 zł mniej (1900 zł przy dziecku z niepełnosprawnością).
+
+      '
+  kwota:
+    opis: 1500 zł miesięcznie na dziecko; 1900 zł, jeśli dziecko ma orzeczenie o niepełnosprawności z dwoma wskazaniami
+      (stała opieka innej osoby oraz stały współudział opiekuna w leczeniu, rehabilitacji i edukacji)
+    uwagi: 'Kwota miesięczna jest niepodzielna – za niepełny miesiąc należy się cała. Przy opiece naprzemiennej
+      po połowie: 750 zł albo 950 zł. Bez podatku i składek. Orzeczenia nie trzeba dołączać – we wniosku wpisuje
+      się jego numer.
+
+      '
+  jak_zlozyc:
+    kanaly:
+    - PUE/eZUS
+    - aplikacja mZUS
+    - bankowość elektroniczna
+    - portal Emp@tia
+    uwagi: 'Tylko elektronicznie. We wniosku składasz oświadczenie, czy wychowujesz dziecko sam(a), czy z drugą
+      osobą, i podajesz jej dane oraz dane o jej pracy. Nie trzeba rozliczać, na co poszły pieniądze, ani pokazywać
+      umowy z nianią.
+
+      '
+  zrodlo:
+  - https://www.zus.pl/aktywnyrodzic/swiadczenie-aktywni-rodzice-w-pracy
+  - https://www.zus.pl/baza-wiedzy/aktywnyrodzic/pytania-i-odpowiedzi
+  - https://www.zus.pl/baza-wiedzy/skladki-wskazniki-odsetki/wskazniki/minimalne-i-przecietne-wynagrodzenie
+  - https://api.sejm.gov.pl/eli/acts/DU/2026/532/text.pdf
+  - https://www.zus.pl/mzus
+  weryfikacja: potwierdzone
+  sprawdzono: 2026-11-20
+  przerwa_w_aktywnosci: 'Gdy Ty albo drugi rodzic przestajecie spełniać warunek aktywności, świadczenie przysługuje
+    jeszcze do końca następnego miesiąca. Z tej ochrony można skorzystać 2 razy na dane dziecko. Przy kolejnej przerwie
+    prawo wygasa i potrzebny jest nowy wniosek. ZUS sprawdza warunek co miesiąc. Zwolnienie lekarskie i opieka nad
+    chorym dzieckiem nie przerywają prawa.
+
+    '
+  do_monitorowania:
+  - Minimalne wynagrodzenie na 2027 r. – strona ZUS podaje na razie tylko 4806 zł od 1.01.2026. Progi 50% i 30%
+    (2403 zł i 1441,80 zł) to własne wyliczenie z tej kwoty.
+  - Jak ZUS liczy pracę drugiego rodzica za granicą (strona pytań i odpowiedzi – „na etapie uzgodnień z MRPiPS”).
+  do_sprawdzenia: []
+- id: aktywnie_w_zlobku
+  nazwa: Aktywny Rodzic – świadczenie „aktywnie w żłobku”
+  typ: swiadczenie
+  instytucja: ZUS
+  dla_kogo:
+    rola:
+    - matka
+    - ojciec
+    - opiekun
+    status_zawodowy: wszystkie
+    warunki:
+    - Dziecko chodzi do żłobka lub klubu dziecięcego wpisanego do rejestru albo jest pod opieką dziennego opiekuna
+      z wykazu. Przedszkole się nie liczy.
+    - Bez względu na dochód i bez warunku pracy.
+    - Opłata za pobyt (bez wyżywienia) nie przekracza 2200 zł miesięcznie – przy wyższej opłacie świadczenie nie
+      przysługuje wcale.
+    - Także opiekun prawny, rodzina zastępcza i inne osoby, którym sąd powierzył opiekę nad dzieckiem.
+    - Na to samo dziecko w danym miesiącu tylko jedno świadczenie z programu Aktywny Rodzic.
+  etap: do_12_miesiecy
+  termin:
+    od: rozpoczecie_uczeszczania_do_zlobka
+    limit: 2 miesiące
+    skutek_spoznienia: 'Wniosek w ciągu 2 miesięcy od pierwszego dnia w żłobku – świadczenie od tego dnia. Później
+      – dopiero od miesiąca złożenia wniosku. Za wcześniejsze miesiące płacisz pełną opłatę sam(a): strata do 1500
+      zł (1900 zł) za każdy miesiąc.
+
+      '
+  kwota:
+    opis: do 1500 zł miesięcznie na dziecko (do 1900 zł przy orzeczeniu o niepełnosprawności z dwoma wskazaniami),
+      nie więcej niż opłata rodzica za pobyt dziecka – bez wyżywienia
+    sposob_wyplaty: 'Pieniądze NIE trafiają do rodzica. ZUS przelewa je na rachunek żłobka, klubu dziecięcego albo
+      dziennego opiekuna, do 20. dnia miesiąca za miesiąc poprzedni. Rodzic płaci placówce odpowiednio mniej.
+
+      '
+    uwagi: Kwota nie zależy od dnia miesiąca, w którym dziecko zaczęło chodzić do żłobka – liczy się opłata wpisana
+      przez placówkę do rejestru.
+  zrodlo:
+  - https://www.zus.pl/aktywnyrodzic/wiadczenie-aktywnie-w-zlobku
+  - https://www.zus.pl/aktywnyrodzic
+  - https://www.zus.pl/baza-wiedzy/aktywnyrodzic/pytania-i-odpowiedzi
+  - https://api.sejm.gov.pl/eli/acts/MP/2026/318/text.pdf
+  weryfikacja: potwierdzone
+  sprawdzono: 2026-11-20
+  jak_zlozyc:
+    kanaly:
+    - PUE/eZUS
+    - aplikacja mZUS
+    - bankowość elektroniczna
+    - portal Emp@tia
+    uwagi: 'Tylko elektronicznie. Wniosek składa rodzic, najwcześniej w dniu, w którym dziecko zaczyna chodzić do
+      placówki. Okres uczęszczania i opłatę ZUS pobiera sam z rejestru żłobków – placówka uzupełnia dane co miesiąc.
+
+      '
+  do_monitorowania:
+  - Limit opłaty 2200 zł obowiązuje do 31 marca 2027 – nowy limit minister ogłasza w Monitorze Polskim do 31 marca.
+  do_sprawdzenia: []
+- id: przejecie_urlopu_przez_ojca
+  nazwa: Ojciec przejmuje część urlopu macierzyńskiego i zasiłku
+  typ: uprawnienie
+  instytucja: ZUS
+  dla_kogo:
+    rola:
+    - oboje
+    status_zawodowy:
+    - etat
+    - zlecenie_z_chorobowym
+    - jdg_z_chorobowym
+    warunki:
+    - Matka wykorzystała po porodzie co najmniej 14 tygodni zasiłku macierzyńskiego i rezygnuje z reszty.
+    - Ojciec ma ubezpieczenie chorobowe. Na etacie bierze resztę urlopu macierzyńskiego; na zleceniu albo z działalnością
+      musi przerwać pracę zarobkową, żeby opiekować się dzieckiem.
+    - Ojciec przejmuje zasiłek od dnia następnego po rezygnacji matki. Łączny okres obojga nie może przekroczyć
+      20, 31, 33, 35 albo 37 tygodni.
+    - Już po 8 tygodniach ojciec może przejąć zasiłek, gdy matka leży w szpitalu (tylko na czas jej pobytu), ma
+      orzeczenie o niezdolności do samodzielnej egzystencji albo porzuciła dziecko. Może go wtedy przejąć także
+      inny ubezpieczony członek najbliższej rodziny.
+    - Gdy matka umrze, ojciec albo inny ubezpieczony członek najbliższej rodziny dostaje zasiłek za pozostały okres.
+    - Gdy nieubezpieczona matka podejmie pracę na co najmniej pół etatu, ubezpieczony ojciec może pobierać zasiłek
+      od tego dnia do końca wymiaru liczonego od porodu.
+  etap: do_3_miesiecy
+  termin:
+    od: porod
+    limit: Matka na etacie – wniosek o rezygnację z urlopu najpóźniej 7 dni przed powrotem do pracy. Ojciec na etacie
+      – wniosek o urlop najpóźniej 14 dni przed jego początkiem. Pracodawcy muszą oba wnioski uwzględnić.
+    skutek_spoznienia: null
+  kwota:
+    opis: Zasiłek macierzyński za pozostałą część urlopu macierzyńskiego. Ojciec przedstawia zaświadczenie o stawce
+      procentowej, w jakiej zasiłek pobierała matka.
+    okres: Część urlopu macierzyńskiego, która została po rezygnacji matki.
+  jak_zlozyc:
+    kanaly:
+    - pracodawca
+    - zleceniodawca
+    - PUE/eZUS
+    uwagi: 'Matka składa oświadczenie, od kiedy ojciec przejmie zasiłek; poza etatem – pisemny wniosek z datą rezygnacji.
+      Ojciec dołącza zaświadczenie płatnika zasiłku matki (okres pobierania, okres przysługujący i stawka procentowa),
+      dane dziecka i dane matki. Formularze ZUS: ZAS-23 (wniosek o skrócenie lub wstrzymanie okresu wypłaty zasiłku
+      macierzyńskiego), ZAM (wniosek o zasiłek macierzyński), ZAS-24 (zaświadczenie o okresach wypłaconego lub przysługującego
+      zasiłku macierzyńskiego).'
+  powiazane:
+  - zasilek_macierzynski_urlop_macierzynski
+  - zasilek_opiekunczy
+  zrodlo:
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-macierzynski/prawo-do-zasilku-i-okres-przyslugiwania/za-okres-urlopu-macierzynskiego-albo-urlopu-na-warunkach-urlopu-macierzynskiego
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-macierzynski/niezbedne-dokumenty
+  - https://www.zus.pl/wzory-formularzy/zasilki/zasilek-macierzynski
+  - https://api.sejm.gov.pl/eli/acts/DU/1999/636/text/U/D19990636Lj.pdf
+  - https://api.sejm.gov.pl/eli/acts/DU/1974/141/text/U/D19740141Lj.pdf
+  weryfikacja: czesciowo
+  sprawdzono: 2026-11-20
+  do_sprawdzenia:
+  - Lista formularzy ZUS nie mówi wprost, który formularz składa ojciec i kto wystawia ZAS-24 – przypisanie wynika
+    z nazw formularzy.
+  - Stawka dla ojca (100% czy 81,5%) i to, czy zasiłek liczy się od podstawy wymiaru ojca – źródła nie mówią tego
+    wprost; wiadomo tylko, że ojciec przedstawia stawkę procentową matki.
+  - Terminy dla matki i ojca spoza etatu (zlecenie, działalność) – źródła podają je tylko dla pracowników.
+- id: zasilek_po_ustaniu_ubezpieczenia
+  nazwa: Umowa kończy się w ciąży – zasiłek macierzyński po ustaniu ubezpieczenia
+  typ: swiadczenie
+  instytucja: ZUS
+  dla_kogo:
+    rola:
+    - matka
+    status_zawodowy:
+    - etat
+    - zlecenie_z_chorobowym
+    warunki:
+    - Zasiłek macierzyński dostaje osoba, która w dniu porodu ma ubezpieczenie chorobowe. Wyjątki od tej zasady
+      są wymienione niżej.
+    - Umowa o pracę na czas określony albo na okres próbny dłuższy niż miesiąc, która skończyłaby się po upływie
+      3. miesiąca ciąży, przedłuża się z mocy prawa do dnia porodu. Po porodzie zasiłek macierzyński wypłaca ZUS.
+    - Przedłużenie nie dotyczy umowy na zastępstwo nieobecnego pracownika ani okresu próbnego do miesiąca.
+    - Pracodawca zmarł, ogłosił upadłość albo został zlikwidowany, a pracownicy w ciąży nie zapewniono innej pracy
+      – do dnia porodu przysługuje „zasiłek w wysokości zasiłku macierzyńskiego”, a od porodu zasiłek macierzyński.
+    - Zwolnienie z pracy w ciąży z naruszeniem prawa, stwierdzone prawomocnym wyrokiem sądu – zasiłek macierzyński
+      przysługuje mimo ustania ubezpieczenia.
+    - Zlecenie, które kończy się w ciąży, nie przedłuża się do porodu i ustawa nie daje wtedy zasiłku macierzyńskiego
+      po ustaniu ubezpieczenia. Bez ubezpieczenia chorobowego w dniu porodu zostaje świadczenie rodzicielskie z
+      gminy.
+    - Zwolnienie lekarskie rozpoczęte przed końcem umowy – zasiłek chorobowy przysługuje dalej po ustaniu ubezpieczenia,
+      a w ciąży nie obowiązuje limit 91 dni. Nie przysługuje, gdy przed końcem umowy nie minął okres wyczekiwania,
+      gdy podejmiesz inną pracę dającą ubezpieczenie chorobowe albo masz prawo do zasiłku dla bezrobotnych.
+  etap: ciaza
+  termin:
+    od: porod
+    limit: 6 miesięcy od ostatniego dnia okresu, za który zasiłek przysługuje
+    skutek_spoznienia: Po tym terminie zasiłek przepada (roszczenie się przedawnia).
+  kwota:
+    opis: Zasiłek macierzyński na zwykłych zasadach – 100% podstawy wymiaru za okres urlopu macierzyńskiego albo
+      81,5% po złożeniu wniosku w 21 dni po porodzie. Zasiłek w wysokości zasiłku macierzyńskiego (do dnia porodu)
+      – 100% podstawy wymiaru, bez dopłaty do 1000 zł.
+    okres: Jak przy urlopie macierzyńskim (20–37 tygodni). Zasiłek za okres urlopu rodzicielskiego także, jeśli
+      następuje bezpośrednio po macierzyńskim.
+  jak_zlozyc:
+    kanaly:
+    - PUE/eZUS
+    - placówka ZUS
+    uwagi: Zasiłki za okres po ustaniu ubezpieczenia zawsze wypłaca ZUS. Zasiłek w wysokości zasiłku macierzyńskiego
+      – wniosek ZAS-55, zaświadczenie lekarskie (zwykły druk) o ciąży w czasie zatrudnienia, świadectwo pracy albo
+      inny dokument o przyczynie rozwiązania umowy, oświadczenie, że nie zapewniono innej pracy. Zasiłek macierzyński
+      po porodzie – wniosek o zasiłek macierzyński (formularz ZAM), zaświadczenie o ciąży w czasie zatrudnienia,
+      świadectwo pracy albo prawomocny wyrok sądu, dane dziecka. Wniosek o zasiłek za okres urlopu rodzicielskiego
+      trzeba złożyć przed pierwszym dniem tego okresu.
+  powiazane:
+  - zasilek_macierzynski_urlop_macierzynski
+  - zasilek_chorobowy_w_ciazy
+  - swiadczenie_rodzicielskie
+  zrodlo:
+  - https://api.sejm.gov.pl/eli/acts/DU/1974/141/text/U/D19740141Lj.pdf
+  - https://api.sejm.gov.pl/eli/acts/DU/1999/636/text/U/D19990636Lj.pdf
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-macierzynski/prawo-do-zasilku-i-okres-przyslugiwania/za-okres-urlopu-macierzynskiego-albo-urlopu-na-warunkach-urlopu-macierzynskiego
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-macierzynski/niezbedne-dokumenty
+  - https://www.zus.pl/wzory-formularzy/zasilki/zasilek-macierzynski
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-macierzynski/wysokosc
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-chorobowy/z-ubezpieczenia-chorobowego/prawo-do-zasilku-i-okres-przyslugiwania
+  - https://www.zus.pl/documents/10182/167567/1184_26+Poradnik+dla+rodzic%C3%B3w.pdf/9378de60-151e-9b9f-ba65-abdf41d9f5b4
+  - https://www.zus.pl/documents/10182/24202/Komentarz+do+ustawy+o+%C5%9Bwiadczeniach+pieni%C4%99%C5%BCnych+z+ubezpieczenia+spo%C5%82ecznego+w+razie+choroby+i+macierzy%C5%84stwa+kwiecie%C5%84+2022.pdf/7a31a278-8c06-cee4-3542-1d5bb8b36ad6
+  weryfikacja: czesciowo
+  sprawdzono: 2026-11-20
+  do_sprawdzenia:
+  - Zlecenie kończące się w ciąży – wniosek z zamkniętej listy w art. 30 ustawy i z warunku ubezpieczenia w dniu
+    porodu; ZUS nie opisuje tego przypadku wprost. Potwierdzić w ZUS (mama@zus.pl, infolinia 22 560 16 00).
+  - Stawka 100% zasiłku w wysokości zasiłku macierzyńskiego oraz prawo do zasiłku za okres urlopu rodzicielskiego
+    po ustaniu ubezpieczenia – z Komentarza ZUS z 2023 r. (pkt 103 i 134).
+  - Czy podstawa wymiaru zasiłku macierzyńskiego po ustaniu ubezpieczenia jest ograniczona do 100% przeciętnego
+    wynagrodzenia – strona ZUS o podstawie wymiaru tak podaje, ale art. 47 i 52 ustawy nie odsyłają do art. 46.
+    Sprzeczność do wyjaśnienia.
+  - Czy pobieranie zasiłku chorobowego po ustaniu zlecenia daje w dniu porodu prawo do zasiłku macierzyńskiego (z
+    przepisów wynika, że nie – nie potwierdzono w ZUS).
+- id: jdg_dobrowolne_chorobowe
+  nazwa: Dobrowolne ubezpieczenie chorobowe przy działalności gospodarczej – warunek zasiłków
+  typ: decyzja
+  instytucja: ZUS
+  dla_kogo:
+    rola:
+    - matka
+    - ojciec
+    status_zawodowy:
+    - jdg_bez_chorobowego
+    - jdg_z_chorobowym
+    warunki:
+    - Do ubezpieczenia chorobowego może przystąpić tylko osoba, która z działalności obowiązkowo opłaca składki
+      emerytalne i rentowe. Na „uldze na start” nie ma takiej możliwości.
+    - Nie można zgłosić się wstecz. Ubezpieczenie działa od dnia wskazanego w zgłoszeniu ZUS ZUA, nie wcześniej
+      niż od dnia jego złożenia.
+    - Wyjątek – zgłoszenie złożone w ciągu 7 dni od rozpoczęcia działalności obejmuje ubezpieczeniem od pierwszego
+      dnia działalności.
+    - Zasiłek macierzyński nie ma okresu wyczekiwania. Przysługuje nawet wtedy, gdy dziecko urodzi się dzień po
+      zgłoszeniu do ubezpieczenia.
+    - Zasiłek chorobowy ma okres wyczekiwania 90 dni – także w ciąży.
+    - Zaległość w składkach powyżej 1% minimalnego wynagrodzenia wstrzymuje zasiłek. Po spłacie całości w ciągu
+      6 miesięcy ZUS wypłaci go za cały okres; później prawo przepada.
+    - ZUS może sprawdzić, czy działalność była faktycznie prowadzona. Jeśli nie – wyda decyzję o niepodleganiu ubezpieczeniom.
+    - W czasie zasiłku macierzyńskiego matka nie musi zawieszać działalności. Obowiązek przerwania pracy zarobkowej
+      dotyczy ojca, który przejmuje zasiłek po matce.
+  etap: planowanie
+  termin:
+    od: null
+    limit: Zgłoszenie ZUS ZUA przed dniem porodu – ubezpieczenie musi trwać w dniu porodu.
+    skutek_spoznienia: Brak zasiłku macierzyńskiego. Zostaje świadczenie rodzicielskie z gminy – 1000 zł miesięcznie.
+  kwota:
+    skladka: 2,45% zadeklarowanej podstawy wymiaru; podstawa składki chorobowej nie może przekroczyć 250% prognozowanego
+      przeciętnego wynagrodzenia miesięcznie.
+    podstawa_zasilku: Przeciętna miesięczna kwota, od której opłacano składkę chorobową, z 12 miesięcy kalendarzowych
+      przed miesiącem powstania prawa do zasiłku, pomniejszona o 13,71%. Jeśli zasiłek macierzyński następuje po
+      zasiłku chorobowym bez przerwy albo z przerwą krótszą niż miesiąc kalendarzowy, podstawy nie liczy się na
+      nowo.
+    krotki_okres_ubezpieczenia: Ubezpieczenie krótsze niż 12 miesięcy – podstawa zasiłku to najniższa podstawa wymiaru
+      składek (po odliczeniu 13,71%) plus tylko 1/12 nadwyżki ponad tę najniższą podstawę za każdy pełny miesiąc
+      ubezpieczenia. Jedna wysoka składka tuż przed porodem prawie nie podnosi zasiłku. Poród w pierwszym, niepełnym
+      miesiącu ubezpieczenia – podstawą jest najniższa podstawa wymiaru składek po odliczeniu 13,71%. Wyjątek –
+      jeśli ubezpieczenie zaczęło się najpóźniej 30 dni po ustaniu ubezpieczenia chorobowego z innego tytułu (np.
+      z etatu), dolicza się pełne miesiące z poprzedniego tytułu, łącznie do 12.
+    minimum: Jeśli zasiłek po odliczeniu zaliczki na podatek jest niższy niż 1000 zł miesięcznie, ZUS dopłaca różnicę.
+    stawka_zasilku: Jak dla wszystkich – 100% podstawy za okres urlopu macierzyńskiego i 70% za rodzicielski albo
+      81,5% po wniosku złożonym w 21 dni po porodzie.
+    skladki_w_czasie_zasilku: Od pierwszego dnia zasiłku ustaje obowiązek składek emerytalnej i rentowych z działalności
+      oraz dobrowolne ubezpieczenie chorobowe. Z działalności obowiązkowa jest tylko składka zdrowotna. Składki
+      emerytalną i rentowe od kwoty zasiłku finansuje budżet państwa.
+  jak_zlozyc:
+    kanaly:
+    - PUE/eZUS
+    - placówka ZUS
+    uwagi: Przystąpienie – formularz ZUS ZUA. Zasiłek macierzyński – wniosek ZAM; zasiłek
+      chorobowy – wniosek ZAS-53 (Z-3b zlikwidowany od 24.10.2026). Zasiłki przedsiębiorcom zawsze wypłaca ZUS. Po uzyskaniu zasiłku macierzyńskiego – ZUS ZWUA
+      (wyrejestrowanie od pierwszego dnia zasiłku) i ZUS ZZA (samo ubezpieczenie zdrowotne). Po zasiłku – ZUS ZWUA
+      i ponownie ZUS ZUA w ciągu 7 dni od pierwszego dnia bez zasiłku. Po tym terminie ubezpieczenie chorobowe zaczyna
+      się dopiero od dnia zgłoszenia, czyli powstaje przerwa w ubezpieczeniu.
+  powiazane:
+  - zasilek_macierzynski_urlop_macierzynski
+  - zasilek_chorobowy_w_ciazy
+  - urlop_ojcowski
+  - swiadczenie_rodzicielskie
+  zrodlo:
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-macierzynski/komu-przysluguje
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-macierzynski/podstawa-wymiaru/dla-ubezpieczonych-niebedacych-pracownikami
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-macierzynski/wysokosc
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-macierzynski/postepowanie-w-sprawie-zasilkow/osoby-podlegajace-dobrowolnemu-ubezpieczeniu-chorobowemu
+  - https://www.zus.pl/pracujacy/system-ubezpieczen-spolecznych-w-polsce/dobrowolne-ubezpieczenia-spoleczne/dobrowolne-ubezpieczenie-chorobowe
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-chorobowy/z-ubezpieczenia-chorobowego/prawo-do-zasilku-i-okres-przyslugiwania
+  - https://www.zus.pl/documents/10182/167567/1184_26+Poradnik+dla+rodzic%C3%B3w.pdf/9378de60-151e-9b9f-ba65-abdf41d9f5b4
+  - https://www.zus.pl/documents/10182/167567/macierzynski_wychowawczy.pdf/8f6c71cf-bf01-43e9-83b4-a52551029a23
+  - https://api.sejm.gov.pl/eli/acts/DU/1999/636/text/U/D19990636Lj.pdf
+  weryfikacja: czesciowo
+  sprawdzono: 2026-11-20
+  do_sprawdzenia:
+  - Kwoty w złotych na 2026 r. – najniższa podstawa wymiaru składek (60% prognozowanego przeciętnego wynagrodzenia,
+    preferencyjna 30% minimalnego), limit 250% i wysokość składki. Nie odczytano; nie wpisywać z pamięci.
+  - Wysokość składki zdrowotnej w czasie zasiłku macierzyńskiego i ewentualne zwolnienie z niej przy niskim zasiłku
+    – nie sprawdzono.
+  - Prowadzenie działalności w czasie zasiłku macierzyńskiego – potwierdza to poradnik ZUS ze stanem prawnym na
+    1.01.2023 i brak zakazu w ustawie; warto potwierdzić w aktualnym źródle.
+  - Jak przerwa po spóźnionym ZUS ZUA wpływa na okres wyczekiwania na zasiłek chorobowy (art. 4 ust. 2 ustawy –
+    przerwa do 30 dni nie szkodzi; okres pobierania zasiłku macierzyńskiego zalicza się do okresu wyczekiwania).
+    Nie rozstrzygnięto – nie pokazywać bez potwierdzenia.
+  - Mały ZUS plus – jak niższa podstawa składek wpływa na zasiłek (nie sprawdzano).
+- id: porod_na_urlopie_wychowawczym
+  nazwa: Poród kolejnego dziecka w czasie urlopu wychowawczego
+  typ: swiadczenie
+  instytucja: ZUS
+  dla_kogo:
+    rola:
+    - matka
+    status_zawodowy:
+    - etat
+    warunki:
+    - Zasiłek macierzyński przysługuje także wtedy, gdy dziecko urodzi się w czasie urlopu wychowawczego – mimo
+      że na tym urlopie nie ma ubezpieczenia chorobowego.
+    - Przysługuje zasiłek za okres urlopu macierzyńskiego i rodzicielskiego. Można wybrać 81,5% – wniosek w 21 dni
+      po porodzie.
+    - Zasiłek chorobowy i opiekuńczy w czasie urlopu wychowawczego nie przysługują – zwolnienie lekarskie w ciąży
+      nie daje wtedy pieniędzy.
+    - Za sam urlop wychowawczy zasiłek macierzyński nie przysługuje – prawo powstaje dopiero z dniem porodu.
+  etap: porod_do_21_dni
+  termin:
+    od: porod
+    limit: 21 dni na wybór wariantu 81,5%; wniosek o zasiłek za okres urlopu rodzicielskiego – przed pierwszym dniem
+      tego okresu
+    skutek_spoznienia: Po 21 dniach zostaje wariant 100% i 70%. Spóźniony wniosek o część rodzicielską – ZUS nie
+      wypłaci zasiłku za ten okres, chyba że opóźnienie nie wynikało z winy matki.
+  kwota:
+    opis: 100% podstawy wymiaru za okres urlopu macierzyńskiego i 70% za rodzicielski albo 81,5% za oba okresy.
+    podstawa: 'Jeśli przez całe 12 miesięcy przed porodem trwał urlop wychowawczy, podstawą jest wynagrodzenie za
+      miesiąc porodu: stała miesięczna pensja z umowy o pracę albo – przy płacy zmiennej – kwota, którą pracownica
+      zarobiłaby za pełny miesiąc; gdy nie da się jej ustalić, minimalne wynagrodzenie (proporcjonalnie do wymiaru
+      etatu).'
+    okres: Jak przy zwykłym zasiłku macierzyńskim (20–37 tygodni) i rodzicielskim (do 41 lub 43 tygodni).
+    minimum: Dopłata do 1000 zł netto na ogólnych zasadach.
+  jak_zlozyc:
+    kanaly:
+    - pracodawca
+    - PUE/eZUS
+    uwagi: Wniosek o zasiłek macierzyński (ZAM) z danymi dziecka. Kto wypłaca – pracodawca (ponad 20 ubezpieczonych)
+      albo ZUS.
+  powiazane:
+  - zasilek_macierzynski_urlop_macierzynski
+  - wybor_wariantu_81_5
+  - zasilek_macierzynski_urlop_rodzicielski
+  zrodlo:
+  - https://api.sejm.gov.pl/eli/acts/DU/1999/636/text/U/D19990636Lj.pdf
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-macierzynski/prawo-do-zasilku-i-okres-przyslugiwania/za-okres-urlopu-macierzynskiego-albo-urlopu-na-warunkach-urlopu-macierzynskiego
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-macierzynski/wysokosc
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-opiekunczy/prawo-do-zasilku-i-okres-przyslugiwania
+  - https://www.zus.pl/documents/10182/167567/1184_26+Poradnik+dla+rodzic%C3%B3w.pdf/9378de60-151e-9b9f-ba65-abdf41d9f5b4
+  - https://www.zus.pl/documents/10182/167567/macierzynski_wychowawczy.pdf/8f6c71cf-bf01-43e9-83b4-a52551029a23
+  - https://www.zus.pl/documents/10182/24202/Komentarz+do+ustawy+o+%C5%9Bwiadczeniach+pieni%C4%99%C5%BCnych+z+ubezpieczenia+spo%C5%82ecznego+w+razie+choroby+i+macierzy%C5%84stwa+kwiecie%C5%84+2022.pdf/7a31a278-8c06-cee4-3542-1d5bb8b36ad6
+  weryfikacja: czesciowo
+  sprawdzono: 2026-11-20
+  do_sprawdzenia:
+  - Podstawa wymiaru (pkt 321), zakres zasiłku (pkt 134, 160) i skutek spóźnionego wniosku o część rodzicielską
+    (pkt 140) pochodzą z Komentarza ZUS z sierpnia 2023 r. – potwierdzić aktualność.
+  - Podstawa wymiaru, gdy urlop wychowawczy trwał krócej niż 12 miesięcy przed porodem – nie odczytano.
+  - Kto wypłaca zasiłek i jaki formularz składa pracownica na urlopie wychowawczym – źródła nie opisują tego przypadku
+    osobno.
+  - Co dzieje się z urlopem wychowawczym po porodzie (przerwanie, powrót) – poza zakresem tej części.
+- id: zasilek_opiekunczy
+  nazwa: Zasiłek opiekuńczy – chore dziecko, zamknięty żłobek, pierwsze tygodnie po porodzie
+  typ: swiadczenie
+  instytucja: ZUS
+  dla_kogo:
+    rola:
+    - matka
+    - ojciec
+    - opiekun
+    status_zawodowy:
+    - etat
+    - zlecenie_z_chorobowym
+    - jdg_z_chorobowym
+    warunki:
+    - Ubezpieczenie chorobowe. Bez okresu wyczekiwania – zasiłek przysługuje od pierwszego dnia ubezpieczenia.
+    - Chore dziecko do 14 lat (zwolnienie e-ZLA na opiekę wystawia lekarz).
+    - Zdrowe dziecko do 8 lat – nieprzewidziane zamknięcie żłobka, klubu dziecięcego, przedszkola lub szkoły (zawiadomienie
+      na mniej niż 7 dni przed zamknięciem), choroba niani albo dziennego opiekuna, izolacja dziecka, a także poród,
+      choroba lub pobyt w szpitalu rodzica, który stale opiekuje się dzieckiem.
+    - Zasiłek dostaje jedno z rodziców – to, które złoży wniosek.
+    - Nie przysługuje, gdy w domu jest inny członek rodziny, który może zająć się dzieckiem. Wyjątek – chore dziecko
+      do 2 lat.
+    - Nie przysługuje w czasie urlopu wychowawczego ani bezpłatnego.
+    - Dodatkowy zasiłek opiekuńczy do 8 tygodni – dla ubezpieczonego ojca albo innego członka najbliższej rodziny,
+      gdy matka pobierająca zasiłek macierzyński w ciągu 8 tygodni po porodzie leży w szpitalu, ma orzeczenie o
+      niezdolności do samodzielnej egzystencji albo porzuciła dziecko. Trzeba przerwać pracę. Przysługuje najdłużej
+      do ukończenia przez dziecko 8 tygodni życia.
+  etap: do_12_miesiecy
+  uwagi_dla_aplikacji: 'Rekord dotyczy kilku etapów: dodatkowy zasiłek – pierwsze 8 tygodni po porodzie; choroba
+    dziecka – cały okres; zamknięty żłobek – głównie od 12. do 36. miesiąca.'
+  termin:
+    od: null
+    limit: 6 miesięcy od ostatniego dnia okresu, za który zasiłek przysługuje
+    skutek_spoznienia: Po tym terminie zasiłek przepada (roszczenie się przedawnia). Samo zwolnienie lekarskie nie
+      wystarczy – trzeba złożyć wniosek.
+  kwota:
+    opis: 80% podstawy wymiaru za każdy dzień opieki, także za dni wolne od pracy. Podstawę liczy się jak przy zasiłku
+      chorobowym.
+    okres:
+      dziecko_zdrowe_do_8_lat_lub_chore_do_14_lat: 60 dni w roku kalendarzowym
+      dziecko_powyzej_14_lat_lub_inny_chory_czlonek_rodziny: 14 dni w roku kalendarzowym
+      dziecko_z_niepelnosprawnoscia_do_18_lat: 30 dni w roku kalendarzowym (chore po 14. roku życia albo – po 8.
+        roku życia – gdy stały opiekun rodzi, choruje lub jest w szpitalu)
+      lacznie: Najwyżej 60 dni w roku na wszystkie dzieci i członków rodziny razem, bez względu na liczbę dzieci
+        i osób uprawnionych.
+      dodatkowy_po_porodzie: Do 8 tygodni; nie wlicza się do limitu 60 ani 14 dni.
+  jak_zlozyc:
+    kanaly:
+    - pracodawca
+    - zleceniodawca
+    - PUE/eZUS
+    uwagi: 'Wniosek Z-15 (od 24.10.2026 zastąpił Z-15A i Z-15B). Przy zamkniętym żłobku lub chorej niani – własne
+      oświadczenie (formularz ZAS-36: opieka nad dzieckiem do 8 lat). Dodatkowy zasiłek po porodzie – oświadczenie
+      ZDO i zaświadczenie o pobycie matki w szpitalu. Gdy płaci ZUS – także zaświadczenie płatnika Z-3 (etat) albo
+      Z-3a (zlecenie). Przedsiębiorca składa wniosek prosto do ZUS, bez zaświadczenia płatnika. Zasiłek wypłaca
+      pracodawca (ponad 20 ubezpieczonych) albo ZUS.'
+  powiazane:
+  - przejecie_urlopu_przez_ojca
+  - zasilek_chorobowy_w_ciazy
+  zrodlo:
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-opiekunczy/prawo-do-zasilku-i-okres-przyslugiwania
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-opiekunczy/wysokosc
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-opiekunczy/niezbedne-dokumenty
+  - https://www.zus.pl/wzory-formularzy/zasilki/zasilek-opiekunczy
+  - https://www.zus.pl/documents/10182/167567/1184_26+Poradnik+dla+rodzic%C3%B3w.pdf/9378de60-151e-9b9f-ba65-abdf41d9f5b4
+  - https://api.sejm.gov.pl/eli/acts/DU/1999/636/text/U/D19990636Lj.pdf
+  weryfikacja: potwierdzone
+  sprawdzono: 2026-11-20
+  do_sprawdzenia: []
+- id: laczenie_urlopu_rodzicielskiego_z_praca
+  nazwa: Łączenie urlopu rodzicielskiego z pracą na część etatu
+  typ: uprawnienie
+  instytucja: pracodawca
+  dla_kogo:
+    rola:
+    - oboje
+    status_zawodowy:
+    - etat
+    warunki:
+    - Praca najwyżej na pół etatu, u pracodawcy, który udzielił urlopu rodzicielskiego. Urlopu udziela się na pozostałą
+      część etatu.
+    - Pracodawca musi się zgodzić, chyba że nie pozwala na to organizacja albo rodzaj pracy. Odmowę z przyczyną
+      przekazuje w ciągu 7 dni od otrzymania wniosku.
+    - Przepisy mówią tylko o pracowniku. Sytuacji osób na zleceniu i z działalnością ten rekord nie opisuje.
+  etap: do_12_miesiecy
+  termin:
+    od: poczatek_urlopu
+    limit: Wniosek u pracodawcy najpóźniej 21 dni przed rozpoczęciem pracy
+    skutek_spoznienia: null
+  kwota:
+    opis: Zasiłek macierzyński zmniejsza się proporcjonalnie do wymiaru pracy (przy pół etatu – o połowę); za pracę
+      pracownik dostaje wynagrodzenie. Za okres, o który urlop się wydłużył, zasiłek jest wypłacany w tej samej,
+      obniżonej kwocie.
+    wydluzenie_urlopu: 'Urlop wydłuża się o liczbę tygodni pracy pomnożoną przez wymiar etatu, na jaki pracujesz.
+      Przykład wyliczony z tego wzoru: 8 tygodni pracy na pół etatu daje 4 dodatkowe tygodnie urlopu. Jeśli wynik
+      nie jest pełnym tygodniem, resztę udziela się w dniach; niepełny dzień się pomija.'
+    limit_lacznego_okresu:
+      jedno_dziecko: 82 tygodnie
+      wiecej_dzieci_przy_jednym_porodzie: 86 tygodni
+      dziecko_z_zaswiadczeniem_za_zyciem_jedno: 130 tygodni
+      dziecko_z_zaswiadczeniem_za_zyciem_wiecej_dzieci: 134 tygodnie
+  jak_zlozyc:
+    kanaly:
+    - pracodawca
+    uwagi: Wniosek w postaci papierowej lub elektronicznej. Podaje się w nim wymiar pracy, okres łączenia i sposób
+      wykorzystania części, o którą urlop się wydłuży. Gdy zasiłek wypłaca ZUS, pracodawca wystawia zaświadczenie
+      o okresie i wymiarze pracy w czasie urlopu.
+  powiazane:
+  - zasilek_macierzynski_urlop_rodzicielski
+  zrodlo:
+  - https://api.sejm.gov.pl/eli/acts/DU/1974/141/text/U/D19740141Lj.pdf
+  - https://api.sejm.gov.pl/eli/acts/DU/1999/636/text/U/D19990636Lj.pdf
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-macierzynski/prawo-do-zasilku-i-okres-przyslugiwania/za-okres-dodatkowego-urlopu-rodzicielskiego
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-macierzynski/wysokosc
+  - https://www.zus.pl/swiadczenia/zasilki/zasilek-macierzynski/niezbedne-dokumenty
+  - https://www.zus.pl/documents/10182/167567/1184_26+Poradnik+dla+rodzic%C3%B3w.pdf/9378de60-151e-9b9f-ba65-abdf41d9f5b4
+  weryfikacja: czesciowo
+  sprawdzono: 2026-11-20
+  do_sprawdzenia:
+  - Czy osoba na zleceniu albo z działalnością może pracować w czasie zasiłku za okres urlopu rodzicielskiego i
+    jak wpływa to na zasiłek – przepisy tego nie regulują, źródła ZUS milczą.
+  - Zawartość wniosku („wymiar pracy i okres łączenia”) – z Komentarza ZUS z 2023 r. (pkt 141) i art. 182(1f) §
+    6 KP.
+- id: zasilek_rodzinny_i_dodatki
+  nazwa: Zasiłek rodzinny z dodatkami (w tym dodatek z tytułu urodzenia dziecka)
+  typ: swiadczenie
+  instytucja: gmina
+  dla_kogo:
+    rola:
+    - matka
+    - ojciec
+    - opiekun
+    status_zawodowy: wszystkie
+    warunki:
+    - Dochód na osobę w rodzinie nie przekracza 674 zł netto miesięcznie (764 zł, gdy w rodzinie jest dziecko z
+      niepełnosprawnością). Liczy się dochód z roku przed okresem zasiłkowym.
+    - Przy niewielkim przekroczeniu progu działa zasada „złotówka za złotówkę” – świadczenia są pomniejszane o kwotę
+      przekroczenia; jeśli wyjdzie mniej niż 20 zł, nie przysługują.
+    - Dodatek z tytułu urodzenia dziecka – tylko razem z zasiłkiem rodzinnym; matka musiała być pod opieką medyczną
+      najpóźniej od 10. tygodnia ciąży do porodu (zaświadczenie od lekarza lub położnej).
+    - Osoba samotnie wychowująca dziecko musi mieć zasądzone alimenty od drugiego rodzica (wyjątki m.in. gdy rodzic
+      nie żyje, ojciec jest nieznany, sąd oddalił powództwo, jest opieka naprzemienna).
+    - Nie przysługuje, gdy dziecko jest w pieczy zastępczej albo w placówce z pełnym utrzymaniem.
+  etap: do_3_miesiecy
+  termin:
+    od: porod
+    limit: 'Zasiłek – bez sztywnego terminu, ale przysługuje dopiero od miesiąca złożenia wniosku. Dodatek z tytułu
+      urodzenia dziecka – wniosek do ukończenia przez dziecko 1. roku życia.
+
+      '
+    skutek_spoznienia: 'Zasiłek i dodatki miesięczne nie są wyrównywane wstecz – każdy miesiąc zwłoki to stracone
+      95 zł zasiłku plus dodatki. Po pierwszych urodzinach dziecka przepada dodatek z tytułu urodzenia – 1000 zł.
+
+      '
+  kwota:
+    opis: 95 zł miesięcznie na dziecko do 5 lat (124 zł w wieku 5–18 lat, 135 zł w wieku 18–24 lat)
+    dodatki:
+      urodzenie_dziecka: 1000 zł jednorazowo na każde dziecko – to inne świadczenie niż becikowe (osobny przepis,
+        warunkiem jest prawo do zasiłku rodzinnego)
+      opieka_w_czasie_urlopu_wychowawczego: 400 zł miesięcznie, do 24 miesięcy (36 przy wieloraczkach, 72 przy dziecku
+        z niepełnosprawnością); wymaga co najmniej 6 miesięcy pracy przed urlopem; nie łączy się z zasiłkiem macierzyńskim
+        ani świadczeniem rodzicielskim
+      samotne_wychowywanie: 193 zł miesięcznie na dziecko, najwyżej 386 zł na wszystkie dzieci (plus 80 zł na dziecko
+        z niepełnosprawnością, najwyżej 160 zł)
+      rodzina_wielodzietna: 95 zł miesięcznie na trzecie i każde kolejne dziecko
+    zlotowka_za_zlotowke: 'Jeśli dochód rodziny przekracza próg (674 zł albo 764 zł razy liczba osób) o kwotę nie
+      większą niż łączna suma należnych zasiłków z dodatkami, rodzina dostaje różnicę między tą sumą a kwotą przekroczenia.
+      Ustala to gmina.
+
+      '
+  okres_zasilkowy:
+    opis: Od 1 listopada do 31 października. Wniosek składa się co roku.
+    terminy:
+    - Wnioski na nowy okres – od 1 lipca przez internet, od 1 sierpnia na papierze.
+    - Wniosek do 31 sierpnia – wypłata do 30 listopada.
+    - Wniosek we wrześniu lub październiku – wypłata do 31 grudnia.
+    - Wniosek w listopadzie lub grudniu – wypłata do końca lutego.
+    - Wniosek w trakcie okresu (np. po urodzeniu dziecka) – zasiłek od miesiąca złożenia do 31 października.
+  jak_zlozyc:
+    kanaly:
+    - portal Emp@tia
+    - urząd gminy lub ośrodek pomocy społecznej
+    - pocztą
+    uwagi: 'Emp@tia wymaga profilu zaufanego albo podpisu kwalifikowanego. Wniosek rozpatruje gmina właściwa dla
+      miejsca zamieszkania. Potrzebne: numery PESEL członków rodziny, dane o dochodach, numer rachunku; przy dodatku
+      z tytułu urodzenia – zaświadczenie o opiece medycznej w ciąży. Decyzja w ciągu miesiąca (w trudnych sprawach
+      – dwóch). O wzroście dochodu ponad próg trzeba zawiadomić urząd.
+
+      '
+  powiazane:
+  - becikowe
+  - swiadczenie_rodzicielskie
+  uwagi_dla_aplikacji: 'Próg 674 zł na osobę jest bardzo niski – rekord pokazywać po pytaniu o dochód. Dodatek z
+    tytułu urodzenia (1000 zł) ma ten sam warunek opieki medycznej od 10. tygodnia ciąży co becikowe.
+
+    '
+  zrodlo:
+  - https://www.gov.pl/web/gov/uzyskaj-zasilek-rodzinny-wraz-z-dodatkami
+  - https://www.gov.pl/web/rodzina/zasilek-rodzinny
+  - https://api.sejm.gov.pl/eli/acts/DU/2024/1238/text.pdf
+  - https://api.sejm.gov.pl/eli/acts/DU/2026/1240/text.pdf
+  weryfikacja: potwierdzone
+  sprawdzono: 2026-11-20
+  do_sprawdzenia: []
+- id: swiadczenie_za_zyciem
+  nazwa: Jednorazowe świadczenie 4000 zł „Za życiem”
+  typ: swiadczenie
+  instytucja: gmina
+  dla_kogo:
+    rola:
+    - matka
+    - ojciec
+    - opiekun
+    status_zawodowy: wszystkie
+    warunki:
+    - Dziecko urodziło się żywe i ma stwierdzone ciężkie i nieodwracalne upośledzenie albo nieuleczalną chorobę
+      zagrażającą życiu, które powstały w okresie prenatalnym lub w czasie porodu.
+    - Zaświadczenie lekarskie potwierdzające ten stan – wystawia lekarz ubezpieczenia zdrowotnego ze specjalizacją
+      II stopnia albo specjalista położnictwa i ginekologii, perinatologii, neonatologii, neurologii dziecięcej,
+      kardiologii dziecięcej lub chirurgii dziecięcej.
+    - Matka była pod opieką medyczną najpóźniej od 10. tygodnia ciąży do porodu (zaświadczenie od lekarza lub położnej).
+      Nie dotyczy opiekunów i rodziców adopcyjnych.
+    - Bez względu na dochód.
+  etap: do_12_miesiecy
+  termin:
+    od: porod
+    limit: 12 miesięcy
+    skutek_spoznienia: Wniosek złożony po terminie nie jest rozpatrywany – świadczenie 4000 zł przepada.
+  kwota:
+    opis: 4000 zł jednorazowo, niezależnie od dochodu
+  jak_zlozyc:
+    kanaly:
+    - portal Emp@tia
+    - urząd gminy lub ośrodek pomocy społecznej
+    - pocztą
+    uwagi: 'Emp@tia wymaga profilu zaufanego albo podpisu kwalifikowanego. Wniosek rozpatruje gmina właściwa dla
+      miejsca zamieszkania. Decyzja w ciągu miesiąca (w trudnych sprawach – dwóch). Odwołanie w 14 dni do samorządowego
+      kolegium odwoławczego. Dla opiekunów i rodziców adopcyjnych termin 12 miesięcy liczy się od objęcia dziecka
+      opieką lub przysposobienia.
+
+      '
+  powiazane:
+  - becikowe
+  uwagi_dla_aplikacji: 'Temat trudny emocjonalnie – pokazywać tylko wtedy, gdy rodzic sam zaznaczy ciężką chorobę
+    lub niepełnosprawność dziecka. Warunek opieki medycznej od 10. tygodnia ciąży jest ten sam co przy becikowym.
+
+    '
+  zrodlo:
+  - https://www.gov.pl/web/gov/uzyskaj-jednorazowe-swiadczenie-w-wysokosci-4000-zl
+  - https://api.sejm.gov.pl/eli/acts/DU/2024/1829/text.pdf
+  weryfikacja: potwierdzone
+  sprawdzono: 2026-11-20
+  do_sprawdzenia: []
+- id: zgloszenie_dziecka_do_ubezpieczenia_zdrowotnego
+  nazwa: Zgłoszenie dziecka do ubezpieczenia zdrowotnego
+  typ: formalnosc
+  instytucja: pracodawca
+  dla_kogo:
+    rola:
+    - matka
+    - ojciec
+    - opiekun
+    status_zawodowy: wszystkie
+    warunki:
+    - Zgłasza rodzic, który sam ma ubezpieczenie zdrowotne. Wystarczy zgłoszenie przez jedno z rodziców.
+    - Jeśli żadne z rodziców nie jest ubezpieczone, dziecko może zgłosić babcia lub dziadek.
+    - Rejestracja urodzenia w USC NIE zgłasza dziecka do ubezpieczenia – trzeba to zrobić osobno.
+  etap: porod_do_21_dni
+  termin:
+    od: nadanie_numeru_PESEL
+    limit: 7 dni
+    skutek_spoznienia: 'Strony źródłowe nie podają kary. Dziecko z polskim obywatelstwem ma prawo do bezpłatnego
+      leczenia także bez zgłoszenia, a do końca 3. miesiąca życia – gdy nie ma jeszcze numeru PESEL – przychodnia
+      potwierdza to prawo numerem PESEL rodzica. Zgłoszenie jest jednak obowiązkiem rodzica i porządkuje dane dziecka
+      w systemie (m.in. dostęp do konta dziecka w IKP).
+
+      '
+  kwota: null
+  jak_zlozyc:
+    kanaly:
+    - pracodawca lub zleceniodawca
+    - ZUS na formularzu ZUS ZCNA
+    - urząd pracy
+    uwagi: 'Pracujesz na etacie lub zleceniu – przekaż dane dziecka pracodawcy albo zleceniodawcy, to on zgłasza.
+      Prowadzisz firmę – sam(a) składasz w ZUS formularz ZUS ZCNA. Jesteś zarejestrowana(-y) jako bezrobotna(-y)
+      – zgłaszasz w urzędzie pracy. Ubezpieczasz się dobrowolnie – najpierw wniosek w NFZ, potem ZUS ZCNA. Za zgłoszone
+      dziecko nie płaci się dodatkowej składki. Po każdej zmianie pracy lub formy zatrudnienia dziecko trzeba zgłosić
+      od nowa. Konto dziecka w Internetowym Koncie Pacjenta podłącza się automatycznie do rodzica, który zgłosił
+      dziecko.
+
+      '
+  zrodlo:
+  - https://pacjent.gov.pl/aktualnosc/zglos-dziecko-do-ubezpieczenia
+  - https://pacjent.gov.pl/artykul/jak-ubezpieczyc-czlonka-rodziny
+  - https://www.zus.pl/pracujacy/ubezpieczenie-zdrowotne-w-polsce/zasady-podlegania-ubezpieczeniu-zdrowotnemu/ubezpieczenie-czlonkow-rodziny
+  - https://api.sejm.gov.pl/eli/acts/DU/2025/1461/text.pdf
+  weryfikacja: czesciowo
+  sprawdzono: 2026-11-20
+  do_sprawdzenia:
+  - Od kiedy liczyć 7 dni – pacjent.gov.pl mówi „od nadania dziecku numeru PESEL”, ZUS i ustawa „od zaistnienia
+    okoliczności”. W aplikacji przyjąć bezpieczniej – od nadania PESEL, czyli od rejestracji w USC.
+  - Czy za spóźnienie grozi jakakolwiek sankcja – żadna z trzech stron tego nie opisuje.
+  - Zgłoszenie przez rodzica ubezpieczonego w KRUS oraz przez studenta (uczelnia) – nie sprawdzono.
+  - Tekst jednolity ustawy (Dz.U. 2025 poz. 1461) ma późniejsze nowelizacje – sprawdzono tylko brzmienie z tekstu
+    jednolitego.
+- id: uznanie_ojcostwa
+  nazwa: Uznanie ojcostwa (rodzice bez ślubu)
+  typ: formalnosc
+  instytucja: USC
+  dla_kogo:
+    rola:
+    - oboje
+    status_zawodowy: wszystkie
+    warunki:
+    - Dotyczy rodziców, którzy nie są małżeństwem – mąż matki jest ojcem z mocy prawa i niczego nie składa.
+    - Ojciec oświadcza przed kierownikiem USC, że jest ojcem dziecka, a matka to potwierdza – od razu albo w ciągu
+      3 miesięcy.
+    - Można to zrobić już w czasie ciąży, zanim dziecko się urodzi.
+    - Oświadczenie może złożyć osoba, która skończyła 16 lat; kto nie ma pełnej zdolności do czynności prawnych
+      – tylko przed sądem opiekuńczym.
+    - Nie można uznać ojcostwa, gdy toczy się sprawa sądowa o jego ustalenie, ani po ukończeniu przez dziecko 18
+      lat.
+  etap: ciaza
+  termin:
+    od: poczatek_ciazy
+    limit: Bez terminu (najpóźniej do pełnoletności dziecka). Najwygodniej przed porodem albo przed zgłoszeniem
+      urodzenia.
+    skutek_spoznienia: 'Bez uznania ojciec nie zgłosi urodzenia dziecka, a w akcie urodzenia jako dane ojca wpisuje
+      się imię wskazane przez zgłaszającego i nazwisko matki, z adnotacją. Uznania można dokonać później – to nie
+      przepada.
+
+      '
+  kwota: null
+  jak_zlozyc:
+    kanaly:
+    - dowolny USC osobiście
+    - konsul RP za granicą
+    - sąd opiekuńczy
+    uwagi: 'Oboje rodzice składają oświadczenia osobiście; kierownik USC spisuje protokół, który podpisują rodzice
+      i kierownik. USC, który przyjął oświadczenia, sam przesyła protokół do urzędu sporządzającego akt urodzenia.
+      Kierownik USC może odmówić, gdy ma wątpliwości co do pochodzenia dziecka – wtedy zostaje droga sądowa. Przy
+      uznaniu rodzice składają też oświadczenia o nazwisku dziecka.
+
+      '
+  efekt: Dane ojca trafiają do aktu urodzenia. Ojciec może sam zgłosić urodzenie dziecka w USC.
+  odblokowuje:
+  - zgloszenie_urodzenia
+  zrodlo:
+  - https://www.gov.pl/web/gov/zglos-urodzenie-dziecka
+  - https://api.sejm.gov.pl/eli/acts/DU/2026/236/text.pdf
+  - https://api.sejm.gov.pl/eli/acts/DU/2026/393/text.pdf
+  weryfikacja: czesciowo
+  sprawdzono: 2026-11-20
+  do_sprawdzenia:
+  - Jakie dokumenty zabrać do USC (dowody osobiste; przy uznaniu przed porodem – zaświadczenie o ciąży lub karta
+    ciąży). Nie ma centralnej strony usługi na gov.pl – opisują to tylko strony gmin.
+  - Czy czynność jest bezpłatna (z pamięci – tak, bez opłaty skarbowej; nie potwierdzono w źródle).
+  - Czy trzeba umawiać wizytę i czy da się to zrobić online (z pamięci – tylko osobiście).
+- id: przygotuj_sie_zawczasu
+  nazwa: Przygotuj się przed porodem – konta i narzędzia do spraw online
+  typ: formalnosc
+  instytucja: inne
+  dla_kogo:
+    rola:
+    - oboje
+    status_zawodowy: wszystkie
+    warunki:
+    - Wszystko jest bezpłatne i da się załatwić bez wychodzenia z domu. Warto zrobić to w ciąży – po porodzie terminy
+      biegną szybko.
+  etap: ciaza
+  termin:
+    od: poczatek_ciazy
+    limit: Przed porodem
+    skutek_spoznienia: 'Nic nie przepada, ale bez adresu do e-Doręczeń nie zgłosisz urodzenia przez internet ani
+      w mObywatelu (zostaje wizyta w USC), a bez profilu zaufanego nie złożysz wniosków przez Emp@tię.
+
+      '
+  kwota: null
+  kroki:
+  - nazwa: Profil zaufany
+    po_co: Logowanie i podpis w gov.pl, Emp@tii, eZUS i Internetowym Koncie Pacjenta. Potrzebny do becikowego, świadczenia
+      rodzicielskiego i zasiłku rodzinnego przez Emp@tię oraz do zgłoszenia urodzenia online.
+    jak: Zakładasz bezpłatnie na pz.gov.pl.
+    zrodlo: https://www.gov.pl/web/gov/zaloz-profil-zaufany
+  - nazwa: Adres i skrzynka do e-Doręczeń
+    po_co: Od 1.01.2026 zgłoszenie urodzenia przez internet działa tylko z e-Doręczeniami; wymaga ich też zgłoszenie
+      w mObywatelu. Na skrzynkę przychodzi potwierdzenie i dokumenty dziecka.
+    jak: 'Bezpłatny wniosek na edoreczenia.gov.pl – logujesz się profilem zaufanym, e-dowodem, bankowością elektroniczną,
+      mObywatelem lub eID. Po akceptacji wniosku skrzynkę trzeba jeszcze AKTYWOWAĆ w serwisie mObywatel.gov.pl (Twoje
+      skrzynki → Aktywuj skrzynkę).
+
+      '
+    zrodlo: https://www.gov.pl/web/gov/uzyskaj-adres-do-e-doreczen-u-publicznego-dostawcy-uslugi-e-doreczen
+  - nazwa: Konto eZUS (dawniej PUE ZUS)
+    po_co: Tu ZUS wysyła informacje i decyzje o 800+ i Aktywnym Rodzicu; tu też składa się wnioski o zasiłki.
+    jak: 'Rejestracja na zus.pl przez login.gov.pl (profil zaufany, bank, mObywatel, e-dowód) albo podczas e-wizyty
+      lub w placówce ZUS. Nie jest to warunek konieczny – gdy złożysz wniosek o 800+ lub Aktywnego Rodzica przez
+      bank albo Emp@tię i nie masz konta, ZUS założy je sam.
+
+      '
+    zrodlo: https://www.zus.pl/baza-wiedzy/o-portalu-pue-/jak-zarejestrowac-konto-na-pue
+  - nazwa: Aplikacja mObywatel z mDowodem
+    po_co: Zgłoszenie urodzenia dziecka w telefonie (od 5.03.2026) – wymaga mDowodu, profilu zaufanego i aktywnej
+      skrzynki e-Doręczeń.
+    jak: Aplikację aktywujesz e-dowodem (kod PIN1 i telefon z NFC), a bez e-dowodu – profilem zaufanym albo bankowością
+      elektroniczną.
+    zrodlo: https://info.mobywatel.gov.pl/aktualnosci/zglos-urodzenie-dziecka-w-mObywatelu
+  - nazwa: Aplikacja mZUS (opcjonalnie)
+    po_co: Wnioski o 800+ i Aktywnego Rodzica z telefonu oraz podgląd ich statusu i wypłat.
+    jak: Pobierz tylko z Google Play albo App Store.
+    zrodlo: https://www.zus.pl/mzus
+  jak_zlozyc:
+    kanaly:
+    - online
+    uwagi: Kolejność – najpierw profil zaufany, potem e-Doręczenia i mObywatel; konto eZUS na końcu albo wcale.
+  odblokowuje:
+  - zgloszenie_urodzenia
+  - swiadczenie_800_plus
+  - becikowe
+  - swiadczenie_rodzicielskie
+  - zasilek_rodzinny_i_dodatki
+  zrodlo:
+  - https://www.gov.pl/web/gov/zaloz-profil-zaufany
+  - https://www.gov.pl/web/gov/uzyskaj-adres-do-e-doreczen-u-publicznego-dostawcy-uslugi-e-doreczen
+  - https://www.gov.pl/web/gov/zglos-urodzenie-dziecka
+  - https://www.zus.pl/baza-wiedzy/o-portalu-pue-/jak-zarejestrowac-konto-na-pue
+  - https://www.zus.pl/swiadczenia/swiadczenia-dla-rodzin/swiadczenie-wychowawcze-800-plus
+  - https://info.mobywatel.gov.pl/aktualnosci/zglos-urodzenie-dziecka-w-mObywatelu
+  - https://www.gov.pl/web/cyfryzacja/aktywacja-mobywatela-z-e-dowodem-to-proste
+  - https://www.zus.pl/mzus
+  weryfikacja: czesciowo
+  sprawdzono: 2026-11-20
+  do_sprawdzenia:
+  - Sposoby założenia profilu zaufanego (bank, e-dowód, mObywatel, wideorozmowa, punkt potwierdzający) – strona
+    główna PZ mówi tylko, że jest bezpłatny i zakłada się go na pz.gov.pl.
+  - Czy aplikacja mZUS wymaga wcześniejszego konta eZUS – strona mZUS tego nie rozstrzyga.
+  - Aktywacja mObywatela profilem zaufanym lub bankiem – z wyniku wyszukiwarki, nie z treści przeczytanej strony
+    (przeczytano tylko ścieżkę z e-dowodem).
+- id: becikowe_samorzadowe
+  nazwa: Lokalne „becikowe” od gminy lub województwa
+  typ: swiadczenie
+  instytucja: gmina
+  dla_kogo:
+    rola:
+    - matka
+    - ojciec
+    - opiekun
+    status_zawodowy: wszystkie
+    warunki:
+    - Część gmin i województw wypłaca własne, dodatkowe świadczenie z tytułu urodzenia dziecka – zasady, kwoty i
+      terminy ustala samorząd, więc trzeba zapytać w swoim urzędzie gminy.
+  etap: do_12_miesiecy
+  termin: null
+  kwota: null
+  jak_zlozyc:
+    kanaly:
+    - urząd gminy lub ośrodek pomocy społecznej
+    uwagi: Świadczenie lokalne – nie wszędzie istnieje.
+  zrodlo: []
+  weryfikacja: do_weryfikacji
+  sprawdzono: null
+  do_sprawdzenia:
+  - Rekord lokalny i niezweryfikowany – wpisany z pamięci, bez źródła urzędowego. Nie podawać w aplikacji kwot ani
+    listy gmin.
+- id: ochrona_przed_zwolnieniem
+  nazwa: Ochrona przed zwolnieniem w ciąży i w czasie urlopów rodzicielskich
+  typ: uprawnienie
+  instytucja: pracodawca
+  dla_kogo:
+    rola:
+    - matka
+    - ojciec
+    status_zawodowy:
+    - etat
+    warunki:
+    - Tylko pracownicy. Nie dotyczy zlecenia, umowy o dzieło ani działalności gospodarczej.
+    - Ciążę potwierdza zaświadczenie lekarskie.
+    - Ojca i drugiego rodzica chroni złożenie wniosku o urlop ojcowski, rodzicielski albo o część urlopu macierzyńskiego.
+  etap: ciaza
+  etapy_dodatkowe:
+  - porod_do_21_dni
+  - do_3_miesiecy
+  - do_12_miesiecy
+  termin:
+    od: poczatek_ciazy
+    limit: Ochrona trwa przez całą ciążę i urlop macierzyński, a po złożeniu wniosku o urlop – do dnia zakończenia
+      tego urlopu.
+    skutek_spoznienia: null
+  kwota: null
+  zakres:
+    zakaz: Pracodawca nie może wypowiedzieć ani rozwiązać umowy. Nie może też przygotowywać się do zwolnienia.
+    wyjatki:
+    - Rozwiązanie umowy bez wypowiedzenia z winy pracownika, jeśli zgodzi się na to zakładowa organizacja związkowa.
+    - Wypowiedzenie przy ogłoszeniu upadłości lub likwidacji pracodawcy.
+    ciezar_dowodu: Istnienie tych przyczyn musi udowodnić pracodawca.
+    ochrona_od_wniosku_o_urlop: 'Ochrona zaczyna się w dniu złożenia wniosku. Jeśli złożysz wniosek wcześniej, niż
+      wymaga Kodeks, ochrona zaczyna się 14 dni przed częścią urlopu macierzyńskiego, 21 dni przed urlopem rodzicielskim
+      albo uzupełniającym urlopem macierzyńskim i 7 dni przed urlopem ojcowskim.
+
+      '
+    umowa_na_czas_okreslony: 'Umowa na czas określony albo na okres próbny dłuższy niż miesiąc, która skończyłaby
+      się po upływie 3. miesiąca ciąży, przedłuża się do dnia porodu. Nie dotyczy to umowy na zastępstwo.
+
+      '
+    okres_probny: 'Zakaz wypowiedzenia obowiązuje także na okresie próbnym (art. 177 nie zawiera wyjątku, § 2 jest
+      uchylony). Umowa na okres próbny do miesiąca nie przedłuża się do porodu.
+
+      '
+    zasilek_po_przedluzonej_umowie: Po umowie przedłużonej do dnia porodu przysługuje zasiłek macierzyński, mimo
+      że ubezpieczenie ustało.
+    urlop_wychowawczy: 'Ochrona trwa od złożenia wniosku o urlop wychowawczy do końca urlopu, najwcześniej od 21
+      dni przed jego początkiem. Przy wniosku o obniżenie wymiaru czasu pracy – łącznie najwyżej 12 miesięcy.
+
+      '
+    powrot_do_pracy: Po urlopie pracodawca dopuszcza pracownika do pracy na dotychczasowym albo równorzędnym stanowisku,
+      na warunkach nie gorszych niż bez urlopu.
+  jak_zlozyc:
+    kanaly:
+    - pracodawca
+    uwagi: Ochrona działa z mocy prawa, bez wniosku. Przekaż pracodawcy zaświadczenie lekarskie o ciąży.
+  podstawa_prawna: KP art. 177 § 1, § 1[1], § 3, § 3[1], § 4, § 4[1]; art. 185 § 1; art. 186[4]; art. 186[8]; u_zas
+    art. 30 ust. 4
+  zrodlo:
+  - https://api.sejm.gov.pl/eli/acts/DU/2026/1245/text.pdf
+  - https://api.sejm.gov.pl/eli/acts/DU/2026/854/text.pdf
+  - https://www.gov.pl/web/gov/skorzystajcie-z-urlopow-rodzicielskich
+  weryfikacja: potwierdzone
+  sprawdzono: 2026-11-20
+  do_sprawdzenia: []
+- id: warunki_pracy_w_ciazy
+  nazwa: Warunki pracy w ciąży – bez nadgodzin, pracy w nocy i prac wzbronionych
+  typ: uprawnienie
+  instytucja: pracodawca
+  dla_kogo:
+    rola:
+    - matka
+    status_zawodowy:
+    - etat
+    warunki:
+    - Tylko pracownice. Nie dotyczy zlecenia, umowy o dzieło ani działalności gospodarczej.
+    - Część zakazów obejmuje też pracownice karmiące piersią.
+  etap: ciaza
+  etapy_dodatkowe:
+  - porod_do_21_dni
+  - do_3_miesiecy
+  - do_12_miesiecy
+  termin:
+    od: poczatek_ciazy
+    limit: do końca ciąży (prace wzbronione – także w czasie karmienia piersią)
+    skutek_spoznienia: null
+  kwota: null
+  zakres:
+    zakazy_bezwzgledne:
+    - Praca w godzinach nadliczbowych.
+    - Praca w porze nocnej.
+    tylko_za_zgoda_pracownicy:
+    - Delegowanie poza stałe miejsce pracy.
+    - Praca w systemie przerywanego czasu pracy.
+    czas_pracy: W systemach z przedłużonym dobowym wymiarem czasu pracy (równoważny, ruch ciągły, skrócony tydzień,
+      praca weekendowa) pracownica w ciąży pracuje najwyżej 8 godzin na dobę. Za czas nieprzepracowany z tego powodu
+      zachowuje wynagrodzenie.
+    praca_nocna: 'Pracodawca zmienia rozkład czasu pracy tak, by praca wypadała poza porą nocną. Jeśli się nie da,
+      przenosi pracownicę do innej pracy, a w ostateczności zwalnia ją z obowiązku świadczenia pracy.
+
+      '
+    prace_wzbronione: 'Przy pracy wzbronionej pracodawca przenosi pracownicę do innej pracy albo zwalnia ją z obowiązku
+      świadczenia pracy. Przy pozostałych pracach z wykazu dostosowuje warunki albo skraca czas pracy.
+
+      '
+    wynagrodzenie: 'Jeśli zmiana obniża wynagrodzenie, przysługuje dodatek wyrównawczy. W czasie zwolnienia z obowiązku
+      świadczenia pracy pracownica zachowuje dotychczasowe wynagrodzenie.
+
+      '
+    przyklady_z_wykazu_dla_ciazy:
+    - Praca przy monitorze ekranowym łącznie ponad 8 godzin na dobę. Jednorazowo najwyżej 50 minut, potem co najmniej
+      10 minut przerwy wliczanej do czasu pracy.
+    - Praca w pozycji stojącej łącznie ponad 3 godziny na zmianę. Jednorazowo najwyżej 15 minut, potem 15 minut
+      przerwy.
+    - Ręczne podnoszenie i przenoszenie przedmiotów o masie ponad 3 kg.
+    - Praca w pozycji wymuszonej.
+    zaswiadczenie_lekarskie: Te same obowiązki pracodawcy powstają, gdy przeciwwskazania do dotychczasowej pracy
+      wynikają z orzeczenia lekarskiego.
+    rodzic_dziecka_do_8_lat: Pracownika wychowującego dziecko do 8. roku życia nie wolno bez jego zgody zatrudniać
+      w nadgodzinach, w nocy, w systemie przerywanym ani delegować.
+  jak_zlozyc:
+    kanaly:
+    - pracodawca
+    uwagi: Bez wniosku. Zakazy obowiązują pracodawcę, odkąd wie o ciąży z zaświadczenia lekarskiego.
+  podstawa_prawna: KP art. 148 pkt 2; art. 176; art. 178 § 1 i 2; art. 178[1]; art. 179 § 1–6; rozp_2017 załącznik
+    cz. I ust. 1
+  zrodlo:
+  - https://api.sejm.gov.pl/eli/acts/DU/2026/1245/text.pdf
+  - https://api.sejm.gov.pl/eli/acts/DU/2017/796/text.pdf
+  weryfikacja: potwierdzone
+  sprawdzono: 2026-11-20
+  do_sprawdzenia: []
+- id: zwolnienie_na_badania_w_ciazy
+  nazwa: Płatne zwolnienie z pracy na badania lekarskie w ciąży
+  typ: uprawnienie
+  instytucja: pracodawca
+  dla_kogo:
+    rola:
+    - matka
+    status_zawodowy:
+    - etat
+    warunki:
+    - Tylko pracownice. Nie dotyczy zlecenia, umowy o dzieło ani działalności gospodarczej.
+    - Badania zalecił lekarz w związku z ciążą.
+    - Badań nie da się przeprowadzić poza godzinami pracy.
+  etap: ciaza
+  termin:
+    od: poczatek_ciazy
+    limit: do końca ciąży
+    skutek_spoznienia: null
+  kwota:
+    opis: Za czas nieobecności zachowujesz prawo do wynagrodzenia.
+  jak_zlozyc:
+    kanaly:
+    - pracodawca
+    uwagi: Kodeks nie określa formy ani terminu zgłoszenia. Pracodawca ma obowiązek udzielić zwolnienia.
+  podstawa_prawna: KP art. 185 § 2
+  zrodlo:
+  - https://api.sejm.gov.pl/eli/acts/DU/2026/1245/text.pdf
+  weryfikacja: potwierdzone
+  sprawdzono: 2026-11-20
+  do_sprawdzenia: []
+- id: wniosek_do_pracodawcy_urlop_macierzynski_rodzicielski
+  nazwa: Wniosek do pracodawcy o urlop macierzyński i rodzicielski
+  typ: formalnosc
+  instytucja: pracodawca
+  dla_kogo:
+    rola:
+    - matka
+    status_zawodowy:
+    - etat
+    warunki:
+    - Tylko pracownicy. Osoby na zleceniu i przedsiębiorcy nie biorą urlopu – składają w ZUS wniosek o zasiłek macierzyński.
+  etap: porod_do_21_dni
+  etapy_dodatkowe:
+  - ciaza
+  - do_3_miesiecy
+  - do_12_miesiecy
+  termin:
+    od: poczatek_urlopu
+    limit: Wniosek o urlop rodzicielski – co najmniej 21 dni przed rozpoczęciem urlopu.
+    skutek_spoznienia: null
+    szczegoly:
+      urlop_macierzynski_po_porodzie: Bez wniosku. Urlop zaczyna się w dniu porodu. Zanieś pracodawcy skrócony odpis
+        aktu urodzenia dziecka.
+      urlop_macierzynski_przed_porodem: Do 6 tygodni przed przewidywaną datą porodu, na wniosek. Kodeks nie podaje
+        terminu złożenia.
+      urlop_rodzicielski: Co najmniej 21 dni przed rozpoczęciem urlopu albo jego części. Pracodawca musi uwzględnić
+        wniosek.
+      uzupelniajacy_urlop_macierzynski: Co najmniej 21 dni przed zakończeniem urlopu macierzyńskiego.
+      wniosek_21_dni_po_porodzie: 'To osobna sprawa: wniosek o zasiłek macierzyński za urlop macierzyński i rodzicielski
+        w pełnym wymiarze (81,5%), składany najpóźniej 21 dni po porodzie. Kodeks pracy nie przewiduje już łącznego
+        wniosku o oba urlopy.
+
+        '
+    wykorzystanie_urlopu_rodzicielskiego: Jednorazowo albo najwyżej w 5 częściach, do końca roku kalendarzowego,
+      w którym dziecko kończy 6 lat.
+  kwota: null
+  jak_zlozyc:
+    kanaly:
+    - pracodawca – na papierze
+    - pracodawca – elektronicznie
+    uwagi: 'Nie ma urzędowego formularza. To pismo w dowolnej formie; jego treść i załączniki określa rozporządzenie.
+      Zapytaj pracodawcę, czy ma własny wzór.
+
+      '
+  urzedowy_formularz: false
+  tresc_wniosku:
+    urlop_macierzynski_przed_porodem:
+    - Imię i nazwisko pracownicy.
+    - Data, od której ma być udzielona część urlopu macierzyńskiego.
+    urlop_rodzicielski:
+    - Imię i nazwisko pracownika.
+    - Okres dotychczas wykorzystanego urlopu rodzicielskiego lub zasiłku macierzyńskiego za okres tego urlopu.
+    - Liczba wykorzystanych części urlopu rodzicielskiego lub liczba wniosków o zasiłek za część tego urlopu.
+    - Okres, na który ma być udzielony urlop rodzicielski albo jego część.
+    uzupelniajacy_urlop_macierzynski:
+    - Imię i nazwisko pracownicy albo pracownika – ojca.
+    - Termin zakończenia urlopu macierzyńskiego.
+    - Okres, na który ma być udzielony uzupełniający urlop macierzyński.
+    laczenie_urlopu_rodzicielskiego_z_praca:
+    - Imię i nazwisko pracownika.
+    - Wymiar czasu pracy (najwyżej połowa pełnego wymiaru).
+    - Okres łączenia urlopu z pracą.
+    - Oświadczenie, czy wydłużoną część urlopu też chcesz łączyć z pracą i w jakim wymiarze.
+  zalaczniki:
+    urlop_macierzynski_przed_porodem:
+    - Kopia zaświadczenia lekarskiego z przewidywaną datą porodu (na zwykłym druku).
+    urlop_rodzicielski:
+    - Skrócony odpis aktu urodzenia dziecka albo zagraniczny dokument potwierdzający urodzenie (mogą być kopie).
+    - Oświadczenie, że drugi rodzic nie będzie w tym okresie korzystać z urlopu rodzicielskiego ani zasiłku, albo
+      w jakim okresie będzie.
+    - Kopia zaświadczenia „Za życiem”, jeśli wniosek dotyczy wydłużonego urlopu (65 albo 67 tygodni).
+    uzupelniajacy_urlop_macierzynski:
+    - Zaświadczenie szpitala o okresie pobytu dziecka i o tygodniu ciąży oraz masie urodzeniowej.
+    - Oświadczenie, że drugi rodzic nie zamierza korzystać z tego urlopu ani z zasiłku za jego okres.
+    zasady_wspolne:
+    - Nie dołączasz dokumentów, które są już w twoich aktach osobowych.
+    - Jeśli dołączasz kopię, pracodawca może zażądać oryginału do wglądu.
+    - Zagraniczny akt urodzenia składasz z tłumaczeniem na polski, chyba że wydano go w UE, EFTA, Szwajcarii albo
+      państwie związanym z Polską umową o zabezpieczeniu społecznym.
+  powiazane:
+  - wybor_wariantu_81_5
+  - zasilek_macierzynski_urlop_macierzynski
+  - zasilek_macierzynski_urlop_rodzicielski
+  - uzupelniajacy_urlop_macierzynski
+  podstawa_prawna: KP art. 180 § 2; art. 180[2] § 4–6; art. 182[1c]; art. 182[1d]; art. 182[1e]; art. 183[1] § 2;
+    art. 186[8a]; rozp_2025 § 2, § 14–16, § 21–23; u_zas art. 30a i art. 31 ust. 3
+  zrodlo:
+  - https://api.sejm.gov.pl/eli/acts/DU/2025/322/text.pdf
+  - https://api.sejm.gov.pl/eli/acts/DU/2026/1245/text.pdf
+  - https://api.sejm.gov.pl/eli/acts/DU/2026/854/text.pdf
+  - https://www.gov.pl/web/gov/skorzystajcie-z-urlopow-rodzicielskich
+  weryfikacja: czesciowo
+  sprawdzono: 2026-11-20
+  do_sprawdzenia:
+  - Skutek złożenia wniosku o urlop rodzicielski później niż 21 dni przed urlopem – Kodeks tego nie reguluje (inaczej
+    niż przy urlopie wychowawczym).
+  - Komu i na jakim druku składa się wniosek o zasiłek z art. 30a, gdy zasiłek wypłaca ZUS, a nie pracodawca (formularze
+    ZUS – część katalogu o zasiłkach).
+  - Strona gov.pl (aktualizacja 25.09.2025) podaje 80% zasiłku; ustawa mówi 81,5%. W aplikacji używać wartości z
+    ustawy.
+  - Dokument, którym matka potwierdza poród u pracodawcy – gov.pl wskazuje skrócony odpis aktu urodzenia; rozporządzenie
+    tego nie reguluje.
+- id: wniosek_o_urlop_ojcowski
+  nazwa: Wniosek do pracodawcy o urlop ojcowski
+  typ: formalnosc
+  instytucja: pracodawca
+  dla_kogo:
+    rola:
+    - ojciec
+    status_zawodowy:
+    - etat
+    warunki:
+    - Tylko pracownicy. Nie dotyczy zlecenia, umowy o dzieło ani działalności gospodarczej.
+    - Urlop do 2 tygodni, do ukończenia przez dziecko 12. miesiąca życia.
+    - Jednorazowo albo w 2 częściach, każda co najmniej tygodniowa.
+    - Przy adopcji – do 12 miesięcy od uprawomocnienia się postanowienia o przysposobieniu, najdłużej do 14. roku
+      życia dziecka.
+  etap: do_12_miesiecy
+  etapy_dodatkowe:
+  - porod_do_21_dni
+  - do_3_miesiecy
+  termin:
+    od: poczatek_urlopu
+    limit: co najmniej 7 dni przed rozpoczęciem urlopu
+    skutek_spoznienia: Kodeks nie określa skutku spóźnienia. Urlop trzeba wykorzystać, zanim dziecko skończy 12
+      miesięcy.
+  kwota: null
+  jak_zlozyc:
+    kanaly:
+    - pracodawca – na papierze
+    - pracodawca – elektronicznie
+    uwagi: Nie ma urzędowego formularza. Pismo w dowolnej formie, z treścią określoną w rozporządzeniu. Pracodawca
+      musi uwzględnić wniosek.
+  urzedowy_formularz: false
+  tresc_wniosku:
+  - Imię i nazwisko pracownika.
+  - Okres, na który ma być udzielony urlop ojcowski albo jego część.
+  zalaczniki:
+  - Skrócony odpis aktu urodzenia dziecka albo zagraniczny dokument potwierdzający urodzenie (mogą być kopie).
+  - Kopia prawomocnego postanowienia sądu o przysposobieniu – tylko przy dziecku przysposobionym.
+  - Oświadczenie, czy korzystałeś już z urlopu ojcowskiego albo jego części.
+  - Nie dołączasz dokumentów, które są już w twoich aktach osobowych.
+  powiazane:
+  - urlop_ojcowski
+  - ochrona_przed_zwolnieniem
+  podstawa_prawna: KP art. 182[3] § 1, § 1[1], § 2; rozp_2025 § 17, § 21–23
+  zrodlo:
+  - https://api.sejm.gov.pl/eli/acts/DU/2025/322/text.pdf
+  - https://api.sejm.gov.pl/eli/acts/DU/2026/1245/text.pdf
+  - https://www.gov.pl/web/gov/skorzystajcie-z-urlopow-rodzicielskich
+  weryfikacja: potwierdzone
+  sprawdzono: 2026-11-20
+  do_sprawdzenia: []
+- id: urlop_wychowawczy
+  nazwa: Urlop wychowawczy
+  typ: uprawnienie
+  instytucja: pracodawca
+  dla_kogo:
+    rola:
+    - oboje
+    status_zawodowy:
+    - etat
+    warunki:
+    - Tylko pracownicy. Nie dotyczy zlecenia, umowy o dzieło ani działalności gospodarczej.
+    - Co najmniej 6 miesięcy zatrudnienia (liczą się też poprzednie okresy zatrudnienia).
+  etap: od_12_do_36_miesiecy
+  etapy_dodatkowe:
+  - do_12_miesiecy
+  termin:
+    od: poczatek_urlopu
+    limit: Wniosek co najmniej 21 dni przed rozpoczęciem urlopu.
+    skutek_spoznienia: Pracodawca udziela urlopu najpóźniej z upływem 21 dni od dnia złożenia wniosku.
+  kwota:
+    opis: Urlop jest bezpłatny.
+    okres: do 36 miesięcy łącznie dla obojga rodziców, najwyżej w 5 częściach
+    do_kiedy: do końca roku kalendarzowego, w którym dziecko kończy 6 lat
+    czesc_nieprzenoszalna: 1 miesiąc dla każdego z rodziców – nie można go oddać drugiemu rodzicowi.
+    jeden_rodzic: Pełne 36 miesięcy dla jednego rodzica, gdy drugi nie żyje, nie ma władzy rodzicielskiej albo ją
+      ograniczono lub zawieszono.
+    dziecko_z_niepelnosprawnoscia: Dodatkowo do 36 miesięcy, najdłużej do 18. roku życia dziecka.
+  skladki:
+    emerytalne_i_rentowe: Finansuje je w całości budżet państwa za pośrednictwem ZUS, jeśli nie masz innego tytułu
+      do ubezpieczeń ani ustalonego prawa do emerytury lub renty.
+    zdrowotna: Opłaca ją ZUS, jeśli nie podlegasz ubezpieczeniu zdrowotnemu z innego tytułu. Oblicza ją pracodawca.
+  dodatkowe_zasady:
+  - Możesz wycofać wniosek najpóźniej 7 dni przed rozpoczęciem urlopu.
+  - W czasie urlopu możesz pracować lub uczyć się, jeśli nie wyklucza to osobistej opieki nad dzieckiem.
+  - Rezygnacja – w każdej chwili za zgodą pracodawcy albo po zawiadomieniu go najpóźniej 30 dni przed powrotem do
+    pracy.
+  - Zamiast urlopu możesz pracować w obniżonym wymiarze czasu pracy (rekord elastyczna_organizacja_pracy_i_praca_zdalna).
+  jak_zlozyc:
+    kanaly:
+    - pracodawca – na papierze
+    - pracodawca – elektronicznie
+    uwagi: Nie ma urzędowego formularza. Pracodawca musi uwzględnić wniosek.
+  urzedowy_formularz: false
+  tresc_wniosku:
+  - Imię i nazwisko pracownika.
+  - Imię i nazwisko dziecka.
+  - Okres, na który ma być udzielony urlop albo jego część.
+  - Okres urlopu wychowawczego wykorzystany dotychczas na to dziecko.
+  - Liczba części urlopu wykorzystanych dotychczas na to dziecko.
+  zalaczniki:
+  - Oświadczenie, że drugi rodzic nie będzie w tym okresie korzystać z urlopu wychowawczego, albo w jakim okresie
+    będzie.
+  - Kopia orzeczenia o niepełnosprawności dziecka – tylko przy urlopie dodatkowym.
+  - Dokumenty o sytuacji drugiego rodzica – tylko gdy wnioskujesz o pełne 36 miesięcy dla siebie.
+  podstawa_prawna: KP art. 186 § 1–10; art. 186[2]; art. 186[3]; art. 186[8]; rozp_2025 § 19; u_sus art. 9 ust.
+    6 i art. 16 ust. 8; u_zdrow art. 66 ust. 1 pkt 32, art. 85 ust. 15, art. 86 ust. 1 pkt 13
+  zrodlo:
+  - https://api.sejm.gov.pl/eli/acts/DU/2026/1245/text.pdf
+  - https://api.sejm.gov.pl/eli/acts/DU/2025/322/text.pdf
+  - https://api.sejm.gov.pl/eli/acts/DU/2026/1474/text.pdf
+  - https://api.sejm.gov.pl/eli/acts/DU/2025/1461/text.pdf
+  - https://www.gov.pl/web/gov/skorzystajcie-z-urlopow-rodzicielskich
+  weryfikacja: czesciowo
+  sprawdzono: 2026-11-20
+  do_sprawdzenia:
+  - Składka zdrowotna – przepis odczytany z tekstu jednolitego z 2025 r.; sprawdzić, czy późniejsze nowelizacje
+    go nie zmieniły.
+  - Podstawa wymiaru składek w czasie urlopu (ważna dla przyszłej emerytury) – nieujęta w rekordzie.
+- id: przerwy_na_karmienie
+  nazwa: Przerwy w pracy na karmienie piersią
+  typ: uprawnienie
+  instytucja: pracodawca
+  dla_kogo:
+    rola:
+    - matka
+    status_zawodowy:
+    - etat
+    warunki:
+    - Tylko pracownice. Nie dotyczy zlecenia, umowy o dzieło ani działalności gospodarczej.
+    - Pracujesz co najmniej 4 godziny dziennie.
+  etap: do_12_miesiecy
+  etapy_dodatkowe:
+  - do_3_miesiecy
+  - od_12_do_36_miesiecy
+  termin: null
+  kwota:
+    opis: Przerwy wliczają się do czasu pracy.
+    wymiar:
+      jedno_dziecko: 2 przerwy po 30 minut
+      wiecej_niz_jedno_dziecko: 2 przerwy po 45 minut
+      praca_do_6_godzin_dziennie: 1 przerwa
+      praca_ponizej_4_godzin_dziennie: przerwy nie przysługują
+  jak_zlozyc:
+    kanaly:
+    - pracodawca
+    uwagi: Na twój wniosek pracodawca udziela przerw łącznie. Kodeks nie określa formy wniosku ani wieku dziecka,
+      do którego przysługują przerwy.
+  podstawa_prawna: KP art. 187
+  zrodlo:
+  - https://api.sejm.gov.pl/eli/acts/DU/2026/1245/text.pdf
+  weryfikacja: potwierdzone
+  sprawdzono: 2026-11-20
+  do_sprawdzenia: []
+- id: elastyczna_organizacja_pracy_i_praca_zdalna
+  nazwa: Praca zdalna, elastyczna organizacja pracy i obniżony wymiar czasu pracy dla rodziców
+  typ: uprawnienie
+  instytucja: pracodawca
+  dla_kogo:
+    rola:
+    - matka
+    - ojciec
+    status_zawodowy:
+    - etat
+    warunki:
+    - Tylko pracownicy. Nie dotyczy zlecenia, umowy o dzieło ani działalności gospodarczej.
+  etap: ciaza
+  etapy_dodatkowe:
+  - do_12_miesiecy
+  - od_12_do_36_miesiecy
+  termin:
+    od: null
+    limit: Wniosek o elastyczną organizację pracy i o obniżenie wymiaru czasu pracy – co najmniej 21 dni przed planowanym
+      początkiem.
+    skutek_spoznienia: Przy obniżeniu wymiaru czasu pracy pracodawca obniża go najpóźniej po 21 dniach od złożenia
+      wniosku.
+  kwota: null
+  warianty:
+    praca_zdalna:
+      dla_kogo: Pracownica w ciąży i pracownik wychowujący dziecko do ukończenia 4. roku życia.
+      zasada: Pracodawca musi uwzględnić wniosek, chyba że nie pozwala na to organizacja pracy albo rodzaj pracy.
+      odmowa: Przyczynę odmowy pracodawca podaje na papierze albo elektronicznie w 7 dni roboczych od złożenia wniosku.
+      podstawa: KP art. 67[19] § 6
+    elastyczna_organizacja_pracy:
+      dla_kogo: Pracownik wychowujący dziecko do ukończenia 8. roku życia.
+      co_obejmuje: Praca zdalna, przerywany czas pracy, skrócony tydzień pracy, praca weekendowa, ruchomy rozkład
+        czasu pracy (różne godziny rozpoczynania), indywidualny rozkład czasu pracy, obniżenie wymiaru czasu pracy.
+      zasada: Pracodawca rozpatruje wniosek i może odmówić, ale musi podać przyczynę. Odpowiada w 7 dni od otrzymania
+        wniosku.
+      tresc_wniosku:
+      - Imię, nazwisko i data urodzenia dziecka.
+      - Przyczyna, dla której potrzebujesz elastycznej organizacji pracy.
+      - Termin rozpoczęcia i zakończenia.
+      - Rodzaj elastycznej organizacji pracy.
+      ochrona: Złożenie wniosku nie może być przyczyną zwolnienia ani przygotowań do zwolnienia.
+      podstawa: KP art. 188[1]
+    obnizony_wymiar_zamiast_urlopu_wychowawczego:
+      dla_kogo: Pracownik uprawniony do urlopu wychowawczego, w okresie, w którym mógłby z niego korzystać.
+      zasada: Wymiar czasu pracy można obniżyć najniżej do połowy etatu. Pracodawca musi uwzględnić wniosek.
+      tresc_wniosku:
+      - Imię i nazwisko pracownika.
+      - Imię i nazwisko dziecka.
+      - Okres pracy w obniżonym wymiarze.
+      - Wymiar czasu pracy.
+      zalaczniki:
+      - Skrócony odpis aktu urodzenia dziecka (może być kopia).
+      - Oświadczenie o okresie, w którym dotychczas pracowałeś w obniżonym wymiarze.
+      ochrona: Zakaz zwolnienia od złożenia wniosku do powrotu do pełnego wymiaru, łącznie najwyżej 12 miesięcy.
+      podstawa: KP art. 186[7], art. 186[8]; rozp_2025 § 20
+    czas_pracy_rodzica_dziecka_do_4_lat: W systemach z przedłużonym dobowym wymiarem czasu pracy (równoważny, ruch
+      ciągły, skrócony tydzień, praca weekendowa) bez twojej zgody pracujesz najwyżej 8 godzin na dobę. Korzysta
+      z tego jedno z rodziców.
+  jak_zlozyc:
+    kanaly:
+    - pracodawca – na papierze
+    - pracodawca – elektronicznie
+    uwagi: Nie ma urzędowych formularzy. Pisma w dowolnej formie z treścią wskazaną wyżej. Dla wniosku o pracę zdalną
+      Kodeks nie podaje terminu.
+  urzedowy_formularz: false
+  podstawa_prawna: KP art. 67[19] § 2 i § 6; art. 148 pkt 3; art. 186[7]; art. 186[8]; art. 188[1]; art. 189[1];
+    rozp_2025 § 20
+  zrodlo:
+  - https://api.sejm.gov.pl/eli/acts/DU/2026/1245/text.pdf
+  - https://api.sejm.gov.pl/eli/acts/DU/2025/322/text.pdf
+  weryfikacja: potwierdzone
+  sprawdzono: 2026-11-20
+  do_sprawdzenia: []
+- id: dni_opieki_nad_dzieckiem
+  nazwa: Dni wolne na opiekę – 2 dni na dziecko, urlop opiekuńczy, siła wyższa
+  typ: uprawnienie
+  instytucja: pracodawca
+  dla_kogo:
+    rola:
+    - matka
+    - ojciec
+    status_zawodowy:
+    - etat
+    warunki:
+    - Tylko pracownicy. Nie dotyczy zlecenia, umowy o dzieło ani działalności gospodarczej.
+  etap: do_12_miesiecy
+  etapy_dodatkowe:
+  - do_3_miesiecy
+  - od_12_do_36_miesiecy
+  termin:
+    od: null
+    limit: Każde z trzech zwolnień liczy się na rok kalendarzowy.
+    skutek_spoznienia: null
+  kwota: null
+  warianty:
+    opieka_nad_dzieckiem_do_14_lat:
+      wymiar: 2 dni albo 16 godzin w roku kalendarzowym
+      wynagrodzenie: 100% – zachowujesz prawo do wynagrodzenia
+      zasady:
+      - Przysługuje pracownikowi wychowującemu co najmniej jedno dziecko w wieku do 14 lat.
+      - O tym, czy bierzesz dni, czy godziny, decydujesz w pierwszym wniosku w danym roku.
+      - Jeśli oboje rodzice pracują na etacie, korzysta jedno z nich.
+      - Przy niepełnym etacie wymiar godzinowy liczy się proporcjonalnie.
+      podstawa: KP art. 188, art. 189[1]
+    urlop_opiekunczy:
+      wymiar: 5 dni w roku kalendarzowym
+      wynagrodzenie: do_weryfikacji
+      zasady:
+      - Na osobistą opiekę lub wsparcie dla syna, córki, matki, ojca, małżonka albo domownika z poważnych względów
+        medycznych.
+      - Wniosek na papierze albo elektronicznie co najmniej 1 dzień przed urlopem.
+      - We wniosku podajesz imię i nazwisko osoby, przyczynę opieki i stopień pokrewieństwa albo adres domownika.
+      podstawa: KP art. 173[1]–173[3]
+    sila_wyzsza:
+      wymiar: 2 dni albo 16 godzin w roku kalendarzowym
+      wynagrodzenie: 50% – połowa wynagrodzenia
+      zasady:
+      - Pilne sprawy rodzinne spowodowane chorobą lub wypadkiem, gdy musisz być obecny natychmiast.
+      - Wniosek możesz zgłosić najpóźniej w dniu zwolnienia. Pracodawca musi go uwzględnić.
+      podstawa: KP art. 148[1]
+  jak_zlozyc:
+    kanaly:
+    - pracodawca
+    uwagi: Nie ma urzędowych formularzy.
+  urzedowy_formularz: false
+  podstawa_prawna: KP art. 148[1]; art. 173[1]–173[3]; art. 188; art. 189[1]
+  zrodlo:
+  - https://api.sejm.gov.pl/eli/acts/DU/2026/1245/text.pdf
+  weryfikacja: czesciowo
+  sprawdzono: 2026-11-20
+  do_sprawdzenia:
+  - Czy urlop opiekuńczy jest bezpłatny – przepis nie przyznaje wynagrodzenia, ale nie mówi tego wprost; potwierdzić
+    na stronie MRPiPS albo PIP.
+- id: ulga_na_dziecko_PIT
+  nazwa: Ulga na dziecko w PIT (ulga prorodzinna)
+  typ: uprawnienie
+  instytucja: urząd skarbowy
+  dla_kogo:
+    rola:
+    - matka
+    - ojciec
+    - opiekun
+    status_zawodowy: wszystkie
+    warunki:
+    - Masz dochody opodatkowane według skali podatkowej, np. z pracy. Forma zatrudnienia nie ma znaczenia.
+    - Ulgi nie ma, jeśli masz wyłącznie dochody z podatku liniowego, ryczałtu ewidencjonowanego albo karty podatkowej.
+    - Wykonujesz władzę rodzicielską, jesteś opiekunem prawnym mieszkającym z dzieckiem albo rodziną zastępczą.
+    - 'Przy jednym dziecku obowiązuje limit dochodu: 112 000 zł łącznie dla małżonków albo dla osoby samotnie wychowującej
+      dziecko, 56 000 zł dla osoby niebędącej w małżeństwie.'
+    - Limitu nie ma przy dwojgu lub więcej dzieciach oraz przy jednym dziecku z niepełnosprawnością.
+  etap: do_12_miesiecy
+  etapy_dodatkowe:
+  - od_12_do_36_miesiecy
+  termin:
+    od: null
+    limit: W zeznaniu rocznym, składanym od 15 lutego do 30 kwietnia roku następnego.
+    skutek_spoznienia: null
+  kwota:
+    opis: Odliczenie od podatku za każdy miesiąc, w którym wykonujesz władzę rodzicielską – także za miesiąc urodzenia
+      dziecka.
+    miesiecznie:
+      pierwsze_dziecko: 92,67 zł (rocznie 1112,04 zł)
+      drugie_dziecko: 92,67 zł (rocznie 1112,04 zł)
+      trzecie_dziecko: 166,67 zł (rocznie 2000,04 zł)
+      czwarte_i_kolejne: 225,00 zł (rocznie 2700,00 zł)
+    podzial_miedzy_rodzicow: Kwota jest wspólna dla obojga rodziców. Dzielicie ją w dowolnej proporcji.
+    zwrot_niewykorzystanej_ulgi: 'Jeśli podatek jest niższy niż ulga, dostajesz dodatkowy zwrot różnicy. Zwrot nie
+      może przekroczyć sumy zapłaconych składek na ubezpieczenia społeczne i zdrowotne.
+
+      '
+  jak_zlozyc:
+    kanaly:
+    - zeznanie PIT-37 albo PIT-36 z załącznikiem PIT/O
+    uwagi: 'W PIT/O podajesz liczbę dzieci i ich numery PESEL. O dodatkowy zwrot wnioskujesz w części J zeznania
+      PIT-37 albo w części M zeznania PIT-36. Odpis aktu urodzenia pokazujesz tylko na żądanie urzędu.
+
+      '
+  podstawa_prawna: u_pit art. 27f ust. 1–5, 8–12; art. 45 ust. 1
+  zrodlo:
+  - https://podatki.gov.pl/ulgi-i-odliczenia/ulga-na-dziecko-pit
+  - https://api.sejm.gov.pl/eli/acts/DU/2026/592/text.pdf
+  weryfikacja: potwierdzone
+  sprawdzono: 2026-11-20
+  do_sprawdzenia: []
+- id: urlop_wypoczynkowy_po_macierzynskim
+  nazwa: Urlop wypoczynkowy bezpośrednio po urlopie macierzyńskim lub rodzicielskim
+  typ: uprawnienie
+  instytucja: pracodawca
+  dla_kogo:
+    rola:
+    - matka
+    - ojciec
+    status_zawodowy:
+    - etat
+    warunki:
+    - Tylko pracownicy. Nie dotyczy zlecenia, umowy o dzieło ani działalności gospodarczej.
+    - Masz niewykorzystany urlop wypoczynkowy.
+  etap: do_12_miesiecy
+  etapy_dodatkowe:
+  - do_3_miesiecy
+  - od_12_do_36_miesiecy
+  termin:
+    od: null
+    limit: Kodeks nie podaje terminu. Złóż wniosek przed końcem urlopu macierzyńskiego, rodzicielskiego albo ojcowskiego.
+    skutek_spoznienia: null
+  kwota: null
+  zakres:
+    zasada: Na twój wniosek pracodawca udziela urlopu wypoczynkowego bezpośrednio po urlopie macierzyńskim.
+    inne_urlopy: Tak samo po urlopie rodzicielskim, ojcowskim, uzupełniającym macierzyńskim i urlopie na warunkach
+      urlopu macierzyńskiego.
+    ojciec: Dotyczy też ojca i innego członka najbliższej rodziny, który korzysta z urlopu macierzyńskiego.
+  jak_zlozyc:
+    kanaly:
+    - pracodawca
+    uwagi: Nie ma urzędowego formularza. Kodeks nie określa formy wniosku.
+  urzedowy_formularz: false
+  podstawa_prawna: KP art. 163 § 3; art. 180[2] § 7; art. 182[1g]; art. 182[3] § 3; art. 183 § 2
+  zrodlo:
+  - https://api.sejm.gov.pl/eli/acts/DU/2026/1245/text.pdf
+  weryfikacja: potwierdzone
+  sprawdzono: 2026-11-20
+  do_sprawdzenia: []

@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kompas Rodzica · vibecodersi · HackNation 2026</title>
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<!--
+  Slajd: <section class="slajd" data-name="…">. Kroki są w deck.js (KONFIG), szukane po data-name.
+  Treść pojawia się razem ze slajdem. Na slajdzie z naKlik (decyzja) element z data-k="1" pojawia się
+  dopiero po naciśnięciu, razem ze zmianą na osi. Ikony: element .ikona z atrybutem data-ikona (nazwa ikony),
+  build wkleja SVG z @tabler/icons (MIT). data-pomin ukrywa slajd bez usuwania. Notatki: <aside> (klawisz N).
+-->
+<div id="scena">
+
+  <!-- Tło jak na ekranie startowym aplikacji: jasny gradient, poświata, pofalowana siatka oktagonów (tlo.js) -->
+  <div id="tlo" aria-hidden="true">
+    <div class="podstawa"></div>
+    <div class="poswiata"></div>
+    <div class="maska"><canvas id="siatka"></canvas></div>
+  </div>
+
+  <!-- Oś czasu: tylko na slajdach z przykładem rodziny. Pozycję i plan ustawia deck.js. -->
+  <div id="os" class="ukryta" aria-label="Oś czasu urlopów mamy i taty">
+    <div class="karta"></div>
+    <div class="wnetrze">
+      <div class="naglowek"><b>Plan Magdy i Pawła</b><span class="plan"></span></div>
+      <div class="skala"></div>
+      <div class="wiersze">
+        <div class="siatka"></div>
+        <div class="wiersz" data-osoba="mama"><span class="kto">Magda</span><div class="tor"></div></div>
+        <div class="wiersz" data-osoba="tata"><span class="kto">Paweł</span><div class="tor"></div></div>
+        <div class="decyzja"><i class="linia" style="top:28%;height:44%"></i><i class="kropka" style="top:28%"></i><i class="kropka" style="top:72%"></i><span class="etykieta" style="top:calc(100% + 30px)"></span></div>
+      </div>
+      <div class="znacznik porod"><span>Poród <span data-w="porodKrotko"></span></span></div>
+      <div class="znacznik dzis"><span>Dziś</span></div>
+    </div>
+  </div>
+
+  <!-- 1. TYTUŁ -->
+  <section class="slajd tytulowy" data-name="tytul">
+    <p class="wydarzenie">HackNation 2026, wyzwanie ZUS</p>
+    <div class="marka duza"><img class="znak" src="../img/logo-znak.svg" alt=""><div><h1 class="nazwa">Kompas Rodzica</h1><p class="pod">Zasiłkowy przewodnik przyszłego rodzica</p></div></div>
+    <p class="lead">Mówi, co przysługuje konkretnej osobie, pokazuje warianty urlopów z ich skutkami i prowadzi do gotowego wniosku.</p>
+    <div class="zespol"><p class="team">vibecodersi</p><p class="imiona">Oskar Pelzer, Mateusz Wojciechowski, Wojciech Rudnicki, Mikołaj Konieczny</p></div>
+    <div class="hero" aria-hidden="true">
+      <div class="przegladarka"><div class="belka"><i></i><i></i><i></i><span>Twój plan</span></div><div class="okno"><img src="../img/k-plan.jpg" alt=""></div></div>
+      <div class="telefon"><div class="ekran"><img src="../img/t-wynik.jpg" alt=""></div></div>
+    </div>
+    <aside>Dzień dobry, jesteśmy vibecodersi. Kompas Rodzica, zasiłkowy przewodnik przyszłego rodzica, mówi konkretnej osobie, co jej przysługuje, pokazuje warianty urlopów razem z ich skutkami dla obojga rodziców i prowadzi aż do gotowego wniosku.</aside>
+  </section>
+
+  <!-- 2. PROBLEM -->
+  <section class="slajd" data-name="problem">
+    <h2 class="tytul szeroki">Rodzic często poznaje swoje prawa i obowiązki za późno.</h2>
+    <div class="pytania-karty">
+      <div class="kafel"><span class="ikona" data-ikona="scale"></span><h3>Co mi przysługuje?</h3><p>Zależy od umowy, ciąży, liczby dzieci, adopcji. Przepisy są w kilku ustawach.</p></div>
+      <div class="kafel"><span class="ikona" data-ikona="route"></span><h3>Co się stanie, gdy…?</h3><p>Powrót do pracy, przeniesienie urlopu, podział opieki zmieniają sytuację obojga rodziców.</p></div>
+      <div class="kafel"><span class="ikona" data-ikona="file-text"></span><h3>Co, gdzie i do kiedy złożyć?</h3><p>Wnioski do pracodawcy albo do ZUS, terminy od 7 do 21 dni.</p></div>
+    </div>
+    <div class="kafel stat">
+      <p class="stat-liczba" data-w="kobietyProc"></p>
+      <p class="stat-opis">osób na zasiłku za urlop rodzicielski to kobiety</p>
+      <p class="stat-skutek">Gdy tata nie weźmie swoich <span data-w="tygodnieTaty"></span> tygodni urlopu, te tygodnie przepadają.</p>
+      <p class="stat-zrodlo">Źródło: <span data-w="kobietyZrodlo"></span></p>
+    </div>
+    <p class="cel-zus"><b>Cel ZUS z opisu zadania:</b> mniej sporów i korespondencji o brakujące lub źle wypełnione dokumenty, a rodzic nie jest zaskakiwany decyzją.</p>
+    <div class="przypis"><span>Opis zadania ZUS, pkt 1 i 2.</span><span class="nr"></span></div>
+    <aside>Rodzic ma trzy pytania. Co mi przysługuje: to zależy od umowy, ciąży, liczby dzieci, adopcji, a przepisy są w kilku ustawach. Co się stanie, gdy wrócę do pracy albo przeniosę urlop: to zmienia sytuację obojga rodziców. I co, gdzie i do kiedy złożyć. Skutek widać w danych ZUS: 87% osób na zasiłku za urlop rodzicielski to kobiety, a tygodnie taty przepadają. ZUS w opisie zadania mówi wprost, czego chce: mniej sporów i korespondencji, a rodzic nie ma być zaskakiwany decyzją.</aside>
+  </section>
+
+  <!-- 3. ROZWIĄZANIE -->
+  <section class="slajd" data-name="rozwiazanie">
+    <h2 class="tytul szeroki">Jeden przewodnik: od pierwszego pytania do gotowego wniosku.</h2>
+    <div class="dwie-kol">
+      <div class="lista-kafli">
+        <div class="kafel poziomy"><span class="ikona" data-ikona="scale"></span><div><h3>Co przysługuje i dlaczego</h3><p>Dla konkretnej osoby, z przepisem. Także gdy prawa brak i co w zamian.</p></div></div>
+        <div class="kafel poziomy"><span class="ikona" data-ikona="timeline"></span><div><h3>Warianty na osi czasu</h3><p>Co można przenieść, skrócić, podzielić, połączyć z pracą i co z tego wynika.</p></div></div>
+        <div class="kafel poziomy"><span class="ikona" data-ikona="file-text"></span><div><h3>Dokumenty i terminy</h3><p>Kto wypłaca: płatnik czy ZUS. Wypełnione wnioski i kalendarz terminów.</p></div></div>
+        <div class="kafel poziomy"><span class="ikona" data-ikona="alert-triangle"></span><div><h3>Ryzyka i trudne sytuacje</h3><p>Łagodne ostrzeżenia z wyprzedzeniem i organizacje, które pomagają.</p></div></div>
+      </div>
+      <div class="przegladarka"><div class="belka"><i></i><i></i><i></i><span>Twój wynik</span></div><div class="okno"><img src="../img/k-wynik.jpg" alt="Ekran wyniku: co przysługuje i kwota dla rodziny"></div></div>
+    </div>
+    <div class="przypis"><span>Start przez mObywatel (symulacja), ankietę albo wgrany wniosek ZAM. Dane zostają w przeglądarce rodzica.</span><span class="nr"></span></div>
+    <aside>Nasza odpowiedź to jeden przewodnik. Rodzic loguje się przez mObywatel (u nas symulacja), odpowiada na proste pytania albo wgrywa wypełniony wniosek ZAM. Dostaje cztery rzeczy: co mu przysługuje i dlaczego, z przepisem, także gdy prawa nie ma i co wtedy w zamian; warianty urlopów na osi czasu z ich skutkami; dokumenty i terminy, w tym kto wypłaca zasiłek; oraz łagodne ostrzeżenia o ryzykach i pomoc w trudnych sytuacjach.</aside>
+  </section>
+
+  <!-- 4. DECYZJA I SKUTEK · na klik: urlop przechodzi na Pawła, pojawia się skutek i termin -->
+  <section class="slajd" data-name="decyzje">
+    <p class="kontekst">Przykład (dane fikcyjne): Magda i Paweł, poród <span data-w="porod"></span>. Magda chce wrócić do pracy po 14 tygodniach.</p>
+    <h2 class="tytul">Każda decyzja od razu pokazuje skutki.</h2>
+    <div class="skutki" data-k="1">
+      <div class="wynika"><p class="etyk"><span class="ikona mala" data-ikona="arrow-right"></span>Co z tego wynika</p><p id="skutek"></p><p class="przepis-sm" id="skutek-przepis"></p></div>
+      <div class="termin-kafel"><p class="etyk"><span class="ikona mala bursztyn" data-ikona="calendar-due"></span>Termin dla Pawła</p><p class="data">do <span data-w="terminPrzejecia"></span></p><p id="termin-opis"></p></div>
+    </div>
+    <div class="przypis"><span>Komunikat i termin w brzmieniu silnika aplikacji. Tak samo przy każdym wyborze: „nie można, bo…”, „można, ale…”, „co z tego wynika”.</span><span class="nr"></span></div>
+    <aside>To serce aplikacji, o które prosił mentor ZUS: wszystkie warianty i ich skutki. Magda i Paweł, poród 1 stycznia 2027. Magda chce wrócić do pracy po 14 tygodniach. [klik] Aplikacja od razu przesuwa resztę urlopu na Pawła: od 9 kwietnia, ani dnia później, z przepisem. Mówi też, że Paweł musi złożyć wniosek do 26 marca, a 9 tygodni Magdy przepadnie, jeśli ich nie weźmie. Tak samo przy każdym wyborze: nie można, bo…; można, ale…; albo co z tego wynika dla drugiej osoby.</aside>
+  </section>
+
+  <!-- 5. WYMAGANIA a–j -->
+  <section class="slajd" data-name="wymagania">
+    <h2 class="tytul szeroki">Wszystko, czego wymaga zadanie, w jednym narzędziu.</h2>
+    <div class="wymagania">
+      <div class="kafel"><span class="lit">a</span><h3>W ciąży, także brak uprawnień</h3><p>zasiłek chorobowy, świadczenie rehabilitacyjne, co w zamian</p></div>
+      <div class="kafel"><span class="lit">b</span><h3>Macierzyński dla obojga</h3><p>okres i wysokość, liczba i wiek dzieci, „Za życiem”</p></div>
+      <div class="kafel"><span class="lit">c</span><h3>Praca w czasie urlopu</h3><p>łączenie z urlopem rodzicielskim, urlop dłuższy, zasiłek niższy</p></div>
+      <div class="kafel"><span class="lit">d</span><h3>Oboje rodzice</h3><p>plan pary, 9 tygodni każdego, przejęcie urlopu</p></div>
+      <div class="kafel"><span class="lit">e, j</span><h3>Adopcja i rodzina zastępcza</h3><p>urlop na warunkach macierzyńskiego i rodzicielski</p></div>
+      <div class="kafel"><span class="lit">f</span><h3>Indywidualna podstawa</h3><p>12 miesięcy albo podstawa składek, wyliczenie krok po kroku</p></div>
+      <div class="kafel"><span class="lit">g</span><h3>Dokumenty i terminy</h3><p>płatnik czy ZUS, wypełniony ZAM, wnioski do pracodawcy, kalendarz</p></div>
+      <div class="kafel"><span class="lit">h</span><h3>Ryzyka utraty prawa</h3><p>np. brak ubezpieczenia w dniu porodu, zaległość w składkach</p></div>
+      <div class="kafel"><span class="lit">i</span><h3>Trudne sytuacje</h3><p>organizacje wyłącznie charytatywne, sprawdzone w KRS</p></div>
+    </div>
+    <div class="przypis"><span>Punkty a–j z opisu zadania ZUS, pkt 3. Jeden zintegrowany kalkulator z opcjami, jak rekomenduje ZUS.</span><span class="nr"></span></div>
+    <aside>Zadanie wymienia funkcje od a do j. Wszystkie są w jednym narzędziu: świadczenia w ciąży, także gdy prawa brak; kalkulator dla obojga rodziców z liczbą dzieci i „Za życiem”; łączenie pracy z urlopem; plan pary; adopcja i rodzina zastępcza; indywidualna podstawa; dokumenty, terminy i to, kto wypłaca; ryzyka utraty prawa; i organizacje, które pomagają w trudnych sytuacjach.</aside>
+  </section>
+
+  <!-- 6. UCZCIWE SYMULACJE -->
+  <section class="slajd" data-name="symulacje">
+    <h2 class="tytul szeroki">Uczciwe symulacje: tylko dane, które usługa naprawdę ma.</h2>
+    <div class="dwie-kol">
+      <div class="lista-uslug">
+        <p><span class="ikona mala" data-ikona="fingerprint"></span><b>mObywatel</b>logowanie, dane osoby i dziecka</p>
+        <p><span class="ikona mala" data-ikona="building-bank"></span><b>eZUS</b>płatnik, tytuły ubezpieczenia, podstawy</p>
+        <p><span class="ikona mala" data-ikona="file-text"></span><b>e-ZLA</b>zwolnienia lekarskie w ciąży</p>
+        <p><span class="ikona mala" data-ikona="coins"></span><b>Składki</b>zaległość na dzień powstania prawa</p>
+        <p><span class="ikona mala" data-ikona="file-upload"></span><b>Wniosek ZAM</b>wgranie wypełnionego wniosku i odczyt pól</p>
+        <p><span class="ikona mala" data-ikona="send"></span><b>Wysyłka</b>złożenie wniosku w eZUS z potwierdzeniem</p>
+      </div>
+      <div class="przegladarka"><div class="belka"><i></i><i></i><i></i><span>Pobieramy Twoje dane</span></div><div class="okno"><img src="../img/k-pobieranie.jpg" alt="Ekran pobierania danych z mObywatela i eZUS (symulacja) z listą pól"></div></div>
+    </div>
+    <div class="przypis"><span>Wszystkie usługi to symulacje. Mapa pól danych ze źródłami: docs/zrodla-danych.md. Czego usługa nie ma, rodzic wpisuje sam.</span><span class="nr"></span></div>
+    <aside>Symulujemy usługi uczciwie, tak jak prosił mentor ZUS. mObywatel daje logowanie i dane osoby, eZUS dane płatnika i tytuły ubezpieczenia, e-ZLA zwolnienia w ciąży, do tego zaległość w składkach na dzień powstania prawa. Rodzic może wgrać wypełniony wniosek ZAM, a gotowy wniosek złożyć w eZUS, w symulacji z potwierdzeniem. Każde pole ma przypisane źródło, a czego usługa naprawdę nie ma, na przykład przewidywanej daty porodu, rodzic wpisuje sam.</aside>
+  </section>
+
+  <!-- 7. KALKULATOR -->
+  <section class="slajd" data-name="kwoty">
+    <div class="s6">
+      <div>
+        <h2 class="tytul">Każdy wynik da się sprawdzić.</h2>
+        <p class="lead">Kalkulator pokazuje wyliczenie krok po kroku, z przepisem przy każdym kroku.</p>
+        <div class="termin-kafel maly"><p class="etyk"><span class="ikona mala bursztyn" data-ikona="calendar-due"></span>Aplikacja pilnuje terminu</p><p class="data">do <span data-w="termin815"></span></p><p>wniosek o 81,5% za cały okres</p></div>
+      </div>
+      <div class="kafel rachunek"><p class="rachunek-tyt">Magda, urlop macierzyński</p><div id="rachunek"></div></div>
+    </div>
+    <div class="przypis"><span>Wyliczenie silnika aplikacji. <span class="symulacja">To symulacja. Wynik nie jest decyzją ZUS.</span></span><span class="nr"></span></div>
+    <aside>Kalkulator musi liczyć poprawnie, więc każdą kwotę da się rozwinąć do przepisu. Magda zarabia 8000 zł. Po odjęciu składek pracownika podstawa to 6903,20 zł. Za urlop macierzyński należy się 100%, więc dziennie 230,11 zł, a za 140 dni 32 215,40 zł. Aplikacja pilnuje też terminu: wniosek o 81,5% za cały okres trzeba złożyć w ciągu 21 dni od porodu.</aside>
+  </section>
+
+  <!-- 8. KORZYŚCI I WDROŻENIE -->
+  <section class="slajd" data-name="korzysci">
+    <h2 class="tytul">Zyskuje rodzic i zyskuje ZUS.</h2>
+    <div class="korzysci">
+      <div class="kafel"><span class="ikona" data-ikona="users"></span><h3>Rodzic</h3>
+        <ul><li>wie wcześniej, co mu przysługuje</li><li>widzi warianty i ich skutki dla obojga</li><li>dostaje gotowe wnioski i terminy</li></ul></div>
+      <div class="kafel"><span class="ikona" data-ikona="building-bank"></span><h3>ZUS</h3>
+        <ul><li>mniej sporów i nieporozumień</li><li>mniej korespondencji o brakujące dokumenty</li><li>zmiana prawa to nowe parametry w panelu</li></ul></div>
+    </div>
+    <p class="wdrozenie"><b>Gotowe do wdrożenia:</b> REST API, silnik reguł z przepisem przy każdej regule i testami, symulacje mObywatela i eZUS gotowe do zastąpienia prawdziwymi usługami.</p>
+    <div class="przypis"><span>Cele z opisu zadania ZUS.</span><span class="nr"></span></div>
+    <aside>Co z tego ma rodzic: wie wcześniej, co mu przysługuje, widzi warianty i ich skutki dla obojga rodziców i dostaje gotowe wnioski z terminami. Co ma ZUS: mniej sporów i nieporozumień, mniej korespondencji o brakujące albo źle wypełnione dokumenty, a zmianę prawa wprowadza się jako nowe parametry w panelu, z datą obowiązywania. Technicznie to jest gotowe do wdrożenia: REST API, silnik reguł z przepisem przy każdej regule i testami, symulacje do zastąpienia prawdziwymi usługami. W Europie planer dla pary to standard: Niemcy, Szwecja, Norwegia, Wielka Brytania. W Polsce jeszcze go nie ma.</aside>
+  </section>
+
+  <!-- 9. ZAMKNIĘCIE -->
+  <section class="slajd tytulowy" data-name="zamkniecie">
+    <div class="marka"><img class="znak" src="../img/logo-znak.svg" alt=""><p class="nazwa">Kompas Rodzica</p></div>
+    <div class="zdania">
+      <p>Rodzic wie wcześniej.</p>
+      <p>Wniosek jest od razu dobry.</p>
+      <p>Każdy wynik ma przepis.</p>
+    </div>
+    <div class="linki">
+      <div><span>Demo</span><span>[link do demo]</span></div>
+      <div><span>Kod</span><span>[link do repozytorium]</span></div>
+    </div>
+    <div class="zespol"><p class="team">vibecodersi</p><p class="imiona">Oskar Pelzer, Mateusz Wojciechowski, Wojciech Rudnicki, Mikołaj Konieczny</p></div>
+    <div class="telefon koniec" aria-hidden="true"><div class="ekran"><img src="../img/t-dokumenty.jpg" alt=""></div></div>
+    <aside>Rodzic wie wcześniej, co mu przysługuje i co złożyć. Wniosek jest od razu dobry, więc jest mniej korespondencji i sporów. A każdy wynik da się sprawdzić w przepisie. To jest Kompas Rodzica. Dziękujemy, zapraszamy do demo.</aside>
+  </section>
+
+  <!-- 10. ZAŁĄCZNIK: rozwiązania zewnętrzne i AI (wymóg regulaminu, nie pokazujemy w wystąpieniu) -->
+  <section class="slajd" data-name="zewnetrzne">
+    <p class="kontekst">Załącznik</p>
+    <h2 class="tytul">Rozwiązania zewnętrzne i AI</h2>
+    <div class="s9">
+      <div class="licencje">
+        <div class="w"><span>MIT</span><span>Next.js, React, Tailwind CSS, Vitest, ESLint, Tabler Icons, pdf-lib</span></div>
+        <div class="w"><span>Apache-2.0</span><span>TypeScript, Playwright</span></div>
+        <div class="w"><span>SIL OFL 1.1</span><span>fonty Lato i Noto Sans</span></div>
+        <div class="w"><span>Dane</span><span>API ELI Sejmu (publiczne); katalog świadczeń przygotowany przed wydarzeniem</span></div>
+      </div>
+      <div class="ai">
+        <p><b>AI przy tworzeniu:</b> Claude Code pomagał pisać kod, testy i dokumentację.</p>
+        <p><b>AI w aplikacji:</b> brak. Kwoty liczy deterministyczny silnik reguł.</p>
+      </div>
+    </div>
+    <div class="przypis"><span>Wymóg regulaminu zadania, § 4 ust. 1. Inspiracje bez kopiowania kodu: NAV, Elterngeldrechner, GOV.UK, OpenFisca. Pełna lista: docs/zewnetrzne.md.</span><span class="nr"></span></div>
+    <aside>Załącznik wymagany przez regulamin zadania. W wystąpieniu go nie pokazujemy, jest w PDF dla jury.</aside>
+  </section>
+
+</div>
+<div id="postep"></div>
+<div id="notatki"></div>
+<div id="hud"></div>
+<script id="dane-json" type="application/json">/*DANE*/</script>
+<script>
+  // W pliku zbudowanym dane są wklejone wyżej; w podglądzie źródła pobieramy ../dane.json.
+  (function () {
+    var t = document.getElementById('dane-json').textContent.trim();
+    if (t && t !== '/*DANE*/') { window.DANE = JSON.parse(t); return; }
+    var x = new XMLHttpRequest(); x.open('GET', '../dane.json', false); x.send(); window.DANE = JSON.parse(x.responseText);
+  })();
+</script>
+<script src="tlo.js"></script>
+<script src="deck.js"></script>
+</body>
+</html>

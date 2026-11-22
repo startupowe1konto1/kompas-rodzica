@@ -1,0 +1,43 @@
+/* Zwykły CSS, nie moduł: reguła turbopack z next.config.ts („*.css” → @tailwindcss/turbopack) wyłącza CSS modules,
+   więc klasy z Szkielet.module.css nie trafiały do HTML i bloki były przezroczyste. Prefiks „szkielet-” zamiast hasha. */
+/* Szkielet: jasna fala przesuwa się po szarym bloku (shimmer). Bez ruchu przy prefers-reduced-motion. */
+.szkielet-blok {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-szary-kafel);
+}
+
+.szkielet-blok::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.65), transparent);
+  animation: szkielet-fala 1.4s ease-in-out infinite;
+}
+
+@keyframes szkielet-fala {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+/* Treść, która zastępuje szkielet, wchodzi krótkim przenikaniem zamiast „wskoczyć”. */
+.szkielet-wejscie {
+  animation: szkielet-wejscie 180ms ease-out;
+}
+
+@keyframes szkielet-wejscie {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .szkielet-blok::after {
+    display: none;
+  }
+  .szkielet-wejscie {
+    animation: none;
+  }
+}
